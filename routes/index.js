@@ -6,6 +6,7 @@ const userRouter = require("./users");
 const indexController = require("../controllers/index");
 
 /* GET CONTROLLER */
+router.get("/welfare", indexController.homeView);
 router.get("/", indexController.indexView);
 
 //= ==================================== DECLARE ALL YOUR ROUTERS HERE ==================================

@@ -1,0 +1,228 @@
+* {
+  font-family: calibri;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 15px;
+}
+
+.text-sm {
+  padding: 6px;
+  display: inline;
+  font-family: calibri;
+  font-size: normal;
+  color: black;
+}
+
+.welfare {
+  display: inline;
+  font-size: large;
+  color: rgb(255, 255, 255);
+  border: 3px solid rgb(20, 33, 58);
+  background-color: rgb(20, 33, 58);
+  padding: 10px;
+}
+
+/*Top Nav Bar*/
+
+.topNav {
+  display: flex;
+  margin-top: 30px;
+  margin-left: 140px;
+  list-style-type: none;
+  font-size: large;
+  font-weight: 400;
+}
+
+.topNav a:hover {
+  background-color: rgb(228, 228, 222);
+}
+
+.topNav li a {
+  color: rgb(8, 8, 8);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/*Bottom Nav Bar*/
+
+.navbar {
+  -webkit-box-shadow: 0 8px 6px -6px #999;
+  -moz-box-shadow: 0 8px 6px -6px #999;
+  box-shadow: 0 6px 6px -6px rgb(179, 178, 178);
+  max-width: 100%;
+  margin: auto;
+  color: rgb(252, 252, 252);
+}
+
+.bottomNav .nav-item a {
+  color: rgb(0, 0, 0);
+  font-weight: 500;
+  font-size: large;
+  margin-left: 30px;
+}
+
+.nav-item a:hover {
+  background-color: rgb(228, 228, 222);
+}
+
+#home {
+  color: blue;
+  padding-left: 40px;
+}
+
+.welcome {
+  display: flex;
+  flex-direction: column;
+  margin-top: 60px;
+  margin-left: 150px;
+  margin-right: 520px;
+  font-size: larger;
+}
+
+p {
+  font-size: larger;
+}
+
+#contentHead {
+  display: inline;
+}
+
+/* side-nav */
+.middle {
+  float: right;
+  border-left: 3px solid rgb(133, 129, 129);
+  margin-top: 150px;
+  margin-right: 150px;
+  list-style-type: none;
+  font-size: 22px;
+}
+
+.aboutWelfare {
+  margin-top: 20px;
+}
+
+.ourVision {
+  margin-top: 30px;
+}
+
+/*slideshow */
+
+* {
+  box-sizing: border-box;
+}
+.mySlides1 {
+  display: none;
+}
+img {
+  vertical-align: middle;
+  max-height: 700px;
+}
+
+/* Slideshow container */
+
+.slideshow-container {
+  max-width: 95%;
+  position: relative;
+  margin: auto;
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  text-decoration: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a grey background color */
+.prev:hover,
+.next:hover {
+  background-color: #f1f1f1;
+  color: black;
+}
+
+
+/*
+    Achievements
+  */
+
+.card {
+  border: 0px !important;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.125) !important;
+}
+.card-text {
+  font-size: smaller;
+}
+
+.card-title {
+  font-weight: bold;
+  color: black;
+}
+
+.read_more span {
+  color: rgb(18, 18, 73);
+  font-size: smaller;
+}
+
+.achievements {
+  margin-left: 150px;
+}
+
+/* Announcements */
+
+
+
+.nav-item a:hover {
+  color: rgb(0, 0, 0);
+  background-color: rgb(228, 228, 222);
+}
+
+p {
+  font-size: large;
+}
+
+#welfareBoardHeading {
+  color: black;
+}
+
+#achievements {
+  color: black;
+}
+
+#announcement {
+  color: black;
+}
+
+#about {
+  color: black;
+}
+
+#vision {
+  color: black;
+}
+
+#contentHead {
+  font-size: larger;
+}
+
