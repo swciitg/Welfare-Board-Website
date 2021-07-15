@@ -214,9 +214,7 @@ img {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  height: 613px;
-  scroll-snap-type: y mandatory;
-  overflow-y: auto;
+ 
 }
 
 .boxes::-webkit-scrollbar {

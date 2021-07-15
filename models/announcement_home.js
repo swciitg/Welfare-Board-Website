@@ -9,8 +9,7 @@ const announceSchema = new Schema({
     important: { type: Boolean },
     category: { type: String, required: true },
     creation: { type: Date, default: Date.now },
-    
 });
- 
-const Announcement =mongoose.model('announcement', announceSchema);
-module.exports=Announcement;
+
+const Announcement = mongoose.model('announcement', announceSchema);
+module.exports = Announcement;
