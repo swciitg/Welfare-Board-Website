@@ -131,40 +131,19 @@
     </div>
 
     <script>
-      var slideIndex = [1, 1];
-      var slideId = ["mySlides1", "mySlides2"];
-      showSlides(1, 0);
-
-      function plusSlides(n, no) {
-        showSlides((slideIndex[no] += n), no);
-      }
-
-      function showSlides(n, no) {
-        var i;
-        var x = document.getElementsByClassName(slideId[no]);
-        if (n > x.length) {
-          slideIndex[no] = 1;
-        }
-        if (n < 1) {
-          slideIndex[no] = x.length;
-        }
-        for (i = 0; i < x.length; i++) {
-          x[i].style.display = "none";
-        }
-        x[slideIndex[no] - 1].style.display = "block";
-      }
-    </script>
+      var events='<%-JSON.stringify(events)%>'
+          </script>
 
     <!-- Welcome -->
     <div class="welcome">
       <H1 id="welfareBoardHeading">Welcome to Welfare Board, IIT Guwahati</H1>
       <div class="aboutWelfare">
         <h3 id="about">About</h3>
-        <p><%=about.body%></p>
+        <p></p>
       </div>
       <div class="ourVision">
         <h3 id="vision">Vision</h3>
-        <P> <%=vision.body%> </P>
+        <P>  </P>
       </div>
     </div>
 
@@ -182,7 +161,7 @@
             IMPORTANT
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href=" ">1</a></li>
+            <li onclick("")><a class="dropdown-item" href=" ">1</a></li>
             <li><a class="dropdown-item" href=" ">2</a></li>
             <li><a class="dropdown-item" href=" ">3</a></li>
           </ul>
@@ -214,7 +193,7 @@
                   clip-rule="evenodd"
                   d="M21.4394 29.3923H10.546C5.83935 29.3923 2.66602 26.3643 2.66602 21.8456V10.2856C2.66602 5.76559 5.83935 2.72559 10.546 2.72559H21.4394C26.1593 2.72559 29.3327 5.76559 29.3327 10.2856V21.8456C29.3327 26.3643 26.1593 29.3923 21.4394 29.3923ZM19.026 15.0589H10.5593C9.99932 15.0589 9.55932 15.5123 9.55932 16.0589C9.55932 16.6189 9.99932 17.0589 10.5593 17.0589H19.026L15.7193 20.3523C15.5327 20.5389 15.426 20.8056 15.426 21.0589C15.426 21.3109 15.5327 21.5656 15.7193 21.7656C16.106 22.1523 16.746 22.1523 17.1327 21.7656L22.1593 16.7656C22.5327 16.3923 22.5327 15.7256 22.1593 15.3523L17.1327 10.3523C16.746 9.96559 16.106 9.96559 15.7193 10.3523C15.3327 10.7523 15.3327 11.3789 15.7193 11.7789L19.026 15.0589Z"
                   fill="#A5ADBC"
-                /></svg
+                /></svg>
             ></a>
           </div>
         </div>
@@ -236,14 +215,14 @@
             ALL
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="#">ALL</a></li>
-            <li><a class="dropdown-item" href="#">CULTURAL</a></li>
-            <li><a class="dropdown-item" href="#">TECHNICAL</a></li>
+            <li onclick="renderevents('ALL')"  class="dropdown-item">ALL</li>
+            <li onclick="renderevents('CULTURAL')"   class="dropdown-item">CULTURAL</li>
+            <li onclick="renderevents('TECHNICAL')"   class="dropdown-item">TECHNICAL</li>
           </ul>
         </div>
       </div>
 
-      <div class="ecards">
+      <div id="eventcontainer" class="ecards">
         <% var
         month=["January","February","March","April","May","June","July","August","September","October","November","December"]
         %> <%events.forEach(event=>{ %>
@@ -285,5 +264,7 @@
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
+    <script src="./js/home.js"></script>
   </body>
+
 </html>
