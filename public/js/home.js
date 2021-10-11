@@ -1,5 +1,5 @@
-console.log(1213)
-events=JSON.parse(events)
+events = JSON.parse(events)
+achievements = JSON.parse(achievements)
 var slideIndex = [1, 1];
 var slideId = ["mySlides1", "mySlides2"];
 showSlides(1, 0);
@@ -22,8 +22,8 @@ function showSlides(n, no) {
 	}
 	x[slideIndex[no] - 1].style.display = "block";
 }
-/////////////////////////
-var eventcontainer=document.getElementById("eventcontainer")
+
+var eventcontainer = document.getElementById("eventcontainer")
 month=["January","February","March","April","May","June","July","August","September","October","November","December"]
 const renderevents = function (category) {
 console.log(category)
@@ -73,3 +73,44 @@ while (eventcontainer.firstChild) {
     }
 
 }
+
+function renderAchievements(year = new Date().getFullYear()) {
+  var to_render = '';
+  achievements.forEach((element) => {
+    if (element.creation.slice(0, 4) == year) {
+      to_render += `<div class="cards_right ms-5">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">
+              ${element.title}
+            </h5>
+            <p class="card-text">
+              ${element.body}
+            </p>
+            <div class="read_more d-flex justify-content-end">
+              <span class="me-1">Read more</span>
+              <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="25" height="25" viewBox="0 0 172 172"
+                style="fill: #000000">
+                <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+                  stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
+                  font-family="none" font-weight="none" font-size="none" text-anchor="none"
+                  style="mix-blend-mode: normal">
+                  <path d="M0,172v-172h172v172z" fill="none"></path>
+                  <g fill="#2b3649">
+                    <path
+                      d="M86,17.2c-37.9948,0 -68.8,30.8052 -68.8,68.8c0,37.9948 30.8052,68.8 68.8,68.8c37.9948,0 68.8,-30.8052 68.8,-68.8c0,-37.9948 -30.8052,-68.8 -68.8,-68.8zM118.72013,90.05347l-22.93333,22.93333c-1.118,1.118 -2.58573,1.67987 -4.05347,1.67987c-1.46773,0 -2.93547,-0.56187 -4.05347,-1.67987c-2.24173,-2.24173 -2.24173,-5.8652 0,-8.10693l13.14653,-13.14653h-43.49307c-3.1648,0 -5.73333,-2.5628 -5.73333,-5.73333c0,-3.17053 2.56853,-5.73333 5.73333,-5.73333h43.49307l-13.14653,-13.14653c-2.24173,-2.24173 -2.24173,-5.8652 0,-8.10693c2.24173,-2.24173 5.8652,-2.24173 8.10693,0l22.93333,22.93333c2.24173,2.24173 2.24173,5.8652 0,8.10693z">
+                    </path>
+                  </g>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>`;
+    }
+  });
+  document.getElementById("achievements_year").innerHTML = year;
+  document.getElementById("home_achievements").innerHTML = to_render;
+}
+
+renderAchievements(new Date().getFullYear());
