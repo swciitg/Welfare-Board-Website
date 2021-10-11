@@ -15,7 +15,7 @@ exports.homeView = async (req, res) => {
         const VisionData = await Vision.findOne({});
         const EventData = await Event.find().sort({ creation: -1 });
 
-
+        
         return res.render("home", { announcements: AnnounceData, achievements: AchieveData, about: AboutData, vision: VisionData, events: EventData })
     } catch (err) {
 

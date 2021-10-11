@@ -1,5 +1,6 @@
-console.log(1213)
-events=JSON.parse(events)
+events = JSON.parse(events);
+achievements = JSON.parse(achievements);
+announcements= JSON.parse(announcements);
 var slideIndex = [1, 1];
 var slideId = ["mySlides1", "mySlides2"];
 showSlides(1, 0);
@@ -22,14 +23,15 @@ function showSlides(n, no) {
 	}
 	x[slideIndex[no] - 1].style.display = "block";
 }
-/////////////////////////
-var eventcontainer=document.getElementById("eventcontainer")
+
+var eventcontainer = document.getElementById("eventcontainer")
 month=["January","February","March","April","May","June","July","August","September","October","November","December"]
 const renderevents = function (category) {
 console.log(category)
 while (eventcontainer.firstChild) {
 	eventcontainer.removeChild(eventcontainer.lastChild);
     }
+    document.getElementById("events_type").innerHTML=category;
     for (let i = 0; i < events.length; i++) {
         if (events[i].category == category || category=="ALL") {
            
@@ -73,3 +75,90 @@ while (eventcontainer.firstChild) {
     }
 
 }
+
+function renderAchievements(year = new Date().getFullYear()) {
+  var to_render = '';
+  achievements.forEach((element) => {
+    if (element.creation.slice(0, 4) == year) {
+      to_render += `<div class="cards_right ms-5">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">
+              ${element.title}
+            </h5>
+            <p class="card-text">
+              ${element.body}
+            </p>
+            <div class="read_more d-flex justify-content-end">
+              <span class="me-1">Read more</span>
+              <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="25" height="25" viewBox="0 0 172 172"
+                style="fill: #000000">
+                <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+                  stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
+                  font-family="none" font-weight="none" font-size="none" text-anchor="none"
+                  style="mix-blend-mode: normal">
+                  <path d="M0,172v-172h172v172z" fill="none"></path>
+                  <g fill="#2b3649">
+                    <path
+                      d="M86,17.2c-37.9948,0 -68.8,30.8052 -68.8,68.8c0,37.9948 30.8052,68.8 68.8,68.8c37.9948,0 68.8,-30.8052 68.8,-68.8c0,-37.9948 -30.8052,-68.8 -68.8,-68.8zM118.72013,90.05347l-22.93333,22.93333c-1.118,1.118 -2.58573,1.67987 -4.05347,1.67987c-1.46773,0 -2.93547,-0.56187 -4.05347,-1.67987c-2.24173,-2.24173 -2.24173,-5.8652 0,-8.10693l13.14653,-13.14653h-43.49307c-3.1648,0 -5.73333,-2.5628 -5.73333,-5.73333c0,-3.17053 2.56853,-5.73333 5.73333,-5.73333h43.49307l-13.14653,-13.14653c-2.24173,-2.24173 -2.24173,-5.8652 0,-8.10693c2.24173,-2.24173 5.8652,-2.24173 8.10693,0l22.93333,22.93333c2.24173,2.24173 2.24173,5.8652 0,8.10693z">
+                    </path>
+                  </g>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>`;
+    }
+  });
+  document.getElementById("achievements_year").innerHTML = year;
+  document.getElementById("home_achievements").innerHTML = to_render;
+}
+function renderAnnouncements(order)
+{
+  let start,increment;
+  if(!order)
+  {
+    document.getElementById("announcement_order").innerHTML="LATEST";
+    start=0;
+    increment=1;
+  }
+  else
+  {
+    document.getElementById("announcement_order").innerHTML="OLDEST";
+    start=announcements.length-1;
+    increment=-1;
+  }
+
+  let to_render="";
+  while(start<announcements.length && start>=0){
+    let element=announcements[start];
+    let date=new Date(element.creation);
+    to_render+=`
+    <div class="boxes">
+      <div class="box shadow p-1 mb-1 bg-body rounded">
+        <p class="date">
+          ${date.getDate()}
+            ${month[date.getMonth()-1]}
+              ${date.getFullYear()}
+        </p>
+        <div class="info">
+          <p class="content">
+            ${element.description}
+          </p>
+          <a href="${element.link} "><svg width="32" height="33" viewBox="0 0 32 33" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M21.4394 29.3923H10.546C5.83935 29.3923 2.66602 26.3643 2.66602 21.8456V10.2856C2.66602 5.76559 5.83935 2.72559 10.546 2.72559H21.4394C26.1593 2.72559 29.3327 5.76559 29.3327 10.2856V21.8456C29.3327 26.3643 26.1593 29.3923 21.4394 29.3923ZM19.026 15.0589H10.5593C9.99932 15.0589 9.55932 15.5123 9.55932 16.0589C9.55932 16.6189 9.99932 17.0589 10.5593 17.0589H19.026L15.7193 20.3523C15.5327 20.5389 15.426 20.8056 15.426 21.0589C15.426 21.3109 15.5327 21.5656 15.7193 21.7656C16.106 22.1523 16.746 22.1523 17.1327 21.7656L22.1593 16.7656C22.5327 16.3923 22.5327 15.7256 22.1593 15.3523L17.1327 10.3523C16.746 9.96559 16.106 9.96559 15.7193 10.3523C15.3327 10.7523 15.3327 11.3789 15.7193 11.7789L19.026 15.0589Z"
+                fill="#A5ADBC" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>`;
+    start+=increment;
+  };
+  document.getElementById("home_announcements").innerHTML=to_render;
+}
+renderAchievements();
+renderAnnouncements(1);
