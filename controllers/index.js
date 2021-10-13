@@ -18,7 +18,7 @@ exports.aboutView = async (req, res) => {
         // eslint-disable-next-line no-console
         console.log(err);
         return res
-            .status(424)
+            .status(505)
             .json({ status: "Failed", message: "Request failed" });
     }
 };
@@ -31,7 +31,7 @@ exports.ContactView = async (req, res) => {
     } catch (error) {
         console.log(error.message);
         return res
-            .status(424)
+            .status(505)
             .json({ status: "Failed", message: "Request failed" });
     }
 };
