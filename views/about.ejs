@@ -58,8 +58,8 @@
 
 
     <div class="middle d-none d-lg-block">
-        <div class="col-md-2 ">
-            <ul class="nav flex-column  list2">
+        <div class="col-md-1 ">
+            <ul class="nav flex-column list2">
                 <li class="nav-item list " style="margin-bottom: -35%; font-size: medium; font-weight: 100;">
                     <h6 class="nav-link text-secondary" aria-current="page" id="contentHead">Contents</h6>
                 </li>
@@ -97,18 +97,18 @@
             </p>
         </div>
         <div class="about-us" id="activities">
-            <h6 class="my-3" style="font-weight: 100;">ACTIVITIES</h6>
+            <h5 class="my-3">ACTIVITIES</h5>
             <% activity.forEach(x=>{ %>
-                <div class="row my-3">
+                <div class="card box shadow p-1 mb-1 bg-body rounded" style="display:flex; flex-direction: row;">
                     <!-- <h4 class="logo">MANDATORY INTERACTION</h4> -->
-                    <div class="col-4">
+                    <div class="col-4" style="float:left;margin:1%;">
                         <img src=<%=x.ImagePath %>
                         class="card-img-top shadow img"
                         alt="..."
                         />
                     </div>
 
-                    <div class="col-6">
+                    <div class="col-7" style="float:right;margin:1%;">
                         <h7 class="card-title">
                             <%= x.title %>
                         </h7>
@@ -123,33 +123,28 @@
 
         </div>
         <div class="about-us" id="counsellors">
-            <h6 class="my-3" style="font-weight: 100;">COUNSELLORS</h6>
+            <h5 class="my-3" style="font-weight: 100;">COUNSELLORS</h5>
 
             <% counsellor.forEach(x=>{ %>
-                <div class="name card-title">
-                    <h7>
-                        <%= x.name%>
-                    </h7>
-                </div>
-                <div class="row my-4">
-                    <div class="col-4 ">
+                <div class="card box shadow p-1 mb-1 bg-body rounded" style="display: flex;flex-direction: row;">
+                    <div class="col-4 " style="float:left;margin:1%;">
                         <img src=<%=x.ImagePath %>
                         class="card-img-top shadow img"
                         alt="..."/>
                     </div>
-
-                    <div class="col-8">
+                    <div class="col-7" style="float:right;margin:1%;">
+                        <div class="card-title">
+                            <%= x.name%>
+                        </div>
                         <p class="card-text">
                             <%= x.body %>
                         </p>
                     </div>
-                    <hr>
-                    <% }) %>
                 </div>
-
+                <% }) %>
         </div>
         <div class="about-us" id="contact">
-            <h6 class="my-3" style="font-weight: 100;">Contact-Us</h6>
+            <h5 class="my-3" style="font-weight: 100;">CONTACT US</h5>
             <form action="/project/saathi-club" method="POST">
                 <div class="mb-3">
                     <div class="mb-3">
