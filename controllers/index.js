@@ -6,7 +6,7 @@ exports.indexView = (req, res) => res.render("landing");
 
 exports.aboutView = async (req, res) => {
     try {
-        const AboutData = await About.findOne({});
+        const AboutData = await About.find();
         const ActivityData = await Activity.find();
         const CounsellorData = await Counsellor.find();
         return res.render("about", {

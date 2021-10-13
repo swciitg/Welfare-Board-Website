@@ -13,6 +13,12 @@
 </head>
 
 <body>
+    <div class="alert alert-success" role="alert" id="success_msg">
+        You message is successfully submitted
+    </div>
+    <div class="alert alert-danger" role="alert" id="danger_msg">
+        Could not submit the form, Please try again
+    </div>
     <div class="header" style="margin-bottom: -1%; padding-top: 1%;">
         <div class="logo">
             <h2 class="text-sm">SAATHI CLUB</h2>
@@ -21,13 +27,13 @@
 
     <div class="header">
         <span class="title">
-            <h5 class="text-sm">
+            <h4 class="text-sm">
                 INDIAN INSTITUTE OF TECHNOLOGY GUWAHATI
-            </h5>
+            </h4>
         </span>
     </div>
-
-    <nav class="navbar navbar-expand d-lg-none">
+    
+    <nav class="navbar navbar-expand d-lg-none" style="display: flex; justify-content: center;">
         <div class="bottomNav ">
             <div class="container-fluid">
 
@@ -87,14 +93,16 @@
     <div class="content">
         <div class="about-us" id="about-us">
             <div class="welcome">
-                <h5 style="font-weight: 200;">Welcome to Saathi Club, IIT Guwahati</h5>
+                <h2 style="font-weight: 200;">Welcome to Saathi Club, IIT Guwahati</h5>
             </div>
-            <h6 style="font-weight: 100;">
-
-            </h6>
-            <p>
-
+            <% about.forEach(item=>{ %>
+            <h4 style="font-weight: 100;">
+                <%= item.title%>
+            </h4>
+            <p >
+                <%= item.body %>
             </p>
+            <%})%>
         </div>
         <div class="about-us" id="activities">
             <h5 class="my-3">ACTIVITIES</h5>
@@ -109,9 +117,9 @@
                     </div>
 
                     <div class="col-7" style="float:right;margin:1%;">
-                        <h7 class="card-title">
+                        <h6 class="card-title">
                             <%= x.title %>
-                        </h7>
+                        </h6>
                         <p class="card-text">
                             <%= x.body %>
                         </p>
@@ -145,28 +153,26 @@
         </div>
         <div class="about-us" id="contact">
             <h5 class="my-3" style="font-weight: 100;">CONTACT US</h5>
-            <form action="/project/saathi-club" method="POST">
+            <form >
                 <div class="mb-3">
                     <div class="mb-3">
                         <label for="name" class="form-label text-sm">Name</label>
-                        <input type="text" class="form-control" id="name">
+                        <input type="text" class="form-control" id="contact_name">
                     </div>
                     <label for="email" class="form-label text-sm">Email address</label>
-                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+                    <input type="email" class="form-control"  aria-describedby="emailHelp" id="contact_email">
 
                 </div>
                 <div class="form-group my-3">
                     <label for="body" class="text-sm">Body</label>
-                    <textarea class="form-control" id="body" rows="3"></textarea>
+                    <textarea class="form-control" rows="3" id="contact_body"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary text-sm">Submit</button>
+                <button onclick="Send_MSG()" class="btn btn-primary text-sm">Submit</button>
             </form>
         </div>
     </div>
     </div>
-    <script>
-        CKEDITOR.replace('test1');
-    </script>
+    <script src="js/saathi.js"></script>
 </body>
 
 </html>
