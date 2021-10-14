@@ -20,18 +20,18 @@
   </div>
 
   <!-- Top NavBar -->
-  <nav>
+  <div style="width: 100%;">
     <ul class="topNav">
-      <LI><a href="#WB">
-          <H5 class="welfare">WELFARE BOARD</H5>
-        </a></LI>
+      <li class="welfare"><a href="#WB" style="color:white;" >
+         WELFARE BOARD
+        </a></li>
       <li><a href="#SA">STUDENT AFFAIRS BOARD</a></li>
-      <LI><a href="#HAB">HOSTEL AFFAIRS BOARD</a></LI>
-      <LI><a href="#TECH">TECHNICAL BOARD</a></LI>
-      <LI><a href="#CB">CULTURAL BOARD</a></LI>
-      <LI><a href="#SB">SPORTS BOARD</a></LI>
+      <li><a href="#HAB">HOSTEL AFFAIRS BOARD</a></li>
+      <li><a href="#TECH">TECHNICAL BOARD</a></li>
+      <li><a href="#CB">CULTURAL BOARD</a></li>
+      <li><a href="#SB">SPORTS BOARD</a></li>
     </ul>
-  </nav>
+  </div>
 
   <div class="slideshow-container">
     <div class="mySlides1">
@@ -84,8 +84,26 @@
     </div>
   </nav>
 
+  
+  <div style="display:flex;flex-direction:row;">
+     <!-- Welcome -->
+  <div class="welcome" style="float:left;">
+    <H1 id="welfareBoardHeading">Welcome to Welfare Board, IIT Guwahati</H1>
+    <div class="aboutWelfare">
+      <h3 id="about">About</h3>
+      <p>
+        <%=about.body%>
+      </p>
+    </div>
+    <div class="ourVision">
+      <h3 id="vision">Vision</h3>
+      <P>
+        <%=vision.body%>
+      </P>
+    </div>
+  </div>
   <!-- Side NavBar -->
-  <div class="middle">
+  <div class="middle" style="float:right;">
     <div class="col-md-2">
       <ul class="nav flex-column list2">
         <li class="nav-item list">
@@ -110,72 +128,59 @@
       </ul>
     </div>
   </div>
-
+</div>
   <script>
-    var events = '<%-JSON.stringify(events)%>'
+    var events = '<%-JSON.stringify(events)%>';
+    var achievements = '<%-JSON.stringify(achievements)%>';
+    var announcements = '<%-JSON.stringify(announcements)%>';
   </script>
 
-  <!-- Welcome -->
-  <div class="welcome">
-    <H1 id="welfareBoardHeading">Welcome to Welfare Board, IIT Guwahati</H1>
-    <div class="aboutWelfare">
-      <h3 id="about">About</h3>
-      <p>
-        <%=about.body%>
-      </p>
-    </div>
-    <div class="ourVision">
-      <h3 id="vision">Vision</h3>
-      <P>
-        <%=vision.body%>
-      </P>
-    </div>
-  </div>
+
 
   <!-- Announcements -->
-  <div class="announcements">
-    <div class="announce">
+  <div class="announcements  mt-5 flex-column" style="width:65%;">
+    <div class="ach-start d-flex justify-content-between">
       <h3 id="announcement">Announcements</h3>
       <div class="dropdown">
         <button class="btn shadow-sm btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
-          aria-expanded="false">
-          IMPORTANT
+          aria-expanded="false" id="announcement_order">
+          LATEST
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li><a class="dropdown-item" href=" ">1</a></li>
-          <li><a class="dropdown-item" href=" ">2</a></li>
-          <li><a class="dropdown-item" href=" ">3</a></li>
+          <li><a class="dropdown-item" onClick="renderAnnouncements(0)">Sort by latest</a></li>
+          <li><a class="dropdown-item" onClick="renderAnnouncements(1)">Sort by oldest</a></li>
         </ul>
       </div>
     </div>
+    <div id="home_announcements">
 
-    <% var
-      month=["January","February","March","April","May","June","July","August","September","October","November","December"]
-      %>
-      <% announcements.slice(0,5).forEach(announcement=>{%>
-        <div class="boxes">
-          <div class="box shadow p-1 mb-1 bg-body rounded">
-            <p class="date">
-              <%= announcement.creation.getDate() %>
-                <%=month[announcement.creation.getMonth()-1]%>
-                  <%=announcement.creation.getFullYear() %>
-            </p>
-            <div class="info">
-              <p class="content">
-                <%=announcement.description%>
-              </p>
-              <a href="<%=announcement.link %> "><svg width="32" height="33" viewBox="0 0 32 33" fill="none"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd" clip-rule="evenodd"
-                    d="M21.4394 29.3923H10.546C5.83935 29.3923 2.66602 26.3643 2.66602 21.8456V10.2856C2.66602 5.76559 5.83935 2.72559 10.546 2.72559H21.4394C26.1593 2.72559 29.3327 5.76559 29.3327 10.2856V21.8456C29.3327 26.3643 26.1593 29.3923 21.4394 29.3923ZM19.026 15.0589H10.5593C9.99932 15.0589 9.55932 15.5123 9.55932 16.0589C9.55932 16.6189 9.99932 17.0589 10.5593 17.0589H19.026L15.7193 20.3523C15.5327 20.5389 15.426 20.8056 15.426 21.0589C15.426 21.3109 15.5327 21.5656 15.7193 21.7656C16.106 22.1523 16.746 22.1523 17.1327 21.7656L22.1593 16.7656C22.5327 16.3923 22.5327 15.7256 22.1593 15.3523L17.1327 10.3523C16.746 9.96559 16.106 9.96559 15.7193 10.3523C15.3327 10.7523 15.3327 11.3789 15.7193 11.7789L19.026 15.0589Z"
-                    fill="#A5ADBC" />
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
-        <% }) %>
+    </div>
+
   </div>
+
+  <!-- Achievements -->
+
+  <div class="achievements mt-5 w-50 d-flex flex-column">
+    <div class="ach-start d-flex justify-content-between">
+      <h3 id="achievements">Student Achievements</h3>
+      <div class="dropdown">
+        <button class="btn shadow-sm btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
+          aria-expanded="false" id="achievements_year">
+          2021
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" onClick="renderAchievements('2021')">2021</a></li>
+          <li><a class="dropdown-item" onClick="renderAchievements('2020')">2020</a></li>
+          <li><a class="dropdown-item" onClick="renderAchievements('2019')">2019</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="home_achievements">
+
+    </div>
+
+  </div>
+
 
 
   <!-- Events -->
@@ -184,7 +189,7 @@
       <h3 class="ehead">Events at IIT Guwahati</h3>
       <div class="dropdown">
         <button class="btn shadow-sm btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
-          aria-expanded="false">
+          aria-expanded="false" id="events_type">
           ALL
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -225,6 +230,9 @@
           <% }); %>
     </div>
   </div>
+
+
+
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

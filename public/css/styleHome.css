@@ -1,7 +1,6 @@
 * {
   font-family: calibri;
 }
-
 .header {
   display: flex;
   align-items: center;
@@ -20,18 +19,19 @@
 .welfare {
   display: inline;
   font-size: large;
-  color: rgb(255, 255, 255);
-  border: 3px solid rgb(20, 33, 58);
+  color: white;
+  padding-left: 0.5%;
+  padding-right: 0.5%;
   background-color: rgb(20, 33, 58);
-  padding: 10px;
 }
 
 /*Top Nav Bar*/
 
 .topNav {
   display: flex;
+  flex-direction: row;
   margin-top: 30px;
-  margin-left: 140px;
+  justify-content: center;
   list-style-type: none;
   font-size: large;
   font-weight: 400;
@@ -41,13 +41,18 @@
   background-color: rgb(228, 228, 222);
 }
 
+.topNav li {
+  margin: 1%;
+}
 .topNav li a {
   color: rgb(8, 8, 8);
   text-align: center;
-  padding: 14px 16px;
   text-decoration: none;
 }
 
+.welfare a:hover {
+  background-color: rgb(20, 33, 58);
+}
 /*Bottom Nav Bar*/
 
 .navbar {
@@ -214,7 +219,6 @@ img {
   display: flex;
   flex-direction: column;
   align-items: stretch;
- 
 }
 
 .boxes::-webkit-scrollbar {
@@ -285,8 +289,9 @@ p {
 
 .events {
   background-color: #1e2532;
-  margin-top: 60px;
-  padding: 70px 150px 70px;
+  margin-top: 5vh;
+  padding: 5vh 10vw;
+  width: 100%;
 }
 
 .event {
