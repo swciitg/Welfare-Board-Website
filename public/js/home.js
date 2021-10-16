@@ -1,6 +1,8 @@
 events = JSON.parse(events);
 achievements = JSON.parse(achievements);
 announcements = JSON.parse(announcements);
+teams=JSON.parse(teams);
+
 var slideIndex = [1, 1];
 var slideId = ["mySlides1", "mySlides2"];
 showSlides(1, 0);
@@ -25,6 +27,8 @@ function showSlides(n, no) {
 }
 
 var eventcontainer = document.getElementById("eventcontainer");
+var teamcontainer=document.getElementById("teamcontainer");
+
 month = [
   "January",
   "February",
@@ -48,7 +52,7 @@ const renderevents = function (category) {
   for (let i = 0; i < events.length; i++) {
     if (events[i].category == category || category == "ALL") {
       let div = document.createElement("div");
-      div.className = "ecard card text-white bg-primary mb-3";
+      div.className = "ecard card text-white bg-info mb-3";
       div.style.width = "19rem";
       div.innerHTML = `
           <img src="${events[i].image}" class="card-img-top h-75" />
@@ -80,6 +84,36 @@ const renderevents = function (category) {
         
 `;
       eventcontainer.append(div);
+    }
+  }
+};
+
+const renderteams = function (category) {
+  console.log(category);
+  while (teamcontainer.firstChild) {
+    teamcontainer.removeChild(teamcontainer.lastChild);
+  }
+  document.getElementById("teams_type").innerHTML = category;
+  for (let i = 0; i < teams.length; i++) {
+    if (teams[i].category == category ||category == "All Members" ) {
+      let div = document.createElement("div");
+      div.className = "tcard card text-white bg-info mb-4";
+      div.style.width = "19rem";
+      div.innerHTML = `
+          <img src="${teams[i].image}" class="card-img-top h-70" />
+          <div class="card-body">
+            <p class="card-text">
+           ${teams[i].name}
+   
+            </p>
+            <div class="tinfo">
+              <h5 class="card-title">${teams[i].description}</h5>
+              
+            </div>
+          </div>
+        
+`;
+      teamcontainer.append(div);
     }
   }
 };

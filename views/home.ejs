@@ -130,6 +130,9 @@
         <li class="nav-item list">
           <a class="nav-link text-secondary" href="#achievements">Achievements</a>
         </li>
+        <li class="nav-item list">
+          <a class="nav-link text-secondary" href="#">Teams</a>
+        </li>
 
         <li class="nav-item list">
           <a class="nav-link text-secondary" href="#">Events</a>
@@ -143,11 +146,12 @@
     var events = '<%-JSON.stringify(events)%>';
     var achievements = '<%-JSON.stringify(achievements)%>';
     var announcements = '<%-JSON.stringify(announcements)%>';
+    var teams= '<%-JSON.stringify(teams)%>';
   </script>
 
 
 
-  <!-- Announcements -->
+  <!-- Announcements homepage-->
   <div class="announcements  mt-5 flex-column" style="width:65%;">
     <div class="ach-start d-flex justify-content-between">
       <h3 id="announcement">Announcements</h3>
@@ -168,7 +172,7 @@
 
   </div>
 
-  <!-- Achievements -->
+  <!-- Achievements homepage -->
 
   <div class="achievements mt-5 w-50 d-flex flex-column">
     <div class="ach-start d-flex justify-content-between">
@@ -189,6 +193,46 @@
 
     </div>
 
+  </div>
+
+<!-- Teams homepage-->
+  <div class="Teams">
+    <div class="Team">
+      <h2 class="thead" >Welfare Board Teams</h2>
+      <div class="dropdown">
+        <button class="btn shadow-sm btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
+          aria-expanded="false" id="teams_type">
+          All Members
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li onclick="renderteams('All Members')" class="dropdown-item">All Members</li>
+          <li onclick="renderteams('Functionaries')" class="dropdown-item">Funtionaries</li>
+          <li onclick="renderteams('BoardMembers')" class="dropdown-item">Board Members</li>
+          <li onclick="renderteams('Clubs')" class="dropdown-item">Clubs</li>
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="teamcontainer" class="tcards">
+      
+        <%teams.forEach(team=>{ %>
+          <div class="tcard card text-white bg-info mb-4" style="width: 3rem">
+            <img src="<%= team.image %>" class="card-img-top h-70" />
+            <div class="card-body">
+              <p class="card-text">
+                <%=team.name%>
+              </p>
+              <div class="tinfo">
+                <h5 class="card-title">
+                  <%= team.description %>
+                </h5>
+                
+              </div>
+            </div>
+          </div>
+          <% }); %>
+    </div>
   </div>
 
 
@@ -215,7 +259,7 @@
         month=["January","February","March","April","May","June","July","August","September","October","November","December"]
         %>
         <%events.forEach(event=>{ %>
-          <div class="ecard card text-white bg-primary mb-3" style="width: 19rem">
+          <div class="ecard card text-white bg-info mb-3" style="width: 19rem">
             <img src="<%= event.image %>" class="card-img-top h-75" />
             <div class="card-body">
               <p class="card-text">

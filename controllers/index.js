@@ -3,6 +3,8 @@ const Announcement = require("../models/announcement_home");
 const About = require("../models/about_home");
 const Vision = require("../models/vision_home");
 const Event = require("../models/events_home");
+const Team = require("../models/teams_home");
+
 
 
 exports.indexView = (req, res) => res.render("landing");
@@ -14,9 +16,10 @@ exports.homeView = async (req, res) => {
         const AboutData = await About.findOne({});
         const VisionData = await Vision.findOne({});
         const EventData = await Event.find().sort({ creation: -1 });
+        const TeamData = await Team.find().sort({creation:-1});
 
         
-        return res.render("home", { announcements: AnnounceData, achievements: AchieveData, about: AboutData, vision: VisionData, events: EventData })
+        return res.render("home", { announcements: AnnounceData, achievements: AchieveData, about: AboutData, vision: VisionData, events: EventData, teams: TeamData })
     } catch (err) {
 
         console.log(err);
