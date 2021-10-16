@@ -15,294 +15,254 @@
     <style></style>
   </head>
 
-  <body>
-    <div class="header">
-      <span class="logo">
-        <a href="https://www.iitg.ac.in"
-          ><img src="./images/iit_logo.png" alt="1200px-IIT-Guwahati-Logo-1"
-        /></a>
-      </span>
-      <span class="title">
-        <h5 class="text-sm">INDIAN INSTITUTE OF TECHNOLOGY GUWAHATI</h5>
-      </span>
+
+<body>
+  <div class="header">
+    <span class="logo">
+      <a href="https://www.iitg.ac.in"><img src="./images/iit_logo.png" alt="1200px-IIT-Guwahati-Logo-1" /></a>
+    </span>
+    <span class="title">
+      <h5 class="text-sm">INDIAN INSTITUTE OF TECHNOLOGY GUWAHATI</h5>
+    </span>
+  </div>
+
+  <!-- Top NavBar -->
+  <div style="width: 100%;">
+    <ul class="topNav">
+      <li class="welfare"><a href="#WB" style="color:white;" >
+         WELFARE BOARD
+        </a></li>
+      <li><a href="#SA">STUDENT AFFAIRS BOARD</a></li>
+      <li><a href="#HAB">HOSTEL AFFAIRS BOARD</a></li>
+      <li><a href="#TECH">TECHNICAL BOARD</a></li>
+      <li><a href="#CB">CULTURAL BOARD</a></li>
+      <li><a href="#SB">SPORTS BOARD</a></li>
+    </ul>
+  </div>
+
+  <div class="slideshow-container">
+    <div class="mySlides1">
+      <img src="./images/img_nature_wide.jpg" style="width: 100%" />
     </div>
 
-    <!-- Top NavBar -->
-    <div style="width: 100%">
-      <ul class="topNav">
-        <li class="welfare">
-          <a href="#WB" style="color: white"> WELFARE BOARD </a>
+    <div class="mySlides1">
+      <img src="./images/img_snow_wide.jpg" style="width: 100%" />
+    </div>
+
+    <div class="mySlides1">
+      <img src="./images/img_mountains_wide.jpg" style="width: 100%" />
+    </div>
+
+    <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
+  </div>
+
+  <!-- Bottom NavBar -->
+
+  <nav class="navbar navbar-expand-lg">
+    <div class="bottomNav">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" id="home" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Sathi-Counselling Service</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Red Ribbon Club</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Academic Intiative Club</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Social Service Club</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Youth Empowerment Club</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Rights & Responsibility Club</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  
+  <div style="display:flex;flex-direction:row;">
+     <!-- Welcome -->
+  <div class="welcome" style="float:left;">
+    <H1 id="welfareBoardHeading">Welcome to Welfare Board, IIT Guwahati</H1>
+    <div class="aboutWelfare">
+      <h3 id="about">About</h3>
+      <p>
+        <%=about.body%>
+      </p>
+    </div>
+    <div class="ourVision">
+      <h3 id="vision">Vision</h3>
+      <P>
+        <%=vision.body%>
+      </P>
+    </div>
+  </div>
+
+  
+  <!-- Side NavBar -->
+  <div class="middle" style="float:right;">
+    <div class="col-md-2">
+      <ul class="nav flex-column list2">
+        <li class="nav-item list">
+          <h4 class="nav-link text-secondary" aria-current="page" id="contentHead">
+            Contents
+          </h4>
         </li>
-        <li><a href="#SA">STUDENT AFFAIRS BOARD</a></li>
-        <li><a href="#HAB">HOSTEL AFFAIRS BOARD</a></li>
-        <li><a href="#TECH">TECHNICAL BOARD</a></li>
-        <li><a href="#CB">CULTURAL BOARD</a></li>
-        <li><a href="#SB">SPORTS BOARD</a></li>
+        <li class="nav-item list">
+          <a class="nav-link text-secondary" aria-current="page" href="#welfareBoardHeading">About
+          </a>
+        </li>
+        <li class="nav-item list">
+          <a class="nav-link text-secondary" href="#announcement">Announcements</a>
+        </li>
+        <li class="nav-item list">
+          <a class="nav-link text-secondary" href="#achievements">Achievements</a>
+        </li>
+
+        <li class="nav-item list">
+          <a class="nav-link text-secondary" href="#">Events</a>
+        </li>
       </ul>
     </div>
+  </div>
+</div>
 
-    <div class="slideshow-container">
-      <div class="mySlides1">
-        <img src="./images/img_nature_wide.jpg" style="width: 100%" />
-      </div>
+  <script>
+    var events = '<%-JSON.stringify(events)%>';
+    var achievements = '<%-JSON.stringify(achievements)%>';
+    var announcements = '<%-JSON.stringify(announcements)%>';
+  </script>
 
-      <div class="mySlides1">
-        <img src="./images/img_snow_wide.jpg" style="width: 100%" />
-      </div>
 
-      <div class="mySlides1">
-        <img src="./images/img_mountains_wide.jpg" style="width: 100%" />
-      </div>
 
-      <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
-      <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
-    </div>
-
-    <!-- Bottom NavBar -->
-
-    <nav class="navbar navbar-expand-lg">
-      <div class="bottomNav">
-        <div class="container-fluid">
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" id="home" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Sathi-Counselling Service</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Red Ribbon Club</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Academic Intiative Club</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Social Service Club</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Youth Empowerment Club</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Rights & Responsibility Club</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </nav>
-
-    <div style="display: flex; flex-direction: row">
-      <!-- Welcome -->
-      <div class="welcome" style="float: left">
-        <H1 id="welfareBoardHeading">Welcome to Welfare Board, IIT Guwahati</H1>
-        <div class="aboutWelfare">
-          <h3 id="about">About</h3>
-          <p><%=about.body%></p>
-        </div>
-        <div class="ourVision">
-          <h3 id="vision">Vision</h3>
-          <P> <%=vision.body%> </P>
-        </div>
-      </div>
-      <!-- Side NavBar -->
-      <div class="middle" style="float: right">
-        <div class="col-md-2">
-          <ul class="nav flex-column list2">
-            <li class="nav-item list">
-              <h4
-                class="nav-link text-secondary"
-                aria-current="page"
-                id="contentHead"
-              >
-                Contents
-              </h4>
-            </li>
-            <li class="nav-item list">
-              <a
-                class="nav-link text-secondary"
-                aria-current="page"
-                href="#welfareBoardHeading"
-                >About
-              </a>
-            </li>
-            <li class="nav-item list">
-              <a class="nav-link text-secondary" href="#announcement"
-                >Announcements</a
-              >
-            </li>
-            <li class="nav-item list">
-              <a class="nav-link text-secondary" href="#achievements"
-                >Achievements</a
-              >
-            </li>
-
-            <li class="nav-item list">
-              <a class="nav-link text-secondary" href="#">Events</a>
-            </li>
-          </ul>
-        </div>
+  <!-- Announcements -->
+  <div class="announcements  mt-5 flex-column" style="width:65%;">
+    <div class="ach-start d-flex justify-content-between">
+      <h3 id="announcement">Announcements</h3>
+      <div class="dropdown">
+        <button class="btn shadow-sm btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
+          aria-expanded="false" id="announcement_order">
+          LATEST
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" onClick="renderAnnouncements(0)">Sort by latest</a></li>
+          <li><a class="dropdown-item" onClick="renderAnnouncements(1)">Sort by oldest</a></li>
+        </ul>
       </div>
     </div>
-    <script>
-      var events = "<%-JSON.stringify(events)%>";
-      var achievements = "<%-JSON.stringify(achievements)%>";
-      var announcements = "<%-JSON.stringify(announcements)%>";
-    </script>
+    <div id="home_announcements">
 
-    <!-- Announcements -->
-    <div class="announcements mt-5 flex-column" style="width: 65%">
-      <div class="ach-start d-flex justify-content-between">
-        <h3 id="announcement">Announcements</h3>
-        <div class="dropdown">
-          <button
-            class="btn shadow-sm btn-light dropdown-toggle"
-            type="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-            id="announcement_order"
-          >
-            LATEST
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li>
-              <a class="dropdown-item" onClick="renderAnnouncements(0)"
-                >Sort by latest</a
-              >
-            </li>
-            <li>
-              <a class="dropdown-item" onClick="renderAnnouncements(1)"
-                >Sort by oldest</a
-              >
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div id="home_announcements"></div>
     </div>
 
-    <!-- Achievements -->
+  </div>
 
-    <div class="achievements mt-5 w-50 d-flex flex-column">
-      <div class="ach-start d-flex justify-content-between">
-        <h3 id="achievements">Student Achievements</h3>
-        <div class="dropdown">
-          <button
-            class="btn shadow-sm btn-light dropdown-toggle"
-            type="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-            id="achievements_year"
-          >
-            2021
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li>
-              <a class="dropdown-item" onClick="renderAchievements('2021')"
-                >2021</a
-              >
-            </li>
-            <li>
-              <a class="dropdown-item" onClick="renderAchievements('2020')"
-                >2020</a
-              >
-            </li>
-            <li>
-              <a class="dropdown-item" onClick="renderAchievements('2019')"
-                >2019</a
-              >
-            </li>
-          </ul>
-        </div>
+  <!-- Achievements -->
+
+  <div class="achievements mt-5 w-50 d-flex flex-column">
+    <div class="ach-start d-flex justify-content-between">
+      <h3 id="achievements">Student Achievements</h3>
+      <div class="dropdown">
+        <button class="btn shadow-sm btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
+          aria-expanded="false" id="achievements_year">
+          2021
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" onClick="renderAchievements('2021')">2021</a></li>
+          <li><a class="dropdown-item" onClick="renderAchievements('2020')">2020</a></li>
+          <li><a class="dropdown-item" onClick="renderAchievements('2019')">2019</a></li>
+        </ul>
       </div>
-      <div id="home_achievements"></div>
+    </div>
+    <div id="home_achievements">
+
     </div>
 
-    <!-- Events -->
-    <div class="events">
-      <div class="event">
-        <h3 class="ehead">Events at IIT Guwahati</h3>
-        <div class="dropdown">
-          <button
-            class="btn shadow-sm btn-light dropdown-toggle"
-            type="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-            id="events_type"
-          >
-            ALL
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li onclick="renderevents('ALL')" class="dropdown-item">ALL</li>
-            <li onclick="renderevents('CULTURAL')" class="dropdown-item">
-              CULTURAL
-            </li>
-            <li onclick="renderevents('TECHNICAL')" class="dropdown-item">
-              TECHNICAL
-            </li>
-          </ul>
-        </div>
-      </div>
+  </div>
 
-      <div id="eventcontainer" class="ecards">
-        <% var
+
+
+  <!-- Events -->
+  <div class="events">
+    <div class="event">
+      <h3 class="ehead">Events at IIT Guwahati</h3>
+      <div class="dropdown">
+        <button class="btn shadow-sm btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
+          aria-expanded="false" id="events_type">
+          ALL
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li onclick="renderevents('ALL')" class="dropdown-item">ALL</li>
+          <li onclick="renderevents('CULTURAL')" class="dropdown-item">CULTURAL</li>
+          <li onclick="renderevents('TECHNICAL')" class="dropdown-item">TECHNICAL</li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="eventcontainer" class="ecards">
+      <% var
         month=["January","February","March","April","May","June","July","August","September","October","November","December"]
-        %> <%events.forEach(event=>{ %>
-        <div class="ecard card text-white bg-primary mb-3" style="width: 19rem">
-          <img src="<%= event.image %>" class="card-img-top h-75" />
-          <div class="card-body">
-            <p class="card-text">
-              <%= event.creation.getDate() %>
-              <%=month[event.creation.getMonth()-1]%>
-              <%=event.creation.getFullYear() %>
-            </p>
-            <div class="einfo">
-              <h5 class="card-title"><%= event.description %></h5>
-              <a href="<%= event.link %>"
-                ><svg
-                  width="27"
-                  height="27"
-                  viewBox="0 0 27 27"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M18.8769 26.8151H7.98352C3.27685 26.8151 0.103516 23.7871 0.103516 19.2684V7.70844C0.103516 3.18844 3.27685 0.148438 7.98352 0.148438H18.8769C23.5968 0.148438 26.7702 3.18844 26.7702 7.70844V19.2684C26.7702 23.7871 23.5968 26.8151 18.8769 26.8151ZM16.4635 12.4818H7.99682C7.43682 12.4818 6.99682 12.9351 6.99682 13.4818C6.99682 14.0418 7.43682 14.4818 7.99682 14.4818H16.4635L13.1568 17.7751C12.9702 17.9618 12.8635 18.2284 12.8635 18.4818C12.8635 18.7338 12.9702 18.9884 13.1568 19.1884C13.5435 19.5751 14.1835 19.5751 14.5702 19.1884L19.5968 14.1884C19.9702 13.8151 19.9702 13.1484 19.5968 12.7751L14.5702 7.7751C14.1835 7.38844 13.5435 7.38844 13.1568 7.7751C12.7702 8.1751 12.7702 8.80177 13.1568 9.20177L16.4635 12.4818Z"
-                    fill="white"
-                  />
-                </svg>
-              </a>
+        %>
+        <%events.forEach(event=>{ %>
+          <div class="ecard card text-white bg-primary mb-3" style="width: 19rem">
+            <img src="<%= event.image %>" class="card-img-top h-75" />
+            <div class="card-body">
+              <p class="card-text">
+                <%= event.creation.getDate() %>
+                  <%=month[event.creation.getMonth()-1]%>
+                    <%=event.creation.getFullYear() %>
+              </p>
+              <div class="einfo">
+                <h5 class="card-title">
+                  <%= event.description %>
+                </h5>
+                <a href="<%= event.link %>"><svg width="27" height="27" viewBox="0 0 27 27" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                      d="M18.8769 26.8151H7.98352C3.27685 26.8151 0.103516 23.7871 0.103516 19.2684V7.70844C0.103516 3.18844 3.27685 0.148438 7.98352 0.148438H18.8769C23.5968 0.148438 26.7702 3.18844 26.7702 7.70844V19.2684C26.7702 23.7871 23.5968 26.8151 18.8769 26.8151ZM16.4635 12.4818H7.99682C7.43682 12.4818 6.99682 12.9351 6.99682 13.4818C6.99682 14.0418 7.43682 14.4818 7.99682 14.4818H16.4635L13.1568 17.7751C12.9702 17.9618 12.8635 18.2284 12.8635 18.4818C12.8635 18.7338 12.9702 18.9884 13.1568 19.1884C13.5435 19.5751 14.1835 19.5751 14.5702 19.1884L19.5968 14.1884C19.9702 13.8151 19.9702 13.1484 19.5968 12.7751L14.5702 7.7751C14.1835 7.38844 13.5435 7.38844 13.1568 7.7751C12.7702 8.1751 12.7702 8.80177 13.1568 9.20177L16.4635 12.4818Z"
+                      fill="white" />
+                  </svg>
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-        <% }); %>
-      </div>
+          <% }); %>
     </div>
+  </div>
 
-    <!-- Footer -->
-    <div class="footer">
-      <div class="swcfirst">
-        <img
-          src="https://cdn.discordapp.com/icons/700582407048396810/b323eb7828b87b9b7d5e07db8670efc5.png?size=128"
-          alt="swc_icon"
-          width="70px"
-          height="70px"
-        />
-        <div class="swcfoot">
-          <h5><a href="#">Student Affairs Section IIT Guwahati |</a></h5>
-          <div class="swc">
-            <h9>© 2021 SWC —</h9>
-            <h10><a href="#">@swciitg</a></h10>
-          </div>
+   <!-- Footer -->
+   <div class="footer">
+    <div class="swcfirst">
+      <img
+        src="https://cdn.discordapp.com/icons/700582407048396810/b323eb7828b87b9b7d5e07db8670efc5.png?size=128"
+        alt="swc_icon"
+        width="70px"
+        height="70px"
+      />
+      <div class="swcfoot">
+        <h5><a href="#">Student Affairs Section IIT Guwahati |</a></h5>
+        <div class="swc">
+          <h9>© 2021 SWC —</h9>
+          <h10><a href="#">@swciitg</a></h10>
         </div>
       </div>
-      <div class="icons">
-        <a href="#"><i class="fa fa-facebook fa-xm"></i></a>
-        <a href="#"><i class="fa fa-linkedin square fa-xm"></i></a>
-      </div>
     </div>
+    <div class="icons">
+      <a href="#"><i class="fa fa-facebook fa-xm"></i></a>
+      <a href="#"><i class="fa fa-linkedin square fa-xm"></i></a>
+    </div>
+  </div>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -310,5 +270,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="./js/home.js"></script>
+
   </body>
 </html>
