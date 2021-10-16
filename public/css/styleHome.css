@@ -1,6 +1,57 @@
 * {
   font-family: calibri;
 }
+
+/*slideshow */
+
+* {
+  box-sizing: border-box;
+}
+.mySlides1 {
+  display: none;
+}
+img {
+  vertical-align: middle;
+  max-height: 700px;
+}
+
+.slideshow-container {
+  max-width: 95%;
+  position: relative;
+  margin: auto;
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  text-decoration: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a grey background color */
+.prev:hover,
+.next:hover {
+  background-color: #f1f1f1;
+  color: black;
+}
+
 .header {
   display: flex;
   align-items: center;
@@ -115,62 +166,13 @@ p {
   margin-top: 30px;
 }
 
-/*slideshow */
-
-* {
-  box-sizing: border-box;
-}
-.mySlides1 {
-  display: none;
-}
-img {
-  vertical-align: middle;
-  max-height: 700px;
-}
-
-/* Slideshow container */
-
-.slideshow-container {
-  max-width: 95%;
-  position: relative;
-  margin: auto;
-}
-
-/* Next & previous buttons */
-.prev,
-.next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  padding: 16px;
-  margin-top: -22px;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
-  text-decoration: none;
-}
-
-/* Position the "next button" to the right */
-.next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
-}
-
-/* On hover, add a grey background color */
-.prev:hover,
-.next:hover {
-  background-color: #f1f1f1;
-  color: black;
-}
-
 /*
     Achievements
   */
 
+.achievements {
+  margin-left: 150px;
+}
 .card {
   border: 0px !important;
   border-bottom: 2px solid rgba(0, 0, 0, 0.125) !important;
@@ -187,10 +189,6 @@ img {
 .read_more span {
   color: rgb(18, 18, 73);
   font-size: smaller;
-}
-
-.achievements {
-  margin-left: 150px;
 }
 
 /* Announcements */

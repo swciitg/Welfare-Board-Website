@@ -1,0 +1,75 @@
+<html>
+
+<head>
+  <title>Rights & Responsibility</title>
+  <link rel="stylesheet" href="./css/styleHome.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+
+  <style></style>
+</head>
+<body>
+    <div class="header">
+        <span class="logo">
+          <a href="https://www.iitg.ac.in"><img src="./images/iit_logo.png" alt="1200px-IIT-Guwahati-Logo-1" /></a>
+        </span>
+        <span class="title">
+          <h5 class="text-sm">INDIAN INSTITUTE OF TECHNOLOGY GUWAHATI</h5>
+        </span>
+      </div>
+
+       <!-- Top NavBar -->
+  <div style="width: 100%;">
+    <ul class="topNav">
+      <li class="welfare"><a href="#WB" style="color:white;" >
+         WELFARE BOARD
+        </a></li>
+      <li><a href="#SA">STUDENT AFFAIRS BOARD</a></li>
+      <li><a href="#HAB">HOSTEL AFFAIRS BOARD</a></li>
+      <li><a href="#TECH">TECHNICAL BOARD</a></li>
+      <li><a href="#CB">CULTURAL BOARD</a></li>
+      <li><a href="#SB">SPORTS BOARD</a></li>
+    </ul>
+  </div>
+
+  <!-- slide show -->
+  <div class="slideshow-container"></div>
+  <div class="mySlides1">
+    <img src="./images/img_mountains_wide.jpg" style="width: 100%" />
+  </div>
+
+  <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
+</div>
+
+
+<!-- Announcements -->
+<div class="announcements  mt-5 flex-column" style="width:65%;">
+  <div class="ach-start d-flex justify-content-between">
+    <h3 id="announcement">Announcements</h3>
+    <div class="dropdown">
+      <button class="btn shadow-sm btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
+        aria-expanded="false" id="announcement_order">
+        LATEST
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <li><a class="dropdown-item" onClick="renderAnnouncements(0)">Sort by latest</a></li>
+        <li><a class="dropdown-item" onClick="renderAnnouncements(1)">Sort by oldest</a></li>
+      </ul>
+    </div>
+  </div>
+  <div id="home_announcements">
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+</body>
+</html>
