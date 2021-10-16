@@ -5,30 +5,35 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SWC Teams Template</title>
     <link href="https://fonts.googleapis.com/css?family=Heebo:400,400i,500,700|Titillium+Web:600" rel="stylesheet">
-    <link rel="stylesheet" href="/project/css/style.css">
+
     <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
-
+            <link rel="stylesheet" href="css/layoutStyle.css">
 </head>
 
 
 <body>
-    <div class="header">
+    <div class="alert alert-success" role="alert" id="success_msg" style="display:none;">
+        You message is successfully submitted
+    </div>
+    <div class="alert alert-danger" role="alert" id="danger_msg" style="display:none;">
+        Could not submit the form, Please try again
+    </div>
+    <div class="header-main">
         <span class="logo">
             <a href="https://www.iitg.ac.in"><img src="./images/iit_logo.png" alt="1200px-IIT-Guwahati-Logo-1" /></a>
         </span>
         <span class="title">
-            <h5 class="text-sm">INDIAN INSTITUTE OF TECHNOLOGY GUWAHATI</h5>
+            <h5 class="text-sm-main">INDIAN INSTITUTE OF TECHNOLOGY GUWAHATI</h5>
         </span>
     </div>
     
     <!-- Top NavBar -->
     <div style="width: 100%;">
-        <ul class="topNav">
-            <li class="welfare"><a href="#WB" style="color:white;">
+        <ul class="topNav-main">
+            <li class="welfare-main"><a href="#WB" style="color:white;">
                     WELFARE BOARD
                 </a></li>
             <li><a href="#SA">STUDENT AFFAIRS BOARD</a></li>
@@ -39,49 +44,49 @@
         </ul>
     </div>
     
-    <div class="slideshow-container">
-        <div class="mySlides1">
+    <div class="slideshow-container-main">
+        <div class="mySlides1-main">
             <img src="./images/img_nature_wide.jpg" style="width: 100%" />
         </div>
     
-        <div class="mySlides1">
+        <div class="mySlides1-main">
             <img src="./images/img_snow_wide.jpg" style="width: 100%" />
         </div>
     
-        <div class="mySlides1">
+        <div class="mySlides1-main">
             <img src="./images/img_mountains_wide.jpg" style="width: 100%" />
         </div>
     
-        <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
-        <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
+        <a class="prev-main" onclick="plusSlides(-1, 0)">&#10094;</a>
+        <a class="next-main" onclick="plusSlides(1, 0)">&#10095;</a>
     </div>
     
     <!-- Bottom NavBar -->
     
-    <nav class="navbar navbar-expand-lg">
-        <div class="bottomNav">
+    <nav class="navbar-main navbar-expand-lg">
+        <div class="bottomNav-main">
             <div class="container-fluid">
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" id="home" href="#">Home</a>
+                        <li class="nav-item-main">
+                            <a class="nav-link"  id="homepage" href="/project/welfare">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Sathi-Counselling Service</a>
+                        <li class="nav-item-main">
+                            <a class="nav-link"  id="saathi" href="/project/saathi-club">Sathi-Counselling Service</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Red Ribbon Club</a>
+                        <li class="nav-item-main">
+                            <a class="nav-link" onclick="makeActive()" href="#">Red Ribbon Club</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Academic Intiative Club</a>
+                        <li class="nav-item-main">
+                            <a class="nav-link" onclick="makeActive()" href="#">Academic Intiative Club</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Social Service Club</a>
+                        <li class="nav-item-main">
+                            <a class="nav-link" onclick="makeActive()" href="#">Social Service Club</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Youth Empowerment Club</a>
+                        <li class="nav-item-main">
+                            <a class="nav-link" onclick="makeActive()" href="#">Youth Empowerment Club</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item-main">
                             <a class="nav-link" href="#">Rights & Responsibility Club</a>
                         </li>
                     </ul>
@@ -93,5 +98,5 @@
     <%- body %>
 
 </body>
-
+<script src="js/layout.js"></script>
 </html>

@@ -21,6 +21,11 @@
     justify-content: center;
     display: flex;
   }
+
+  #saathi{
+    color: blue;
+    font-weight: bold;
+  }
   
   .bottomNav {
     color: rgb(0, 0, 0);

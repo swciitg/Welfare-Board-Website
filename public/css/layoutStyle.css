@@ -1,0 +1,133 @@
+* {
+  font-family: calibri;
+}
+.header-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 15px;
+}
+
+.text-sm-main {
+  padding: 6px;
+  display: inline;
+  font-family: calibri;
+  font-size: normal;
+  color: black;
+}
+
+.welfare-main {
+  display: inline;
+  font-size: large;
+  color: white;
+  padding-left: 0.5%;
+  padding-right: 0.5%;
+  background-color: rgb(20, 33, 58);
+}
+
+/*Top Nav Bar*/
+
+.topNav-main {
+  display: flex;
+  flex-direction: row;
+  margin-top: 30px;
+  justify-content: center;
+  list-style-type: none;
+  font-size: large;
+  font-weight: 400;
+}
+
+.topNav-main a:hover {
+  background-color: rgb(228, 228, 222);
+}
+
+.topNav-main li{
+  margin: 1%;
+}
+
+.topNav-main li a {
+  color: rgb(8, 8, 8);
+  text-align: center;
+  text-decoration: none;
+}
+.welfare-main a:hover {
+  background-color: rgb(20, 33, 58);
+}
+/*Bottom Nav Bar*/
+
+.navbar-main {
+  -webkit-box-shadow: 0 8px 6px -6px #999;
+  -moz-box-shadow: 0 8px 6px -6px #999;
+  box-shadow: 0 6px 6px -6px rgb(179, 178, 178);
+  max-width: 100%;
+  margin: auto;
+  color: rgb(252, 252, 252);
+}
+
+.bottomNav-main .nav-item-main a {
+  color: rgb(0, 0, 0);
+  font-weight: 500;
+  font-size: large;
+  margin-left: 30px;
+}
+
+.nav-item-main a:hover {
+  background-color: rgb(228, 228, 222);
+}
+
+#home-main {
+  color: blue;
+  padding-left: 40px;
+}
+
+
+.mySlides1-main {
+  display: none;
+}
+img {
+  vertical-align: middle;
+  max-height: 700px;
+}
+
+/* Slideshow container */
+
+.slideshow-container-main {
+  max-width: 95%;
+  position: relative;
+  margin: auto;
+}
+
+/* Next & previous buttons */
+.prev-main,
+.next-main {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  text-decoration: none;
+}
+
+/* Position the "next button" to the right */
+.next-main {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a grey background color */
+.prev-main:hover,
+.next-main:hover {
+  background-color: #f1f1f1;
+  color: black;
+}
+
+
+
+
