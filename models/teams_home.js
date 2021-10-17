@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 
 const teamSchema = new Schema({
-    name: { type: String, required: true },
+    member_name: { type: String, required: true },
     description: { type: String, required: true },
     image: { type: String, required: true },
     link: { type: String },

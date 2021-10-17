@@ -296,7 +296,7 @@ p {
 .Teams {
   background-color: #ebeff5;
   margin-top: 10vh;
-  padding: 5vh 8vw;
+  padding: 5vh 6vw;
   width: 100%;
 }
 
@@ -315,7 +315,7 @@ p {
 
 .tcards {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 2fr 4fr 5fr;
   scroll-snap-type: x mandatory;
   overflow-x: auto;
 }
@@ -349,7 +349,7 @@ p {
 .events {
   background-color: #1e2532;
   margin-top: 5vh;
-  padding: 5vh 10vw;
+  padding: 5vh 6vw;
   width: 100%;
 }
 

@@ -131,11 +131,11 @@
           <a class="nav-link text-secondary" href="#achievements">Achievements</a>
         </li>
         <li class="nav-item list">
-          <a class="nav-link text-secondary" href="#">Teams</a>
+          <a class="nav-link text-secondary" href="#t">Teams</a>
         </li>
 
         <li class="nav-item list">
-          <a class="nav-link text-secondary" href="#">Events</a>
+          <a class="nav-link text-secondary" href="#e">Events</a>
         </li>
       </ul>
     </div>
@@ -196,9 +196,9 @@
   </div>
 
 <!-- Teams homepage-->
-  <div class="Teams">
-    <div class="Team">
-      <h2 class="thead" >Welfare Board Teams</h2>
+  <div class="Teams" id="t">
+    <div class="Team" >
+      <h2 class="thead"  >Welfare Board Teams</h2>
       <div class="dropdown">
         <button class="btn shadow-sm btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
           aria-expanded="false" id="teams_type">
@@ -221,7 +221,7 @@
             <img src="<%= team.image %>" class="card-img-top h-70" />
             <div class="card-body">
               <p class="card-text">
-                <%=team.name%>
+               <h4><%=team.name%></h4> 
               </p>
               <div class="tinfo">
                 <h5 class="card-title">
@@ -240,7 +240,7 @@
   <!-- Events -->
   <div class="events">
     <div class="event">
-      <h3 class="ehead">Events at IIT Guwahati</h3>
+      <h3 class="ehead" id='e'>Events at IIT Guwahati</h3>
       <div class="dropdown">
         <button class="btn shadow-sm btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
           aria-expanded="false" id="events_type">
@@ -260,7 +260,7 @@
         %>
         <%events.forEach(event=>{ %>
           <div class="ecard card text-white bg-info mb-3" style="width: 19rem">
-            <img src="<%= event.image %>" class="card-img-top h-75" />
+            <img src="<%= event.image %>" class="card-img-top h-70" />
             <div class="card-body">
               <p class="card-text">
                 <%= event.creation.getDate() %>
