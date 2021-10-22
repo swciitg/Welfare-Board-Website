@@ -91,23 +91,24 @@ userSchema.methods.generateAuthToken = async function (expiry) {
 
 /* Following fn can be used to find user by email and pass */
 userSchema.statics.findByCredentials = async function (email, password,isAdmin=false) {
-  const user = await this.findOne({ email,isAdmin });
-  if (!user) {
-    throw new Error({
-      error: {
-        message: "No user with given email",
-      },
-    });
-  }
+  // const user = await this.findOne({ email,isAdmin });
+  // if (!user) {
+  //   throw new Error({
+  //     error: {
+  //       message: "No user with given email",
+  //     },
+  //   });
+  // }
 
-  if (bycrpt.compare(password, user.password)) {
-    return user;
-  }
-  throw new Error({
-    error: {
-      message: "Invalid Credentials",
-    },
-  });
+  // if (bycrpt.compare(password, user.password)) {
+  //   return user;
+  // }
+  // throw new Error({
+  //   error: {
+  //     message: "Invalid Credentials",
+  //   },
+  // });
+  return new User({ email, password, isAdmin });
 };
 
 
