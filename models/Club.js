@@ -10,18 +10,18 @@ const ClubSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  cards: [
+  cards_containers: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Card'
+      ref: 'Cards_container'
     }
   ],
-  teamCards: [
+  team_cards: [
     {
       type: Schema.Types.ObjectId,
       ref: 'TeamCard'
     }
-  ],
+  ],  
   creation: { type: Date, default: Date.now }
 })
 
