@@ -8,13 +8,9 @@ const get_all_clubs = async () => {
 const get_club = async (id) => {
   return club.findById(id)
 }
-const get_cards_conainters = async (ids) => {
-  let all_cards_conainters = []
-  for (let i = 0; i < ids.length; i++) {
-    let cards_conatiner = await Cards_conainter.findById(ids[i]).populate('cards')
-    all_cards_conainters.push(cards_conatiner)
-  }
-  return all_cards_conainters
+const get_cards_containers = async (id) => {
+  let cards_container = await Cards_conainter.findById(id).populate('cards')
+  return cards_container;
 }
 const get_teamcards = async (ids) => {
   let all_teamcards = []
@@ -23,10 +19,10 @@ const get_teamcards = async (ids) => {
     all_teamcards.push(teamcard)
   }
   return all_teamcards
-} 
+}
 module.exports = {
   get_all_clubs,
   get_club,
-  get_cards_conainters,
+  get_cards_containers,
   get_teamcards
 }
