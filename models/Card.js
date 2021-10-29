@@ -12,9 +12,6 @@ const CardSchema = mongoose.Schema({
   creation: {
     type: Date,
     default: Date.now
-  },
-  Event: {
-    type: Boolean,
   }
 })
 

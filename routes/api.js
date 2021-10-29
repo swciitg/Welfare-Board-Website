@@ -11,12 +11,14 @@ router.route('/club/:club').get(async (req, res) => {
   let clubs = await apiController.get_club(req.params.club)
   res.json(clubs)
 })
-router.route('/cards_container').get(async (req, res) => {
-  let cards_container = await apiController.get_cards_conainters(req.body.cards_container)
+router.route('/cards_container/:containers').get(async (req, res) => {
+  const containers = req.params.containers.split(',');
+  let cards_container = await apiController.get_cards_conainters(containers);
   res.json(cards_container)
 })
-router.route('/teamcard').get(async (req, res) => {
-  let teamcard = await apiController.get_teamcards(req.body.teamcard)
+router.route('/teamcard/:ids').get(async (req, res) => {
+  const teamcards = req.params.ids.split(',');
+  let teamcard = await apiController.get_teamcards(teamcards);
   res.json(teamcard)
 })
 
