@@ -12,13 +12,9 @@ const get_cards_containers = async (id) => {
   let cards_container = await Cards_conainter.findById(id).populate('cards')
   return cards_container;
 }
-const get_teamcards = async (ids) => {
-  let all_teamcards = []
-  for (let i = 0; i < ids.length; i++) {
-    let teamcard = await Teamcard.findById(ids[i])
-    all_teamcards.push(teamcard)
-  }
-  return all_teamcards
+const get_teamcards = async (id) => {
+  let teamcard = await Teamcard.findById(id)
+  return teamcard
 }
 module.exports = {
   get_all_clubs,

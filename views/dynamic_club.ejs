@@ -83,25 +83,8 @@
             </div>
         </div>
     </div>
-    <div id="cards_container"></div>
-    <div class="announcements  mt-5 flex-column" style="width:65%;">
-        <div class="ach-start d-flex justify-content-between">
-            <h3 id="announcement">Announcements</h3>
-            <div class="dropdown">
-                <button class="btn shadow-sm btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                    aria-expanded="false" id="announcement_order">
-                    LATEST
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" onClick="renderAnnouncements(0)">Sort by latest</a></li>
-                    <li><a class="dropdown-item" onClick="renderAnnouncements(1)">Sort by oldest</a></li>
-                </ul>
-            </div>
-        </div>
-        <div id="home_announcements">
-
-        </div>
-
+    <div id="cards_container">
+        
     </div>
 
     <!-- Achievements homepage -->
@@ -130,7 +113,7 @@
     <!-- Teams homepage-->
     <div class="Teams" id="t">
         <div class="Team">
-            <h2 class="thead">Welfare Board Teams</h2>
+            <h2 class="thead" id="team_name">Welfare Board Teams</h2>
             <div class="dropdown">
                 <button class="btn shadow-sm btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
                     aria-expanded="false" id="teams_type">

@@ -15,9 +15,8 @@ router.route('/cards_container/:cards_container').get(async (req, res) => {
   let cards_container = await apiController.get_cards_containers(req.params.cards_container)
   res.json(cards_container)
 })
-router.route('/teamcard/:ids').get(async (req, res) => {
-  const teamcards = req.params.ids.split(',');
-  let teamcard = await apiController.get_teamcards(teamcards);
+router.route('/teamcard/:id').get(async (req, res) => {
+  let teamcard = await apiController.get_teamcards(id);
   res.json(teamcard)
 })
 
