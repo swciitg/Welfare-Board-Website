@@ -1,18 +1,215 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-   
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"></script>
-    <script type="text/javascript" src="js/dynamic_club.js"></script>
+<html>
 
+<head>
+    <title>Welfare Board |</title>
+    <link rel="stylesheet" href="./css/dynamic_club.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"></script>
+    <style></style>
 </head>
+
+
 <body>
-    <div id="helper">
-        
+    <div class="header">
+        <span class="logo">
+            <a href="https://www.iitg.ac.in"><img src="./images/iit_logo.png" alt="1200px-IIT-Guwahati-Logo-1" /></a>
+        </span>
+        <span class="title">
+            <h5 class="text-sm">INDIAN INSTITUTE OF TECHNOLOGY GUWAHATI</h5>
+        </span>
     </div>
+
+    <!-- Top NavBar -->
+    <div style="width: 100%;">
+        <ul class="topNav">
+            <li class="welfare"><a href="#WB" style="color:white;">
+                    WELFARE BOARD
+                </a></li>
+            <li><a href="#SA">STUDENT AFFAIRS BOARD</a></li>
+            <li><a href="#HAB">HOSTEL AFFAIRS BOARD</a></li>
+            <li><a href="#TECH">TECHNICAL BOARD</a></li>
+            <li><a href="#CB">CULTURAL BOARD</a></li>
+            <li><a href="#SB">SPORTS BOARD</a></li>
+        </ul>
+    </div>
+
+    <div class="slideshow-container">
+        <div class="mySlides1">
+            <img src="./images/img_nature_wide.jpg" style="width: 100%" />
+        </div>
+
+        <div class="mySlides1">
+            <img src="./images/img_snow_wide.jpg" style="width: 100%" />
+        </div>
+
+        <div class="mySlides1">
+            <img src="./images/img_mountains_wide.jpg" style="width: 100%" />
+        </div>
+
+        <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
+    </div>
+
+    <!-- Bottom NavBar -->
+
+    <nav class="navbar navbar-expand-lg">
+        <div class="bottomNav">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav" id="clubs_list">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <div style="display:flex;flex-direction:row;">
+        <!-- Welcome -->
+        <div class="introduction" id="introduction" style="float:left;">
+            <H1 id="club_name" style="color:black;"></H1>
+            <div id="club_introduction" style="color:black;"></div>
+        </div>
+
+
+        <!-- Side NavBar -->
+        <div class="middle" style="float:right;">
+            <div class="col-md-2">
+                <ul class="nav flex-column list2" id="table_list">
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="cards_container"></div>
+    <div class="announcements  mt-5 flex-column" style="width:65%;">
+        <div class="ach-start d-flex justify-content-between">
+            <h3 id="announcement">Announcements</h3>
+            <div class="dropdown">
+                <button class="btn shadow-sm btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false" id="announcement_order">
+                    LATEST
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" onClick="renderAnnouncements(0)">Sort by latest</a></li>
+                    <li><a class="dropdown-item" onClick="renderAnnouncements(1)">Sort by oldest</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="home_announcements">
+
+        </div>
+
+    </div>
+
+    <!-- Achievements homepage -->
+
+    <div class="achievements mt-5 w-50 d-flex flex-column">
+        <div class="ach-start d-flex justify-content-between">
+            <h3 id="achievements">Student Achievements</h3>
+            <div class="dropdown">
+                <button class="btn shadow-sm btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false" id="achievements_year">
+                    2021
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" onClick="renderAchievements('2021')">2021</a></li>
+                    <li><a class="dropdown-item" onClick="renderAchievements('2020')">2020</a></li>
+                    <li><a class="dropdown-item" onClick="renderAchievements('2019')">2019</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="home_achievements">
+
+        </div>
+
+    </div>
+
+    <!-- Teams homepage-->
+    <div class="Teams" id="t">
+        <div class="Team">
+            <h2 class="thead">Welfare Board Teams</h2>
+            <div class="dropdown">
+                <button class="btn shadow-sm btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false" id="teams_type">
+                    All Members
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li onclick="renderteams('All Members')" class="dropdown-item">All Members</li>
+                    <li onclick="renderteams('Functionaries')" class="dropdown-item">Funtionaries</li>
+                    <li onclick="renderteams('BoardMembers')" class="dropdown-item">Board Members</li>
+                    <li onclick="renderteams('Clubs')" class="dropdown-item">Clubs</li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div id="teamcontainer" class="tcards">
+
+
+        </div>
+    </div>
+
+
+
+    <!-- Events -->
+    <div class="events">
+        <div class="event">
+            <h3 class="ehead" id='e'>Events at IIT Guwahati</h3>
+            <div class="dropdown">
+                <button class="btn shadow-sm btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false" id="events_type">
+                    ALL
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li onclick="renderevents('ALL')" class="dropdown-item">ALL</li>
+                    <li onclick="renderevents('CULTURAL')" class="dropdown-item">CULTURAL</li>
+                    <li onclick="renderevents('TECHNICAL')" class="dropdown-item">TECHNICAL</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="eventcontainer" class="ecards">
+            <div class="ecard card text-white bg-info mb-3" style="width: 19rem">
+                <div class="card-body">
+                    <p class="card-text">
+                    </p>
+                    <div class="einfo">
+                        <h5 class="card-title">
+                        </h5>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="swcfirst">
+            <img src="https://cdn.discordapp.com/icons/700582407048396810/b323eb7828b87b9b7d5e07db8670efc5.png?size=128"
+                alt="swc_icon" width="70px" height="70px" />
+            <div class="swcfoot">
+                <h5><a href="#">Student Affairs Section IIT Guwahati |</a></h5>
+                <div class="swc">
+                    <h9>© 2021 SWC —</h9>
+                    <h10><a href="#">@swciitg</a></h10>
+                </div>
+            </div>
+        </div>
+        <div class="icons">
+            <a href="#"><i class="fa fa-facebook fa-xm"></i></a>
+            <a href="#"><i class="fa fa-linkedin square fa-xm"></i></a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="./js/dynamic_club.js"></script>
+
 </body>
+
 </html>
