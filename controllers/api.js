@@ -1,7 +1,7 @@
 const Cards_conainter = require('../models/cards_container')
 const club = require('../models/Club')
 const Teamcard = require('../models/TeamCard')
-
+const Card= require('../models/Card')
 const get_all_clubs = async () => {
   return club.find().select('name')
 }
@@ -23,10 +23,58 @@ const get_teamcards = async (ids) => {
     all_teamcards.push(teamcard)
   }
   return all_teamcards
-} 
+}
+const create_club = async (cardContainer,clubName,clubAbout,clubCreation) => {
+
+  let newClub = await new club({
+    name: clubName,
+    about: clubAbout,
+    creation: clubCreation
+  });
+  for (let j = 0; j < cardContainer.length; j++) {
+    let container = cardContainer[j];
+    let newContainer = await new Cards_conainter({ title: container.title })
+    
+     for (let i = 0; i < container.cards.length; i++) {
+       let card = container.cards[i]
+       let newCard;
+       if (card.type == 'card') {
+          newCard = await new Card({
+           title: card.title,
+           description: card.description,
+           creation: card.creation,
+           Event: card.Event
+          })
+          await newCard.save()
+          newContainer.cards.push(newCard._id)
+       
+       } else {
+          newCard = await new Teamcard({
+            name: card.name,
+            description: card.description,
+            image: card.image
+         
+          })
+         await newCard.save()
+         newClub.team_cards.push(newCard._id)
+         
+       }
+        
+     }
+    if (newContainer.cards.length) {
+      await newContainer.save()
+      newClub.cards_containers.push(newContainer._id)
+    }
+
+  }
+
+  await newClub.save();
+  console.log(newClub);
+}
 module.exports = {
   get_all_clubs,
   get_club,
   get_cards_conainters,
-  get_teamcards
+  get_teamcards,
+  create_club
 }

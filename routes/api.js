@@ -19,15 +19,8 @@ router.route('/teamcard').get(async (req, res) => {
   res.json(teamcard)
 })
 router.route('/club').post(async (req, res) => {
-  console.log('incoming post req');
-  let temp = req.body.clubContainer;
-  console.log(temp);
-  temp.forEach((club) => {
-    console.log(club.title);
-    club.cards.forEach((x) => console.log(x));
 
-  })
-  console.log(req.body.name, req.body.about, req.body.date);
+  apiController.create_club(req.body.clubContainer, req.body.name, req.body.about, req.body.date);
 })
 
 module.exports = router

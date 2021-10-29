@@ -1,40 +1,70 @@
 let cardContainer = document.getElementById('cardContainer')
-let cardContainerlen = 0
+let cardContainerlen = 1
 let carlen = 0
 var cardContainermap = new Map()
-var cur = ''
-var edit_card_id=''
-const addCard = () => {
-  let Container = cur
-  let cardTitle = document.getElementById('cardTitle').value
-  let cardCreation = document.getElementById('cardCreation').value
-  let cardDescription = document.getElementById('cardDescription').value
-  let cardEvent = document.getElementById('cardEvent').checked
-  // console.log(cardTitle, cardCreation, cardDescription, cardEvent)
-  let div = document.createElement('div')
-  div.id = `card_${carlen}`
-  div.className = 'ecard card text-white bg-primary mb-3'
-  div.style.width = '19rem'
-  div.innerHTML=cardString(div.id,cardCreation,cardDescription)
-  Container.append(div)
-  let temp = cardContainermap.get(cur.id)
-  console.log(cur.id, temp)
-  temp.cards.push({
-    creation: cardCreation,
-    description: cardDescription,
-    title: cardTitle,
-    Event: cardEvent,
-    id: `card_${carlen}`
-  })
-  carlen++
-  cardContainermap.set(cur.id, temp)
-  console.log(cardContainermap)
-  // var x = await axios.post('/api/channel', {
-  //   name: name
-  // })
-  console.log(Container)
+cardContainermap.set('cardContainer_0', {
+  title: 'teamCards',
+  cards: []
+})
+var cur =''
+var edit_card_id = ''
+const addCard = (type) => {
+  if (type=='card') {
+    let Container = cur
+    let cardTitle = document.getElementById('cardTitle').value
+    let cardCreation = document.getElementById('cardCreation').value
+    let cardDescription = document.getElementById('cardDescription').value
+    let cardEvent = document.getElementById('cardEvent').checked
+    // console.log(cardTitle, cardCreation, cardDescription, cardEvent)
+    let div = document.createElement('div')
+    div.id = `card_${carlen}`
+    div.className = 'ecard card text-white bg-primary mb-3'
+    div.style.width = '19rem'
+    div.innerHTML = cardString(type, div.id, cardCreation, cardDescription)
+    Container.append(div)
+    let temp = cardContainermap.get(cur.id)
+    console.log(cur.id, temp)
+    temp.cards.push({
+      creation: cardCreation,
+      description: cardDescription,
+      title: cardTitle,
+      Event: cardEvent,
+      type: 'card',
+      id: `card_${carlen}`
+    })
+    carlen++
+    cardContainermap.set(cur.id, temp)
+    console.log(cardContainermap)
+    console.log(Container)
+  } else {
+    let Container = cur
+    let cardName = document.getElementById('cardName').value
+    let cardImage = document.getElementById('cardImage').value
+    let cardDescription = document.getElementById('cardDescription').value
+    // console.log(cardTitle, cardCreation, cardDescription, cardEvent)
+    let div = document.createElement('div')
+    div.id = `card_${carlen}`
+    div.className = 'ecard card text-white bg-primary mb-3'
+    div.style.width = '19rem'
+    div.innerHTML = cardString(type, div.id, cardImage, cardDescription)
+    Container.append(div)
+    let temp = cardContainermap.get(cur.id)
+    console.log(cur.id, temp)
+    temp.cards.push({
+      description: cardDescription,
+      name: cardName,
+      image: cardImage,
+      type: 'Teamcard',
+      id: `card_${carlen}`
+    })
+    carlen++
+    cardContainermap.set(cur.id, temp)
+    console.log(cardContainermap)
+    console.log(Container)
+  }
 }
 const addcardContainer = () => {
+  
   let div = document.createElement('div')
   div.id = `parentcardContainer_${cardContainerlen}`
   div.innerHTML = `<div class="events">
@@ -49,23 +79,15 @@ remove
       <div id="cardContainer_${cardContainerlen}" class="ecards">
 
       </div>
-       <a
-          id="create_meet"
-          class="custom_link"
-          href="#"
-          data-toggle="modal"
-          data-target="#cardCreate"
-          style="align-items: center; text-decoration: none; color: white"
-        >
+         <div style="color:white;">
           <span
             type="button"
             class="material-icons"
-            data-bs-toggle="modal"
-            data-bs-target="#cardCreate"
             onclick="currContainer('cardContainer_${cardContainerlen}')"
             >add</span
           >
-        </a>
+          </div>
+      
     </div>`
 
   cardContainer.appendChild(div)
@@ -77,6 +99,12 @@ remove
 }
 const currContainer = (id) => {
   cur = document.getElementById(id)
+  if (id == 'cardContainer_0') {
+    cardCreatemodaldata('Teamcard')
+  } else {
+    cardCreatemodaldata('card')
+  }
+  $('#cardCreate').modal('show')
 }
 const removecardContainer = (id) => {
   cardContainermap.delete(id)
@@ -112,36 +140,179 @@ const setTitle = (id) => {
   console.log(cardContainermap)
 }
 const editcarddetails = (id) => {
+  let modal = document.getElementById('cardEdit')
   let container = document.getElementById(id)
   let par_id = container.parentNode.id
   let temp = cardContainermap.get(par_id)
-  let card = temp.cards.filter((card) => card.id == id)[0];
-  document.getElementById('editcardTitle').value = card.title
-  document.getElementById('editcardCreation').value = card.creation
-  document.getElementById('editcardDescription').value = card.description
-  document.getElementById('editcardEvent').checked = card.Event
-  edit_card_id = id;
+  let card = temp.cards.filter((card) => card.id == id)[0]
+
+  if (card.type == 'card') {
+    modal.innerHTML = `<div class="modal-dialog modal-dialog-centered" role="document">
+        <div
+          class="modal-content"
+          style="background: #f4f4f4; box-shadow: 0px 0px 15px black; color: black"
+        >
+          <div class="modal-header" style="border-color: #292929">
+            <h5 class="modal-title" style="color: black">Card</h5>
+          </div>
+          <form>
+            <div class="modal-body" style="border-color: #292929; overflow: auto">
+              <div class="form-group">
+                <label for="editcardTitle"> Title</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="editcardTitle"
+                  style="color: black"
+                  required
+                  value='${card.title}'
+                />
+                <label for="editcardDescription"> Description</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="editcardDescription"
+                  style="color: black"
+                  required
+                  value='${card.description}'
+                />
+                <label for="editcardCreation"> Creation</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="editcardCreation"
+                  style="color: black"
+                  required
+                  value='${card.creation}'
+                />
+                <label for="editcardEvent">Event</label>
+                <input type="checkbox" id="editcardEvent" style="color: black">
+              </div>
+            </div>
+            <div class="modal-footer" style="border-color: #292929">
+              <button
+                type="button"
+                id="meet_modal_close"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                class="btn btn-primary"
+                type="button"
+                onclick="editcard()"
+                data-dismiss="modal"
+              >
+                edit Card
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>`
+    if (card.Event) {
+      document.getElementById('editcardEvent').checked = true;
+    }
+  } else {
+     
+      modal.innerHTML = `<div class="modal-dialog modal-dialog-centered" role="document">
+        <div
+          class="modal-content"
+          style="background: #f4f4f4; box-shadow: 0px 0px 15px black; color: black"
+        >
+          <div class="modal-header" style="border-color: #292929">
+            <h5 class="modal-title" style="color: black">Card</h5>
+          </div>
+          <form>
+            <div class="modal-body" style="border-color: #292929; overflow: auto">
+              <div class="form-group">
+                <label for="editcardName">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="editcardName"
+                  style="color: black"
+                  required
+                  value='${card.name}'
+                />
+                <label for="editcardDescription"> Description</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="editcardDescription"
+                  style="color: black"
+                  required
+                  value='${card.description}'
+                />
+                <label for="editcardImage">Image</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="editcardImage"
+                  style="color: black"
+                  required
+                  value='${card.image}'
+                />
+              
+              </div>
+            </div>
+            <div class="modal-footer" style="border-color: #292929">
+              <button
+                type="button"
+                id="meet_modal_close"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                class="btn btn-primary"
+                type="button"
+                onclick="editcard()"
+                data-dismiss="modal"
+              >
+                edit Card
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>`
+     
+  }  $('#cardEdit').modal('show')
+     edit_card_id = id
 }
 const editcard = () => {
   let container = document.getElementById(edit_card_id)
   let par_id = container.parentNode.id
   let temp = cardContainermap.get(par_id)
   let card = temp.cards.filter((card) => card.id == edit_card_id)[0]
-  card.title= document.getElementById('editcardTitle').value
-  card.creation=document.getElementById('editcardCreation').value 
-  card.description=document.getElementById('editcardDescription').value 
-  card.Event = document.getElementById('editcardEvent').checked
-  container.innerHTML = cardString(edit_card_id, card.creation, card.description);
-  temp.cards = temp.cards.map((cd) => {
-    if (cd.id == edit_card_id) { return card; } else { return cd;}
-  })
+  if (card.type == 'card') {
+    card.title = document.getElementById('editcardTitle').value
+    card.creation = document.getElementById('editcardCreation').value
+    card.description = document.getElementById('editcardDescription').value
+    card.Event = document.getElementById('editcardEvent').checked
+    container.innerHTML = cardString(card.type, edit_card_id, card.creation, card.description)
+  } else {
+    card.name=document.getElementById('editcardName').value 
+    card.image= document.getElementById('editcardImage').value 
+    card.description = document.getElementById('editcardDescription').value
+    container.innerHTML = cardString(card.type, edit_card_id, card.image, card.description)
+  }
+     temp.cards = temp.cards.map((cd) => {
+       if (cd.id == edit_card_id) {
+         return card
+       } else {
+         return cd
+       }
+     })
   cardContainermap.set(par_id, temp)
   console.log(cardContainermap, cardContainermap.get(par_id))
 }
-const cardString= (divId,creation,des) =>{
-  
-   let string = `
-              <img src="{events[i].image}" class="card-img-top h-75" />
+const cardString = (type, divId, creation, des) => {
+  let string
+  if (type == 'card') {
+    string = `
+              <img src="#" class="card-img-top h-75" />
               <div class="card-body">
                 <p class="card-text">
                ${creation}
@@ -149,46 +320,184 @@ const cardString= (divId,creation,des) =>{
 remove
 </span>
 
- <a
-          
-          href="#"
-          data-toggle="modal"
-          data-target="#cardEdit"
-          style="align-items: center; text-decoration: none; color: white"
-        >
+
       
             <span
             type="button"
             class="material-icons"
-            data-bs-toggle="modal"
-            data-bs-target="#cardEdit"
             onclick="editcarddetails('${divId}')">
 edit
 </span>
           
-        </a>
+     
                 </p>
                 <div class="einfo">
                   <h5 class="card-title">${des}</h5>
-                  <a href="{events[i].link}"
-                    ><svg
-                      width="27"
-                      height="27"
-                      viewBox="0 0 27 27"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        d="M18.8769 26.8151H7.98352C3.27685 26.8151 0.103516 23.7871 0.103516 19.2684V7.70844C0.103516 3.18844 3.27685 0.148438 7.98352 0.148438H18.8769C23.5968 0.148438 26.7702 3.18844 26.7702 7.70844V19.2684C26.7702 23.7871 23.5968 26.8151 18.8769 26.8151ZM16.4635 12.4818H7.99682C7.43682 12.4818 6.99682 12.9351 6.99682 13.4818C6.99682 14.0418 7.43682 14.4818 7.99682 14.4818H16.4635L13.1568 17.7751C12.9702 17.9618 12.8635 18.2284 12.8635 18.4818C12.8635 18.7338 12.9702 18.9884 13.1568 19.1884C13.5435 19.5751 14.1835 19.5751 14.5702 19.1884L19.5968 14.1884C19.9702 13.8151 19.9702 13.1484 19.5968 12.7751L14.5702 7.7751C14.1835 7.38844 13.5435 7.38844 13.1568 7.7751C12.7702 8.1751 12.7702 8.80177 13.1568 9.20177L16.4635 12.4818Z"
-                        fill="white"
-                      />
-                    </svg>
-                  </a>
                 </div>
               </div>
             
     `
-  return string;
-};
+  } else {
+    string = `
+              <img src="${creation}" class="card-img-top h-75" />
+              <div class="card-body">
+                <p class="card-text">
+           
+           <span class="material-icons" style="color:white;" onclick="removecard('${divId}')"> 
+remove
+</span>
+
+
+      
+            <span
+            type="button"
+            class="material-icons"
+            onclick="editcarddetails('${divId}')">
+edit
+</span>
+          
+  
+                </p>
+                <div class="einfo">
+                  <h5 class="card-title">${des}</h5>
+                 
+                </div>
+              </div>
+            
+    `
+  }
+  return string
+}
+
+const cardCreatemodaldata = (type) => {
+
+  if (type == 'card') {
+    document.getElementById(
+      'cardCreate'
+    ).innerHTML = `  <div class="modal-dialog modal-dialog-centered" role="document">
+        <div
+          class="modal-content"
+          style="background: #f4f4f4; box-shadow: 0px 0px 15px black; color: black"
+        >
+          <div class="modal-header" style="border-color: #292929">
+            <h5 class="modal-title" style="color: black">Card</h5>
+          </div>
+      
+          <form>
+            <div class="modal-body" style="border-color: #292929; overflow: auto">
+              <div class="form-group">
+                <label for="cardTitle">Card Title</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="cardTitle"
+                  style="color: black"
+                  required
+                />
+                <label for="cardDescription">Card Description</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="cardDescription"
+                  style="color: black"
+                  required
+                />
+                <label for="cardCreation">Card Creation</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="cardCreation"
+                  style="color: black"
+                  required
+                />
+                <label for="cardEvent">Event</label>
+                <input type="checkbox" id="cardEvent" style="color: black" />
+              </div>
+            </div>
+            <div class="modal-footer" style="border-color: #292929">
+              <button
+                type="button"
+                id="meet_modal_close"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                class="btn btn-primary"
+                type="button"
+                onclick="addCard('card')"
+                data-dismiss="modal"
+              >
+                Create Card
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>`
+  } else {
+    document.getElementById(
+      'cardCreate'
+    ).innerHTML = `  <div class="modal-dialog modal-dialog-centered" role="document">
+        <div
+          class="modal-content"
+          style="background: #f4f4f4; box-shadow: 0px 0px 15px black; color: black"
+        >
+          <div class="modal-header" style="border-color: #292929">
+            <h5 class="modal-title" style="color: black">Team Card</h5>
+          </div>
+
+          <form>
+            <div class="modal-body" style="border-color: #292929; overflow: auto">
+              <div class="form-group">
+                <label for="cardName">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="cardName"
+                  style="color: black"
+                  required
+                />
+                <label for="cardDescription">Description</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="cardDescription"
+                  style="color: black"
+                  required
+                />
+                <label for="cardImage">Image</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="cardImage"
+                  style="color: black"
+                  required
+                />
+        
+              </div>
+            </div>
+            <div class="modal-footer" style="border-color: #292929">
+              <button
+                type="button"
+                id="meet_modal_close"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                class="btn btn-primary"
+                type="button"
+                onclick="addCard('Teamcard')"
+                data-dismiss="modal"
+              >
+                Create Team Card
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>`
+  }
+}
+
