@@ -70,7 +70,7 @@ const addcardContainer = () => {
   div.innerHTML = `<div class="events">
       <div class="event">
         <input  id='cardContainer_${cardContainerlen}_title' placeholder='title' onchange="setTitle('cardContainer_${cardContainerlen}')"/>
-                <span class="material-icons" style="color:white;" onclick="removecardContainer('cardContainer_${cardContainerlen}')"> 
+                <span type="button" class="material-icons" style="color:white;" onclick="removecardContainer('cardContainer_${cardContainerlen}')"> 
 remove
 </span>
       </div>
@@ -192,7 +192,7 @@ const editcarddetails = (id) => {
             <div class="modal-footer" style="border-color: #292929">
               <button
                 type="button"
-                id="meet_modal_close"
+                onclick="closeModal('cardEdit')"
                 class="btn btn-secondary"
                 data-dismiss="modal"
               >
@@ -259,7 +259,7 @@ const editcarddetails = (id) => {
             <div class="modal-footer" style="border-color: #292929">
               <button
                 type="button"
-                id="meet_modal_close"
+                onclick="closeModal('cardEdit')"
                 class="btn btn-secondary"
                 data-dismiss="modal"
               >
@@ -417,7 +417,7 @@ const cardCreatemodaldata = (type) => {
             <div class="modal-footer" style="border-color: #292929">
               <button
                 type="button"
-                id="meet_modal_close"
+                onclick="closeModal('cardCreate')"
                 class="btn btn-secondary"
                 data-dismiss="modal"
               >
@@ -480,7 +480,7 @@ const cardCreatemodaldata = (type) => {
             <div class="modal-footer" style="border-color: #292929">
               <button
                 type="button"
-                id="meet_modal_close"
+                onclick="closeModal('cardCreate')"
                 class="btn btn-secondary"
                 data-dismiss="modal"
               >
@@ -501,3 +501,7 @@ const cardCreatemodaldata = (type) => {
   }
 }
 
+const closeModal=(id)=>{
+  console.log('closing ',id)
+$('#'+id).modal('hide')
+}
