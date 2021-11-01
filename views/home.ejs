@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="css/admin.css" />
-     <link rel="stylesheet" href="css/style_admin.css" />
+    <link rel="stylesheet" href="css/style_admin.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -37,110 +37,130 @@
   </head>
   <body>
     <div class="main-container">
-        <div class="side-bar">
-            <div class="heading">
-                <img src="http://localhost:3000/project/admin/frontend/assets/logo.svg" class="heading-image" alt="company">
+      <div class="side-bar">
+        <div class="heading">
+          <img
+            src="http://localhost:3000/project/admin/frontend/assets/logo.svg"
+            class="heading-image"
+            alt="company"
+          />
+        </div>
+        <div class="side-bar-main">
+          <p>NAVIGATION</p>
+          <ul class="list-unstyled ps-0">
+            <li class="mb-1">
+              <div 
+              
+                id="club-collapser"
+                onclick="dropdown()"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#club-collapse"
+                aria-expanded="true"
+                style="display: flex; flex-direction: row; justify-content: space-between;align-items: center;">
+              
+                Clubs <span class="material-icons">expand_more</span>
             </div>
-            <div class="side-bar-main">
-                <p>NAVIGATION</p>
-                <ul class="list-unstyled ps-0">
-                <li class="mb-1">
-        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
-          Home
-        </button>
-        <div class="collapse show" id="home-collapse">
-          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" class="link-dark rounded">Overview</a></li>
-            <li><a href="#" class="link-dark rounded">Updates</a></li>
-            <li><a href="#" class="link-dark rounded">Reports</a></li>
+              <div class="collapse show" id="club-collapse">
+           
+              </div>
+            </li>
           </ul>
         </div>
-      </li>
-      </ul>
-                
+      </div>
+      <div class="main-bar">
+        <div class="top-main-bar">
+          <div class="dropdown">
+            <div class="mail">
+              dev@gmail.com
+              <span class="material-icons"> more_vert </span>
             </div>
-        </div>
-        <div class="main-bar">
-            <div class="top-main-bar">
-             <div class="dropdown">
-                 
-            <div class="mail">dev@gmail.com
-            <span class="material-icons" >
-                more_vert
-            </span>
-        </div>
             <div class="dropdown-content">
-                <a style="width:160px;display:flex;padding-left: 10px;padding-top: 5px;" href="#">Logout</a>
+              <a style="width: 160px; display: flex; padding-left: 10px; padding-top: 5px" href="#"
+                >Logout</a
+              >
             </div>
-        
-    </div>
-
-
+          </div>
+        </div>
+        <div class="bottom-main-bar">
+          <div class="bottom-main-line">
+            <div class="bottom-main-heading">
+              <h3 style="color: black">Edit Club Details</h3>
             </div>
-            <div class="bottom-main-bar">
-                <div class="bottom-main-line">
-                   <div class="bottom-main-heading">
-                       <h3 style="color: black;">Edit Club Details</h3>
+            <div class="bottom-main-buttons">
+              <button id="deleteBtn" type="button" class="btn btn-danger button2">Delete</button>
+            </div>
+          </div>
 
-                   </div>
-                   <div class="bottom-main-buttons">
-                    <button type="button" class="btn btn-danger button2">Delete</button>
-                   </div>
-                  
-                </div>
-                
-    <div class="card bottom-main-card">
-      <div class="card-body">
-        <div class="card-heading">
-          <label for="clubName">Name</label>
-          <input type="text" class="form-control" id="clubName" placeholder="Enter Club name" />
-        </div>
-        <div class="card-heading">
-          <label for="clubAbout">About</label>
+          <div class="card bottom-main-card">
+            <div class="card-body">
+              <div class="card-heading">
+                <label for="clubName">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="clubName"
+                  placeholder="Enter Club name"
+                />
+              </div>
+              <div class="card-heading">
+                <label for="clubAbout">About</label>
 
-          <input type="text" class="form-control" id="clubAbout" placeholder="Enter Club About" />
-        </div>
-        <!-- <div class="form-check">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="clubAbout"
+                  placeholder="Enter Club About"
+                />
+              </div>
+              <!-- <div class="form-check">
         <input type="checkbox" class="form-check-input" id="exampleCheck1" />
         <label class="form-check-label" for="exampleCheck1">Check me out</label>
       </div> -->
-        <div id="cardContainer" class="card-heading">
-          <div style="display: flex; align-items: center; justify-content: space-between">
-            <div>Card Containers</div>
-            <div style="display: flex; align-items: center; color: black">
-              <span type="button" class="material-icons" onclick="addcardContainer()">add</span>
-              new Container
-            </div>
-          </div>
-        </div>
-        <div id="teamcardContainer" class="card-heading">
-          <p>Team Cards</p>
-          <div id="parentcardContainer_0">
-            <div class="events">
-              <div id="cardContainer_0" class="ecards"></div>
-              <div style="color: white">
-                <span
-                  type="button"
-                  class="material-icons"
-                  onclick="currContainer('cardContainer_0')"
-                  >add</span
-                >
+              <div id="cardContainer" class="card-heading">
+                <div style="display: flex; align-items: center; justify-content: space-between">
+                  <div>Card Containers</div>
+                  <div style="display: flex; align-items: center; color: black">
+                    <span type="button" class="material-icons" onclick="addcardContainer()"
+                      >add</span
+                    >
+                    new Container
+                  </div>
+                </div>
               </div>
+              <div id="teamcardContainer" class="card-heading">
+                <p>Team Cards</p>
+                <div id="parentcardContainer_0">
+                  <div class="events">
+                    <div id="cardContainer_0" class="ecards"></div>
+                    <div style="color: white">
+                      <span
+                        type="button"
+                        class="material-icons"
+                        onclick="currContainer('cardContainer_0')"
+                        >add</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-heading">
+                <label for="clubCreation">Creation</label>
+                <input type="date" class="form-control" id="clubCreation" style="color: black" />
+              </div>
+              <button
+                id="submitBtn"
+                type="button"
+                class="btn btn-primary card-heading"
+                onclick="onSubmit()"
+              >
+                Save
+              </button>
             </div>
           </div>
         </div>
-
-        <div class="card-heading">
-          <label for="clubCreation">Creation</label>
-          <input type="date" class="form-control" id="clubCreation" style="color: black" />
-        </div>
-        <button type="button" class="btn btn-primary card-heading" onclick="onSubmit()">
-          Save
-        </button>
       </div>
-    </div>
-    </div>
-    </div>
     </div>
 
     <!-- modals  -->

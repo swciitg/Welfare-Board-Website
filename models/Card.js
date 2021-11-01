@@ -15,6 +15,9 @@ const CardSchema = mongoose.Schema({
   },
   Event: {
     type: Boolean,
+  },
+  type: {
+    type:String
   }
 })
 

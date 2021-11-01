@@ -9,11 +9,13 @@ const get_club = async (id) => {
   return club.findById(id)
 }
 const get_cards_conainters = async (ids) => {
+
   let all_cards_conainters = []
   for (let i = 0; i < ids.length; i++) {
     let cards_conatiner = await Cards_conainter.findById(ids[i]).populate('cards')
     all_cards_conainters.push(cards_conatiner)
   }
+
   return all_cards_conainters
 }
 const get_teamcards = async (ids) => {
@@ -43,7 +45,8 @@ const create_club = async (cardContainer,clubName,clubAbout,clubCreation) => {
            title: card.title,
            description: card.description,
            creation: card.creation,
-           Event: card.Event
+           Event: card.Event,
+           type:card.type
           })
           await newCard.save()
           newContainer.cards.push(newCard._id)
@@ -52,8 +55,8 @@ const create_club = async (cardContainer,clubName,clubAbout,clubCreation) => {
           newCard = await new Teamcard({
             name: card.name,
             description: card.description,
-            image: card.image
-         
+            image: card.image,
+            type: card.type
           })
          await newCard.save()
          newClub.team_cards.push(newCard._id)
@@ -71,10 +74,36 @@ const create_club = async (cardContainer,clubName,clubAbout,clubCreation) => {
   await newClub.save();
   console.log(newClub);
 }
+const delete_club = async (id) => {
+  
+  let delclub = await club.findById(id).populate('team_cards')
+  console.log(delclub)
+  let delconts = await get_cards_conainters(delclub.cards_containers)
+  if (delconts.length) {
+    delconts.forEach(async (cont) => {
+      if (cont.cards.length) {
+        cont.cards.forEach(async (card) => {
+          await card.delete();
+    
+        })
+      }
+      await cont.delete();
+    })
+  }
+  if (delclub.team_cards.length) {
+    delclub.team_cards.forEach(async (card) => {
+      console.log(card)
+      await card.delete()
+    })
+  }
+  await delclub.delete();
+  
+}
 module.exports = {
   get_all_clubs,
   get_club,
   get_cards_conainters,
   get_teamcards,
-  create_club
+  create_club,
+  delete_club
 }

@@ -73,6 +73,11 @@ body {
   border-radius: 2px;
   opacity: 1;
 }
-
-
+.club-name:hover {
+  color: blue;
+  background-color: transparent;
+}
+.club-name {
+  text-align: center;
+}
 /* -------*/

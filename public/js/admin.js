@@ -6,16 +6,25 @@ cardContainermap.set('cardContainer_0', {
   title: 'teamCards',
   cards: []
 })
-var cur =''
+var cur = ''
 var edit_card_id = ''
-const addCard = (type) => {
-  if (type=='card') {
+const addCard = (type, card) => {
+  if (type == 'card') {
     let Container = cur
-    let cardTitle = document.getElementById('cardTitle').value
-    let cardCreation = document.getElementById('cardCreation').value
-    let cardDescription = document.getElementById('cardDescription').value
-    let cardEvent = document.getElementById('cardEvent').checked
-    // console.log(cardTitle, cardCreation, cardDescription, cardEvent)
+    let cardTitle, cardCreation, cardDescription, cardEvent
+    console.log(card)
+    if (!card) {
+      cardTitle = document.getElementById('cardTitle').value
+      cardCreation = document.getElementById('cardCreation').value
+      cardDescription = document.getElementById('cardDescription').value
+      cardEvent = document.getElementById('cardEvent').checked
+    } else {
+      cardTitle = card.title
+      cardcreation = card.creation
+      cardDescription = card.description
+      cardEvent = card.Event
+    }
+    //  console.log(cardTitle, cardCreation, cardDescription, cardEvent)
     let div = document.createElement('div')
     div.id = `card_${carlen}`
     div.className = 'ecard card text-white bg-primary mb-3'
@@ -38,9 +47,17 @@ const addCard = (type) => {
     console.log(Container)
   } else {
     let Container = cur
-    let cardName = document.getElementById('cardName').value
-    let cardImage = document.getElementById('cardImage').value
-    let cardDescription = document.getElementById('cardDescription').value
+    let cardName, cardImage, cardDescription
+    if (!card) {
+      cardName = document.getElementById('cardName').value
+      cardImage = document.getElementById('cardImage').value
+      cardDescription = document.getElementById('cardDescription').value
+    } else {
+      cardName = card.name
+      cardImage = card.image
+      cardDescription = card.description
+    }
+
     // console.log(cardTitle, cardCreation, cardDescription, cardEvent)
     let div = document.createElement('div')
     div.id = `card_${carlen}`
@@ -63,13 +80,12 @@ const addCard = (type) => {
     console.log(Container)
   }
 }
-const addcardContainer = () => {
-  
+const addcardContainer = (title = '') => {
   let div = document.createElement('div')
   div.id = `parentcardContainer_${cardContainerlen}`
   div.innerHTML = `<div class="events">
       <div class="event">
-        <input  id='cardContainer_${cardContainerlen}_title' placeholder='title' onchange="setTitle('cardContainer_${cardContainerlen}')"/>
+        <input  id='cardContainer_${cardContainerlen}_title' value='${title}'placeholder='title'  onchange="setTitle('cardContainer_${cardContainerlen}')"/>
                 <span type="button" class="material-icons" style="color:white;" onclick="removecardContainer('cardContainer_${cardContainerlen}')"> 
 remove
 </span>
@@ -95,6 +111,8 @@ remove
     title: document.getElementById(`cardContainer_${cardContainerlen}`).value,
     cards: []
   })
+  cur = document.getElementById(`cardContainer_${cardContainerlen}`)
+
   cardContainerlen++
 }
 const currContainer = (id) => {
@@ -123,15 +141,27 @@ const removecard = (id) => {
   console.log(cardContainermap, cardContainermap.get(par_id))
 }
 
-const onSubmit = () => {
+const onSubmit = (id = -500) => {
   let containers = [...cardContainermap.values()]
-  console.log(containers)
-  axios.post('api/club', {
-    clubContainer: containers,
-    name: document.getElementById('clubName').value,
-    about: document.getElementById('clubAbout').value,
-    date: document.getElementById('clubCreation').value
-  })
+  console.log(containers, 'sdsdsdsd id is ', id)
+  if (id != -500) {
+    console.log('no')
+    axios.put('api/club', {
+      id: id,
+      clubContainer: containers,
+      name: document.getElementById('clubName').value,
+      about: document.getElementById('clubAbout').value,
+      date: document.getElementById('clubCreation').value
+    })
+  } else {
+    console.log('yeseeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee')
+    axios.post('api/club', {
+      clubContainer: containers,
+      name: document.getElementById('clubName').value,
+      about: document.getElementById('clubAbout').value,
+      date: document.getElementById('clubCreation').value
+    })
+  }
 }
 const setTitle = (id) => {
   let temp = cardContainermap.get(id)
@@ -211,11 +241,10 @@ const editcarddetails = (id) => {
         </div>
       </div>`
     if (card.Event) {
-      document.getElementById('editcardEvent').checked = true;
+      document.getElementById('editcardEvent').checked = true
     }
   } else {
-     
-      modal.innerHTML = `<div class="modal-dialog modal-dialog-centered" role="document">
+    modal.innerHTML = `<div class="modal-dialog modal-dialog-centered" role="document">
         <div
           class="modal-content"
           style="background: #f4f4f4; box-shadow: 0px 0px 15px black; color: black"
@@ -277,9 +306,9 @@ const editcarddetails = (id) => {
           </form>
         </div>
       </div>`
-     
-  }  $('#cardEdit').modal('show')
-     edit_card_id = id
+  }
+  $('#cardEdit').modal('show')
+  edit_card_id = id
 }
 const editcard = () => {
   let container = document.getElementById(edit_card_id)
@@ -293,18 +322,18 @@ const editcard = () => {
     card.Event = document.getElementById('editcardEvent').checked
     container.innerHTML = cardString(card.type, edit_card_id, card.creation, card.description)
   } else {
-    card.name=document.getElementById('editcardName').value 
-    card.image= document.getElementById('editcardImage').value 
+    card.name = document.getElementById('editcardName').value
+    card.image = document.getElementById('editcardImage').value
     card.description = document.getElementById('editcardDescription').value
     container.innerHTML = cardString(card.type, edit_card_id, card.image, card.description)
   }
-     temp.cards = temp.cards.map((cd) => {
-       if (cd.id == edit_card_id) {
-         return card
-       } else {
-         return cd
-       }
-     })
+  temp.cards = temp.cards.map((cd) => {
+    if (cd.id == edit_card_id) {
+      return card
+    } else {
+      return cd
+    }
+  })
   cardContainermap.set(par_id, temp)
   console.log(cardContainermap, cardContainermap.get(par_id))
 }
@@ -370,7 +399,6 @@ edit
 }
 
 const cardCreatemodaldata = (type) => {
-
   if (type == 'card') {
     document.getElementById(
       'cardCreate'
@@ -501,7 +529,101 @@ const cardCreatemodaldata = (type) => {
   }
 }
 
-const closeModal=(id)=>{
-  console.log('closing ',id)
-$('#'+id).modal('hide')
+const closeModal = (id) => {
+  console.log('closing ', id)
+  $('#' + id).modal('hide')
+}
+//--------------------------------------------------------------------------------------------------------
+
+const fetchClubs = async () => {
+  let clubNameContainer = document.getElementById('club-collapse')
+  let clubs = await axios.get('api/clubs')
+  console.log(clubs)
+  string = ''
+  clubs.data.forEach((club) => {
+    string =
+      string +
+      `<div type="button" class="club-name" onclick=fetchClub('${club._id}')>${club.name}</div>`
+  })
+  clubNameContainer.innerHTML = string
+}
+fetchClubs()
+
+const fetchClub = async (id) => {
+  document.getElementById(
+    'cardContainer'
+  ).innerHTML = ` <div style="display: flex; align-items: center; justify-content: space-between">
+                  <div>Card Containers</div>
+                  <div style="display: flex; align-items: center; color: black">
+                    <span type="button" class="material-icons" onclick="addcardContainer()"
+                      >add</span
+                    >
+                    new Container
+                  </div>
+                </div>`
+  document.getElementById('teamcardContainer').innerHTML = `  <p>Team Cards</p>
+                <div id="parentcardContainer_0">
+                  <div class="events">
+                    <div id="cardContainer_0" class="ecards"></div>
+                    <div style="color: white">
+                      <span
+                        type="button"
+                        class="material-icons"
+                        onclick="currContainer('cardContainer_0')"
+                        >add</span
+                      >
+                    </div>
+                  </div>
+                </div>`
+
+  let club = await axios.get(`api/club/${id}`)
+  club = club.data
+  document.getElementById('clubName').value = club.name
+  document.getElementById('clubAbout').value = club.about
+  document.getElementById('clubCreation').value = club.creation
+  console.log('inside fetchClub ', club)
+  console.log(club.cards_containers.length)
+  if (club.cards_containers.length) {
+    console.log('opopop')
+    let arrcontainer = await axios.get('api/cards_container', {
+      params: { cards_container: club.cards_containers }
+    })
+    console.log(arrcontainer)
+    arrcontainer.data.forEach(async (container) => {
+      console.log(container)
+
+      addcardContainer(container.title)
+
+      console.log('yoyo card ', container)
+      container.cards.forEach((card) => {
+        console.log(card)
+        addCard(card.type, card)
+      })
+    })
+  }
+  if (club.team_cards.length) {
+    let teamcardarr = await axios.get('api/teamcard', {
+      params: { teamcard: club.team_cards }
+    })
+    cur = document.getElementById('cardContainer_0')
+    teamcardarr.data.forEach(async (card) => {
+      console.log(card)
+      addCard(card.type, card)
+    })
+  }
+  document.getElementById('deleteBtn').setAttribute('onclick', `deleteClub('${id}')`)
+  document.getElementById('submitBtn').setAttribute('onclick', `onSubmit('${id}')`)
+}
+const deleteClub = async (id) => {
+  await axios.delete(`api/club/${id}`)
+}
+const dropdown = () => {
+  let div = document.getElementById('club-collapser')
+ 
+  if (div.innerHTML == ' Clubs <span class="material-icons">expand_more</span>') {
+ 
+    div.innerHTML = ' Clubs <span class="material-icons">expand_less</span>'
+  } else {
+   div.innerHTML = ' Clubs <span class="material-icons">expand_more</span>'
+  }
 }
