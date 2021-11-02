@@ -49,114 +49,63 @@
           <p>NAVIGATION</p>
           <ul class="list-unstyled ps-0">
             <li class="mb-1">
-              <div 
-              
+              <div
                 id="club-collapser"
                 onclick="dropdown()"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#club-collapse"
                 aria-expanded="true"
-                style="display: flex; flex-direction: row; justify-content: space-between;align-items: center;">
-              
+                style="
+                  display: flex;
+                  flex-direction: row;
+                  justify-content: space-between;
+                  align-items: center;
+                "
+              >
                 Clubs <span class="material-icons">expand_more</span>
-            </div>
-              <div class="collapse show" id="club-collapse">
-           
               </div>
+              <div class="collapse show" id="club-collapse"></div>
             </li>
           </ul>
         </div>
       </div>
+
       <div class="main-bar">
         <div class="top-main-bar">
           <div class="dropdown">
-            <div class="mail">
-              dev@gmail.com
-              <span class="material-icons"> more_vert </span>
+            <div style="display: flex; align-items: center">
+              <div class="mail">
+                dev@gmail.com
+              </div>
+                <span class="material-icons"> more_vert </span>
+             
             </div>
             <div class="dropdown-content">
-              <a style="width: 160px; display: flex; padding-left: 10px; padding-top: 5px" href="#"
-                >Logout</a
+              <div class="club-name" type="button"
+                >Logout</div
               >
             </div>
           </div>
         </div>
-        <div class="bottom-main-bar">
-          <div class="bottom-main-line">
-            <div class="bottom-main-heading">
-              <h3 style="color: black">Edit Club Details</h3>
-            </div>
-            <div class="bottom-main-buttons">
-              <button id="deleteBtn" type="button" class="btn btn-danger button2">Delete</button>
-            </div>
-          </div>
-
-          <div class="card bottom-main-card">
-            <div class="card-body">
-              <div class="card-heading">
-                <label for="clubName">Name</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="clubName"
-                  placeholder="Enter Club name"
-                />
-              </div>
-              <div class="card-heading">
-                <label for="clubAbout">About</label>
-
-                <input
-                  type="text"
-                  class="form-control"
-                  id="clubAbout"
-                  placeholder="Enter Club About"
-                />
-              </div>
-              <!-- <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-      </div> -->
-              <div id="cardContainer" class="card-heading">
-                <div style="display: flex; align-items: center; justify-content: space-between">
-                  <div>Card Containers</div>
-                  <div style="display: flex; align-items: center; color: black">
-                    <span type="button" class="material-icons" onclick="addcardContainer()"
-                      >add</span
-                    >
-                    new Container
-                  </div>
-                </div>
-              </div>
-              <div id="teamcardContainer" class="card-heading">
-                <p>Team Cards</p>
-                <div id="parentcardContainer_0">
-                  <div class="events">
-                    <div id="cardContainer_0" class="ecards"></div>
-                    <div style="color: white">
-                      <span
-                        type="button"
-                        class="material-icons"
-                        onclick="currContainer('cardContainer_0')"
-                        >add</span
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="card-heading">
-                <label for="clubCreation">Creation</label>
-                <input type="date" class="form-control" id="clubCreation" style="color: black" />
-              </div>
-              <button
-                id="submitBtn"
+        <div class="bottom-main-bar bottom-main-card">
+          <div id="clubForm">
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+              "
+            >
+              <div
                 type="button"
-                class="btn btn-primary card-heading"
-                onclick="onSubmit()"
+                class="btn btn-secondary btn-lg btn-block"
+                style="display: flex; width: 80%; justify-content: center; align-self: center"
+                onclick="addnewClub()"
               >
-                Save
-              </button>
+                Add New Club
+              </div>
             </div>
           </div>
         </div>

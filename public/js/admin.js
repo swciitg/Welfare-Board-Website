@@ -1,4 +1,4 @@
-let cardContainer = document.getElementById('cardContainer')
+let cardContainer ;
 let cardContainerlen = 1
 let carlen = 0
 var cardContainermap = new Map()
@@ -45,6 +45,7 @@ const addCard = (type, card) => {
     cardContainermap.set(cur.id, temp)
     console.log(cardContainermap)
     console.log(Container)
+  
   } else {
     let Container = cur
     let cardName, cardImage, cardDescription
@@ -78,9 +79,12 @@ const addCard = (type, card) => {
     cardContainermap.set(cur.id, temp)
     console.log(cardContainermap)
     console.log(Container)
+
   }
+ 
 }
 const addcardContainer = (title = '') => {
+  cardContainer = document.getElementById('cardContainer')
   let div = document.createElement('div')
   div.id = `parentcardContainer_${cardContainerlen}`
   div.innerHTML = `<div class="events">
@@ -141,12 +145,12 @@ const removecard = (id) => {
   console.log(cardContainermap, cardContainermap.get(par_id))
 }
 
-const onSubmit = (id = -500) => {
+const onSubmit =async(id = -500) => {
   let containers = [...cardContainermap.values()]
-  console.log(containers, 'sdsdsdsd id is ', id)
+
   if (id != -500) {
-    console.log('no')
-    axios.put('api/club', {
+
+     axios.put('api/club', {
       id: id,
       clubContainer: containers,
       name: document.getElementById('clubName').value,
@@ -154,14 +158,16 @@ const onSubmit = (id = -500) => {
       date: document.getElementById('clubCreation').value
     })
   } else {
-    console.log('yeseeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee')
-    axios.post('api/club', {
+
+      axios.post('api/club', {
       clubContainer: containers,
       name: document.getElementById('clubName').value,
       about: document.getElementById('clubAbout').value,
       date: document.getElementById('clubCreation').value
     })
   }
+
+  
 }
 const setTitle = (id) => {
   let temp = cardContainermap.get(id)
@@ -231,7 +237,7 @@ const editcarddetails = (id) => {
               <button
                 class="btn btn-primary"
                 type="button"
-                onclick="editcard()"
+                onclick="editcard();closeModal('cardEdit')"
                 data-dismiss="modal"
               >
                 edit Card
@@ -297,7 +303,7 @@ const editcarddetails = (id) => {
               <button
                 class="btn btn-primary"
                 type="button"
-                onclick="editcard()"
+                onclick="editcard();closeModal('cardEdit')"
                 data-dismiss="modal"
               >
                 edit Card
@@ -334,8 +340,9 @@ const editcard = () => {
       return cd
     }
   })
-  cardContainermap.set(par_id, temp)
-  console.log(cardContainermap, cardContainermap.get(par_id))
+  // cardContainermap.set(par_id, temp)
+  // console.log(cardContainermap, cardContainermap.get(par_id))
+  
 }
 const cardString = (type, divId, creation, des) => {
   let string
@@ -454,7 +461,7 @@ const cardCreatemodaldata = (type) => {
               <button
                 class="btn btn-primary"
                 type="button"
-                onclick="addCard('card')"
+                onclick="addCard('card');closeModal('cardCreate')"
                 data-dismiss="modal"
               >
                 Create Card
@@ -517,7 +524,7 @@ const cardCreatemodaldata = (type) => {
               <button
                 class="btn btn-primary"
                 type="button"
-                onclick="addCard('Teamcard')"
+                onclick="addCard('Teamcard');closeModal('cardCreate')"
                 data-dismiss="modal"
               >
                 Create Team Card
@@ -543,13 +550,94 @@ const fetchClubs = async () => {
   clubs.data.forEach((club) => {
     string =
       string +
-      `<div type="button" class="club-name" onclick=fetchClub('${club._id}')>${club.name}</div>`
+      `<div type="button" class="club-name" onclick=fetchintialdata('${club._id}')>${club.name}</div>`
   })
   clubNameContainer.innerHTML = string
 }
 fetchClubs()
+const fetchintialdata=(id)=>{
+prepareintialform();
+fetchClub(id);
+}
+const prepareintialform=()=>{  document.getElementById('clubForm').innerHTML=`   <div class="bottom-main-bar">
+<div class="bottom-main-line">
+  <div class="bottom-main-heading">
+    <h3 style="color: black" id="clubFormtitle">Edit Club Details</h3>
+  </div>
+  <div class="bottom-main-buttons">
+  <button onclick="addnewClub()" id="addBtn" type="button" class="btn btn-primary button1" style="display:flex;align-items:center;justify-content:center">
+  <div class="material-icons">add</div><div>club</div></button>
+  <button id="deleteBtn" type="button" class="btn btn-danger button2">Delete</button>
+  </div>
+</div>
 
+<div class="card bottom-main-card">
+  <div class="card-body">
+    <div class="card-heading">
+      <label for="clubName">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="clubName"
+        placeholder="Enter Club name"
+      />
+    </div>
+    <div class="card-heading">
+      <label for="clubAbout">About</label>
+
+      <input
+        type="text"
+        class="form-control"
+        id="clubAbout"
+        placeholder="Enter Club About"
+      />
+    </div>
+ 
+    <div id="cardContainer" class="card-heading">
+      <div style="display: flex; align-items: center; justify-content: space-between">
+        <div>Card Containers</div>
+        <div style="display: flex; align-items: center; color: black">
+          <span type="button" class="material-icons" onclick="addcardContainer()"
+            >add</span
+          >
+          new Container
+        </div>
+      </div>
+    </div>
+    <div id="teamcardContainer" class="card-heading">
+      <p>Team Cards</p>
+      <div id="parentcardContainer_0">
+        <div class="events">
+          <div id="cardContainer_0" class="ecards"></div>
+          <div style="color: white">
+            <span
+              type="button"
+              class="material-icons"
+              onclick="currContainer('cardContainer_0')"
+              >add</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-heading">
+      <label for="clubCreation">Creation</label>
+      <input type="date" class="form-control" id="clubCreation" style="color: black" />
+    </div>
+    <button
+      id="submitBtn"
+      type="button"
+      class="btn btn-primary card-heading"
+      onclick="onSubmit()"
+    >
+      Save
+    </button>
+  </div>
+</div>
+</div>`;}
 const fetchClub = async (id) => {
+ 
   document.getElementById(
     'cardContainer'
   ).innerHTML = ` <div style="display: flex; align-items: center; justify-content: space-between">
@@ -584,7 +672,7 @@ const fetchClub = async (id) => {
   console.log('inside fetchClub ', club)
   console.log(club.cards_containers.length)
   if (club.cards_containers.length) {
-    console.log('opopop')
+  
     let arrcontainer = await axios.get('api/cards_container', {
       params: { cards_container: club.cards_containers }
     })
@@ -616,6 +704,8 @@ const fetchClub = async (id) => {
 }
 const deleteClub = async (id) => {
   await axios.delete(`api/club/${id}`)
+  fetchClubs();
+  addnewClub();
 }
 const dropdown = () => {
   let div = document.getElementById('club-collapser')
@@ -626,4 +716,12 @@ const dropdown = () => {
   } else {
    div.innerHTML = ' Clubs <span class="material-icons">expand_more</span>'
   }
+}
+const addnewClub=()=>{
+  prepareintialform();
+  document.getElementById('clubFormtitle').innerHTML='Create new club'
+  document.getElementById('submitBtn').innerHTML='Create'
+  document.getElementById('deleteBtn').style.display='none'
+  document.getElementById('addBtn').style.display='none'
+
 }

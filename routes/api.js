@@ -21,15 +21,15 @@ router.route('/teamcard').get(async (req, res) => {
 })
 router.route('/club').post(async (req, res) => {
 console.log(req.body)
-  apiController.create_club(req.body.clubContainer, req.body.name, req.body.about, req.body.date);
+  await apiController.create_club(req.body.clubContainer, req.body.name, req.body.about, req.body.date);
 })
 router.route('/club').put(async (req, res) => {
    apiController.delete_club(req.body.id)
-   apiController.create_club(req.body.clubContainer, req.body.name, req.body.about, req.body.date)
+  await apiController.create_club(req.body.clubContainer, req.body.name, req.body.about, req.body.date)
  
 })
 router.route('/club/:club').delete(async (req, res) => {
- apiController.delete_club(req.params.club)
+ await apiController.delete_club(req.params.club)
 })
 
 module.exports = router
