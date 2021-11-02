@@ -15,9 +15,12 @@ router.route('/cards_container/:cards_container').get(async (req, res) => {
   let cards_container = await apiController.get_cards_containers(req.params.cards_container)
   res.json(cards_container)
 })
-router.route('/teamcard/:id').get(async (req, res) => {
-  let teamcard = await apiController.get_teamcards(id);
+router.route('/team/:id').get(async (req, res) => {
+  let teamcard = await apiController.get_teamcards(req.params.id)
   res.json(teamcard)
 })
-
+router.route('/events/:id').get(async (req, res) => {
+  let events = await apiController.get_events(req.params.id)
+  res.json(events)
+})
 module.exports = router

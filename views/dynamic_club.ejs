@@ -84,28 +84,14 @@
         </div>
     </div>
     <div id="cards_container">
-        
+
     </div>
 
     <!-- Teams homepage-->
-    <div class="Teams" id="t">
+    <div class="Teams" id="team">
         <div class="Team">
-            <h2 class="thead" id="team_name">Welfare Board Teams</h2>
-            <div class="dropdown">
-                <button class="btn shadow-sm btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                    aria-expanded="false" id="teams_type">
-                    All Members
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li onclick="renderteams('All Members')" class="dropdown-item">All Members</li>
-                    <li onclick="renderteams('Functionaries')" class="dropdown-item">Funtionaries</li>
-                    <li onclick="renderteams('BoardMembers')" class="dropdown-item">Board Members</li>
-                    <li onclick="renderteams('Clubs')" class="dropdown-item">Clubs</li>
-                </ul>
-            </div>
+            <h2 class="thead" id="team_name"></h2>
         </div>
-
-
         <div id="teamcontainer" class="tcards">
 
 
@@ -116,7 +102,7 @@
 
     <!-- Events -->
     <div class="events">
-        <div class="event">
+        <div class="event" id="Events">
             <h3 class="ehead" id='e'>Events at IIT Guwahati</h3>
             <div class="dropdown">
                 <button class="btn shadow-sm btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
@@ -124,25 +110,15 @@
                     ALL
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li onclick="renderevents('ALL')" class="dropdown-item">ALL</li>
-                    <li onclick="renderevents('CULTURAL')" class="dropdown-item">CULTURAL</li>
-                    <li onclick="renderevents('TECHNICAL')" class="dropdown-item">TECHNICAL</li>
+                    <li onclick="filter_events('ALL')" class="dropdown-item">ALL</li>
+                    <li onclick="filter_events('CULTURAL')" class="dropdown-item">CULTURAL</li>
+                    <li onclick="filter_events('TECHNICAL')" class="dropdown-item">TECHNICAL</li>
                 </ul>
             </div>
         </div>
 
         <div id="eventcontainer" class="ecards">
-            <div class="ecard card text-white bg-info mb-3" style="width: 19rem">
-                <div class="card-body">
-                    <p class="card-text">
-                    </p>
-                    <div class="einfo">
-                        <h5 class="card-title">
-                        </h5>
-                        </a>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </div>
 

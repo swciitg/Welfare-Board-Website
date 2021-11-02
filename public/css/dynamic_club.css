@@ -175,7 +175,8 @@ img {
 }
 
 .card-title {
-  font-weight: bold;
+  font-weight: bolder;
+  margin-top:1%;
   color: black;
 }
 
@@ -361,7 +362,6 @@ p {
 
 .ecards {
   display: flex;
-  scroll-snap-type: x mandatory;
   overflow-x: auto;
 }
 
@@ -382,7 +382,7 @@ p {
 .ecards::-webkit-scrollbar {
   height: 5px;
 }
-
+  
 .ecards::-webkit-scrollbar-thumb {
   opacity: 0;
 }
@@ -451,4 +451,9 @@ h10 a:hover,
 .icons a {
   color: #9fabb7;
   margin: 0 10px;
+}
+.event_image
+{
+  height:60%;
+  width:100%;
 }

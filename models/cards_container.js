@@ -12,10 +12,6 @@ const Card_containerSchema = mongoose.Schema({
       ref: 'Card'
     }
   ],
-  Event: {
-    type: Boolean,
-    default: false
-  }
 })
 
 module.exports = mongoose.model('Cards_container', Card_containerSchema)

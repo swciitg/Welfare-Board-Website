@@ -16,3 +16,4 @@ const CardSchema = mongoose.Schema({
 })
 
 module.exports = mongoose.model('Card', CardSchema)
+  

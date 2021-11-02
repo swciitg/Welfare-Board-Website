@@ -2,6 +2,7 @@ var slideIndex = [1, 1]
 var slideId = ['mySlides1', 'mySlides2']
 showSlides(1, 0)
 let all_containers = {}
+let curr = ''
 let month = [
   'January',
   'February',
@@ -42,7 +43,7 @@ const add_clubs_info = async () => {
   let temp_clubs = ''
   for (let i = 0; i < clubs.length; i++) {
     temp_clubs += `  <li class="nav-item">
-           <a class="nav-link" onclick=change_club("${clubs[i]._id}") href="#">${clubs[i].name}</a>
+           <a class="nav-link" id=club_${clubs[i]._id} onclick=change_club("${clubs[i]._id}") href="#">${clubs[i].name}</a>
            </li>
         `
   }
@@ -56,10 +57,22 @@ const change_club = async (id) => {
   // nav links
   club = await axios.get(`/project/api/club/${id}`)
   club = club.data
-
+  if (curr) document.getElementById(curr).style.color = 'Black'
+  curr = 'club_' + id
+  document.getElementById(curr).style.color = 'darkblue'
   // about
+  document.getElementById("team_name").innerHTML =club.name + " Team"
   document.getElementById('club_name').innerHTML = `Welcome to ${club.name}, IIT Guwahati`
-  document.getElementById('club_introduction').innerHTML = club.about
+  let temp_intro = ''
+  club.about.forEach((card) => {
+    temp_intro += `
+    <div style="margin-top: 1%;">
+     <h3 style="color:black;">${card.title}</h3>
+     ${card.description}
+     </div>
+    `
+  })
+  document.getElementById('club_introduction').innerHTML = temp_intro
 
   // side nav
   let temp_table = ''
@@ -79,16 +92,23 @@ const change_club = async (id) => {
     cards_container = cards_container.data
     cards_containers.push(cards_container)
     temp_table += `<li class="nav-item table_content list">
-        <a class="nav-link  text-secondary" href="#${cards_container.id}">${cards_container.title}</a>
+        <a class="nav-link  text-secondary" href="#${cards_container.title}">${cards_container.title}</a>
        </li>`
   }
+  temp_table+=`<li class="nav-item table_content list">
+  <a class="nav-link text-secondary" href="#team">Team</a>
+</li>
+<li class="nav-item table_content list">
+               <a class="nav-link text-secondary" href="#Events">Events</a>
+            </li>`
   document.getElementById('table_list').innerHTML = temp_table
 
   // containers excluding events
   temp_table = ''
   let temp = ''
   let current_year = new Date().getFullYear()
-
+  let cards_cont = document.getElementById('cards_container')
+  while (cards_cont.firstChild) cards_cont.removeChild(cards_cont.firstChild)
   cards_containers.forEach((container) => {
     temp = ''
     temp_table = ''
@@ -146,8 +166,53 @@ const change_club = async (id) => {
        </div>
       </div>`
     temp_cont.innerHTML = temp
-    document.getElementById('cards_container').appendChild(temp_cont)
+    cards_cont.appendChild(temp_cont)
   })
+
+  let temp_team='';
+  let team_members=await axios.get(`/project/api/team/${club._id}`);
+  team_members=team_members.data.team_cards;
+  console.log(team_members)
+  team_members.forEach(member => {
+    temp_team+=`
+    <div class="tcard card text-white bg-info mb-4" style="width: 3rem;">
+    <img class="event_image" src="${member.image}">
+    <div style="padding-left:2%;">
+    <p class="card-title"> <h4>${member.name}</h4> 
+    </p>
+       <h4 class="card-title">
+        ${member.role}
+      </h4>
+      </div>
+  </div>
+    `
+  })
+  document.getElementById("teamcontainer").innerHTML=temp_team
+  let events = await axios.get(`/project/api/events/${club._id}`)
+  events = events.data.events
+  all_containers['events']=events;
+  console.log(events)
+
+  let temp_events = ''
+  events.forEach((event) => {
+    temp_events += `
+    <div class="ecard card text-white bg-info mb-3" style="width: 19rem">
+                <div class="card-body">
+                   <img class="event_image" src="${event.image}" alt="...">
+                    <h4 class="card-title">
+                    ${event.title}
+                    </h4>
+                  
+                        <h5 class="card-body">
+                        ${event.description}
+                        </h5>
+                        </a>
+             
+                </div>
+            </div>
+    `
+  })
+  document.getElementById('eventcontainer').innerHTML = temp_events
 }
 const filter_content = (filter, id) => {
   let all_years = 0
@@ -183,5 +248,31 @@ const filter_content = (filter, id) => {
     }
   })
   container.innerHTML = temp
+}
+
+const filter_events= async (filter) => {
+  let all_events=0;
+  document.getElementById('events_type').innerHTML=filter;
+  if(filter=='ALL')all_events=1;
+  let temp_events='';
+  all_containers['events'].forEach(event => {
+    if(all_events || event.type==filter)
+    {
+      temp_events+= `
+      <div class="ecard card text-white bg-info mb-3" style="width: 19rem">
+                  <div class="card-body">
+                     <img class="event_image" src="${event.image}" alt="...">
+                      <h4 class="card-title">
+                      ${event.title}
+                      </h4>
+                          <h5 class="card-body">
+                          ${event.description}
+                          </h5>
+                  </div>
+              </div>
+      `
+    }
+  })
+   document.getElementById('eventcontainer').innerHTML = temp_events
 }
 add_clubs_info()

@@ -5,5 +5,7 @@ module.exports = {
   Card: require('./Card'),
   Club: require('./Club'),
   TeamCard: require('./TeamCard'),
-  Cards_container: require('./cards_container')
+  Cards_container: require('./cards_container'),
+  About: require('./About'),
+  Event: require('./Event')
 }
