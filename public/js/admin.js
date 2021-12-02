@@ -1,6 +1,7 @@
-let cardContainer ;
+let cardContainer
 let cardContainerlen = 1
 let carlen = 0
+let clubAboutEditor
 var cardContainermap = new Map()
 cardContainermap.set('cardContainer_0', {
   title: 'teamCards',
@@ -45,7 +46,6 @@ const addCard = (type, card) => {
     cardContainermap.set(cur.id, temp)
     console.log(cardContainermap)
     console.log(Container)
-  
   } else {
     let Container = cur
     let cardName, cardImage, cardDescription
@@ -79,9 +79,7 @@ const addCard = (type, card) => {
     cardContainermap.set(cur.id, temp)
     console.log(cardContainermap)
     console.log(Container)
-
   }
- 
 }
 const addcardContainer = (title = '') => {
   cardContainer = document.getElementById('cardContainer')
@@ -145,12 +143,11 @@ const removecard = (id) => {
   console.log(cardContainermap, cardContainermap.get(par_id))
 }
 
-const onSubmit =async(id = -500) => {
+const onSubmit = async (id = -500) => {
   let containers = [...cardContainermap.values()]
 
   if (id != -500) {
-
-     axios.put('api/club', {
+    axios.put('api/club', {
       id: id,
       clubContainer: containers,
       name: document.getElementById('clubName').value,
@@ -158,16 +155,13 @@ const onSubmit =async(id = -500) => {
       date: document.getElementById('clubCreation').value
     })
   } else {
-
-      axios.post('api/club', {
+    axios.post('api/club', {
       clubContainer: containers,
       name: document.getElementById('clubName').value,
-      about: document.getElementById('clubAbout').value,
+      about: clubAboutEditor.getData(),
       date: document.getElementById('clubCreation').value
     })
   }
-
-  
 }
 const setTitle = (id) => {
   let temp = cardContainermap.get(id)
@@ -342,7 +336,6 @@ const editcard = () => {
   })
   // cardContainermap.set(par_id, temp)
   // console.log(cardContainermap, cardContainermap.get(par_id))
-  
 }
 const cardString = (type, divId, creation, des) => {
   let string
@@ -555,11 +548,12 @@ const fetchClubs = async () => {
   clubNameContainer.innerHTML = string
 }
 fetchClubs()
-const fetchintialdata=(id)=>{
-prepareintialform();
-fetchClub(id);
+const fetchintialdata = (id) => {
+  prepareintialform()
+  fetchClub(id)
 }
-const prepareintialform=()=>{  document.getElementById('clubForm').innerHTML=`   <div class="bottom-main-bar">
+const prepareintialform = () => {
+  document.getElementById('clubForm').innerHTML = `   <div class="bottom-main-bar">
 <div class="bottom-main-line">
   <div class="bottom-main-heading">
     <h3 style="color: black" id="clubFormtitle">Edit Club Details</h3>
@@ -585,12 +579,10 @@ const prepareintialform=()=>{  document.getElementById('clubForm').innerHTML=`  
     <div class="card-heading">
       <label for="clubAbout">About</label>
 
-      <input
-        type="text"
-        class="form-control"
+      <div
         id="clubAbout"
         placeholder="Enter Club About"
-      />
+      ></div>
     </div>
  
     <div id="cardContainer" class="card-heading">
@@ -635,9 +627,9 @@ const prepareintialform=()=>{  document.getElementById('clubForm').innerHTML=`  
     </button>
   </div>
 </div>
-</div>`;}
+</div>`
+}
 const fetchClub = async (id) => {
- 
   document.getElementById(
     'cardContainer'
   ).innerHTML = ` <div style="display: flex; align-items: center; justify-content: space-between">
@@ -672,7 +664,6 @@ const fetchClub = async (id) => {
   console.log('inside fetchClub ', club)
   console.log(club.cards_containers.length)
   if (club.cards_containers.length) {
-  
     let arrcontainer = await axios.get('api/cards_container', {
       params: { cards_container: club.cards_containers }
     })
@@ -704,24 +695,36 @@ const fetchClub = async (id) => {
 }
 const deleteClub = async (id) => {
   await axios.delete(`api/club/${id}`)
-  fetchClubs();
-  addnewClub();
+  fetchClubs()
+  addnewClub()
 }
 const dropdown = () => {
   let div = document.getElementById('club-collapser')
- 
+
   if (div.innerHTML == ' Clubs <span class="material-icons">expand_more</span>') {
- 
     div.innerHTML = ' Clubs <span class="material-icons">expand_less</span>'
   } else {
-   div.innerHTML = ' Clubs <span class="material-icons">expand_more</span>'
+    div.innerHTML = ' Clubs <span class="material-icons">expand_more</span>'
   }
 }
-const addnewClub=()=>{
-  prepareintialform();
-  document.getElementById('clubFormtitle').innerHTML='Create new club'
-  document.getElementById('submitBtn').innerHTML='Create'
-  document.getElementById('deleteBtn').style.display='none'
-  document.getElementById('addBtn').style.display='none'
+const addnewClub = () => {
+  prepareintialform()
 
+  ClassicEditor.create(document.querySelector('#clubAbout'), {
+    ckfinder: {
+      // Upload the images to the server using the CKFinder QuickUpload command.
+      uploadUrl: '/api/uploadFile'
+    }
+  })
+    .then((newEditor) => {
+      clubAboutEditor = newEditor
+    })
+    .catch((error) => {
+      console.error(error)
+    })
+
+  document.getElementById('clubFormtitle').innerHTML = 'Create new club'
+  document.getElementById('submitBtn').innerHTML = 'Create'
+  document.getElementById('deleteBtn').style.display = 'none'
+  document.getElementById('addBtn').style.display = 'none'
 }
