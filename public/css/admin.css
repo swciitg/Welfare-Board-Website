@@ -29,9 +29,9 @@ body {
 
 .event {
   display: flex;
-  padding-right: 450px;
   padding-bottom: 60px;
   justify-content: space-between;
+  align-items: center;
 }
 
 .ehead {
@@ -79,5 +79,8 @@ body {
 }
 .club-name {
   text-align: center;
+}
+.ck{
+  color: black
 }
 /* -------*/

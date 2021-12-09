@@ -13,9 +13,6 @@ const CardSchema = mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  Event: {
-    type: Boolean,
-  },
   type: {
     type:String
   }

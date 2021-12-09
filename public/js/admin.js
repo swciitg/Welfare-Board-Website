@@ -2,6 +2,8 @@ let cardContainer
 let cardContainerlen = 1
 let carlen = 0
 let clubAboutEditor
+let cardDescriptionEditor
+let editcardDescriptionEditor
 var cardContainermap = new Map()
 cardContainermap.set('cardContainer_0', {
   title: 'teamCards',
@@ -17,13 +19,13 @@ const addCard = (type, card) => {
     if (!card) {
       cardTitle = document.getElementById('cardTitle').value
       cardCreation = document.getElementById('cardCreation').value
-      cardDescription = document.getElementById('cardDescription').value
-      cardEvent = document.getElementById('cardEvent').checked
+      cardDescription = cardDescriptionEditor.getData()
+     
     } else {
       cardTitle = card.title
       cardcreation = card.creation
       cardDescription = card.description
-      cardEvent = card.Event
+     
     }
     //  console.log(cardTitle, cardCreation, cardDescription, cardEvent)
     let div = document.createElement('div')
@@ -38,7 +40,6 @@ const addCard = (type, card) => {
       creation: cardCreation,
       description: cardDescription,
       title: cardTitle,
-      Event: cardEvent,
       type: 'card',
       id: `card_${carlen}`
     })
@@ -51,11 +52,9 @@ const addCard = (type, card) => {
     let cardName, cardImage, cardDescription
     if (!card) {
       cardName = document.getElementById('cardName').value
-      cardImage = document.getElementById('cardImage').value
-      cardDescription = document.getElementById('cardDescription').value
+      cardDescription =cardDescriptionEditor.getData()
     } else {
       cardName = card.name
-      cardImage = card.image
       cardDescription = card.description
     }
 
@@ -64,7 +63,7 @@ const addCard = (type, card) => {
     div.id = `card_${carlen}`
     div.className = 'ecard card text-white bg-primary mb-3'
     div.style.width = '19rem'
-    div.innerHTML = cardString(type, div.id, cardImage, cardDescription)
+    div.innerHTML = cardString(type, div.id,'', cardDescription)
     Container.append(div)
     let temp = cardContainermap.get(cur.id)
     console.log(cur.id, temp)
@@ -81,7 +80,7 @@ const addCard = (type, card) => {
     console.log(Container)
   }
 }
-const addcardContainer = (title = '') => {
+const addcardContainer = (title = '',event=false) => {
   cardContainer = document.getElementById('cardContainer')
   let div = document.createElement('div')
   div.id = `parentcardContainer_${cardContainerlen}`
@@ -91,8 +90,12 @@ const addcardContainer = (title = '') => {
                 <span type="button" class="material-icons" style="color:white;" onclick="removecardContainer('cardContainer_${cardContainerlen}')"> 
 remove
 </span>
+<div>
+ <label for="cardContainer_${cardContainerlen}_event">For Events</label>
+                <input type="checkbox" id="cardContainer_${cardContainerlen}_event" style="color: black"  onchange="setTitle('cardContainer_${cardContainerlen}')">
+             </div>
       </div>
-
+    
 
       <div id="cardContainer_${cardContainerlen}" class="ecards">
 
@@ -109,10 +112,16 @@ remove
     </div>`
 
   cardContainer.appendChild(div)
+
   cardContainermap.set(`cardContainer_${cardContainerlen}`, {
-    title: document.getElementById(`cardContainer_${cardContainerlen}`).value,
+    title: document.getElementById(`cardContainer_${cardContainerlen}_title`).value,
+    event: false,
     cards: []
   })
+  if (event) {
+      console.log(event)
+      document.getElementById(`cardContainer_${cardContainerlen}_event`).checked = true
+    }
   cur = document.getElementById(`cardContainer_${cardContainerlen}`)
 
   cardContainerlen++
@@ -151,7 +160,7 @@ const onSubmit = async (id = -500) => {
       id: id,
       clubContainer: containers,
       name: document.getElementById('clubName').value,
-      about: document.getElementById('clubAbout').value,
+      about: clubAboutEditor.getData(),
       date: document.getElementById('clubCreation').value
     })
   } else {
@@ -166,9 +175,11 @@ const onSubmit = async (id = -500) => {
 const setTitle = (id) => {
   let temp = cardContainermap.get(id)
   temp.title = document.getElementById(id + '_title').value
+  temp.event = document.getElementById(id + '_event').checked
   cardContainermap.set(id, temp)
-  console.log(cardContainermap)
+  console.log(cardContainermap,temp.event)
 }
+
 const editcarddetails = (id) => {
   let modal = document.getElementById('cardEdit')
   let container = document.getElementById(id)
@@ -215,9 +226,7 @@ const editcarddetails = (id) => {
                   required
                   value='${card.creation}'
                 />
-                <label for="editcardEvent">Event</label>
-                <input type="checkbox" id="editcardEvent" style="color: black">
-              </div>
+               
             </div>
             <div class="modal-footer" style="border-color: #292929">
               <button
@@ -240,9 +249,7 @@ const editcarddetails = (id) => {
           </form>
         </div>
       </div>`
-    if (card.Event) {
-      document.getElementById('editcardEvent').checked = true
-    }
+
   } else {
     modal.innerHTML = `<div class="modal-dialog modal-dialog-centered" role="document">
         <div
@@ -273,15 +280,7 @@ const editcarddetails = (id) => {
                   required
                   value='${card.description}'
                 />
-                <label for="editcardImage">Image</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="editcardImage"
-                  style="color: black"
-                  required
-                  value='${card.image}'
-                />
+             
               
               </div>
             </div>
@@ -307,7 +306,24 @@ const editcarddetails = (id) => {
         </div>
       </div>`
   }
+   ClassicEditor.create(document.querySelector('#editcardDescription'), {
+     ckfinder: {
+       // Upload the images to the server using the CKFinder QuickUpload command.
+       uploadUrl: '/api/uploadFile'
+     }
+   })
+     .then((newEditor) => {
+       editcardDescriptionEditor = newEditor
+       editcardDescriptionEditor.setData(card.description)
+     
+     })
+     .catch((error) => {
+       console.error(error)
+     })
+  
+  
   $('#cardEdit').modal('show')
+ 
   edit_card_id = id
 }
 const editcard = () => {
@@ -318,14 +334,13 @@ const editcard = () => {
   if (card.type == 'card') {
     card.title = document.getElementById('editcardTitle').value
     card.creation = document.getElementById('editcardCreation').value
-    card.description = document.getElementById('editcardDescription').value
-    card.Event = document.getElementById('editcardEvent').checked
+    card.description = editcardDescriptionEditor.getData()
     container.innerHTML = cardString(card.type, edit_card_id, card.creation, card.description)
   } else {
     card.name = document.getElementById('editcardName').value
-    card.image = document.getElementById('editcardImage').value
-    card.description = document.getElementById('editcardDescription').value
-    container.innerHTML = cardString(card.type, edit_card_id, card.image, card.description)
+  
+    card.description = editcardDescriptionEditor.getData()
+    container.innerHTML = cardString(card.type, edit_card_id,'', card.description)
   }
   temp.cards = temp.cards.map((cd) => {
     if (cd.id == edit_card_id) {
@@ -341,7 +356,7 @@ const cardString = (type, divId, creation, des) => {
   let string
   if (type == 'card') {
     string = `
-              <img src="#" class="card-img-top h-75" />
+              
               <div class="card-body">
                 <p class="card-text">
                ${creation}
@@ -368,7 +383,7 @@ edit
     `
   } else {
     string = `
-              <img src="${creation}" class="card-img-top h-75" />
+             
               <div class="card-body">
                 <p class="card-text">
            
@@ -438,8 +453,7 @@ const cardCreatemodaldata = (type) => {
                   style="color: black"
                   required
                 />
-                <label for="cardEvent">Event</label>
-                <input type="checkbox" id="cardEvent" style="color: black" />
+               
               </div>
             </div>
             <div class="modal-footer" style="border-color: #292929">
@@ -494,15 +508,7 @@ const cardCreatemodaldata = (type) => {
                   style="color: black"
                   required
                 />
-                <label for="cardImage">Image</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="cardImage"
-                  style="color: black"
-                  required
-                />
-        
+            
               </div>
             </div>
             <div class="modal-footer" style="border-color: #292929">
@@ -527,6 +533,18 @@ const cardCreatemodaldata = (type) => {
         </div>
       </div>`
   }
+ ClassicEditor.create(document.querySelector('#cardDescription'), {
+   ckfinder: {
+     // Upload the images to the server using the CKFinder QuickUpload command.
+     uploadUrl: '/api/uploadFile'
+   }
+ })
+   .then((newEditor) => {
+     cardDescriptionEditor = newEditor
+   })
+   .catch((error) => {
+     console.error(error)
+   })
 }
 
 const closeModal = (id) => {
@@ -543,12 +561,12 @@ const fetchClubs = async () => {
   clubs.data.forEach((club) => {
     string =
       string +
-      `<div type="button" class="club-name" onclick=fetchintialdata('${club._id}')>${club.name}</div>`
+      `<div type="button" class="club-name" onclick=fetchinitialdata('${club._id}')>${club.name}</div>`
   })
   clubNameContainer.innerHTML = string
 }
 fetchClubs()
-const fetchintialdata = (id) => {
+const fetchinitialdata = (id) => {
   prepareintialform()
   fetchClub(id)
 }
@@ -655,30 +673,45 @@ const fetchClub = async (id) => {
                     </div>
                   </div>
                 </div>`
+ 
+  clubAboutEditorCreate()
 
   let club = await axios.get(`api/club/${id}`)
   club = club.data
   document.getElementById('clubName').value = club.name
-  document.getElementById('clubAbout').value = club.about
+  clubAboutEditor.setData(club.about)
   document.getElementById('clubCreation').value = club.creation
-  console.log('inside fetchClub ', club)
-  console.log(club.cards_containers.length)
+
   if (club.cards_containers.length) {
-    let arrcontainer = await axios.get('api/cards_container', {
+    let arrcardscontainer = await axios.get('api/cards_container', {
       params: { cards_container: club.cards_containers }
     })
-    console.log(arrcontainer)
-    arrcontainer.data.forEach(async (container) => {
-      console.log(container)
+     let arreventscontainer = await axios.get('api/cards_container', {
+       params: { cards_container: club.events_containers }
+     })
+    
+    arrcardscontainer.data.forEach(async (container) => {
+    
 
-      addcardContainer(container.title)
+      addcardContainer(container.title,container.event)
 
-      console.log('yoyo card ', container)
+     
       container.cards.forEach((card) => {
-        console.log(card)
+      
         addCard(card.type, card)
       })
     })
+     arreventscontainer.data.forEach(async (container) => {
+   
+
+       addcardContainer(container.title, container.event)
+
+       
+       container.cards.forEach((card) => {
+         
+         addCard(card.type, card)
+       })
+     })
   }
   if (club.team_cards.length) {
     let teamcardarr = await axios.get('api/teamcard', {
@@ -686,7 +719,7 @@ const fetchClub = async (id) => {
     })
     cur = document.getElementById('cardContainer_0')
     teamcardarr.data.forEach(async (card) => {
-      console.log(card)
+    
       addCard(card.type, card)
     })
   }
@@ -710,6 +743,16 @@ const dropdown = () => {
 const addnewClub = () => {
   prepareintialform()
 
+ clubAboutEditorCreate()
+
+  document.getElementById('clubFormtitle').innerHTML = 'Create new club'
+  document.getElementById('submitBtn').innerHTML = 'Create'
+  document.getElementById('deleteBtn').style.display = 'none'
+  document.getElementById('addBtn').style.display = 'none'
+}
+
+function clubAboutEditorCreate() {
+  
   ClassicEditor.create(document.querySelector('#clubAbout'), {
     ckfinder: {
       // Upload the images to the server using the CKFinder QuickUpload command.
@@ -723,8 +766,5 @@ const addnewClub = () => {
       console.error(error)
     })
 
-  document.getElementById('clubFormtitle').innerHTML = 'Create new club'
-  document.getElementById('submitBtn').innerHTML = 'Create'
-  document.getElementById('deleteBtn').style.display = 'none'
-  document.getElementById('addBtn').style.display = 'none'
-}
+ }
+

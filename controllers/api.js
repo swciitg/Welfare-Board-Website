@@ -18,6 +18,7 @@ const get_cards_conainters = async (ids) => {
 
   return all_cards_conainters
 }
+
 const get_teamcards = async (ids) => {
   let all_teamcards = []
   for (let i = 0; i < ids.length; i++) {
@@ -35,8 +36,8 @@ const create_club = async (cardContainer,clubName,clubAbout,clubCreation) => {
   });
   for (let j = 0; j < cardContainer.length; j++) {
     let container = cardContainer[j];
-    let newContainer = await new Cards_conainter({ title: container.title })
-    
+    let newContainer = await new Cards_conainter({ title: container.title ,event:container.event})
+ 
      for (let i = 0; i < container.cards.length; i++) {
        let card = container.cards[i]
        let newCard;
@@ -55,7 +56,6 @@ const create_club = async (cardContainer,clubName,clubAbout,clubCreation) => {
           newCard = await new Teamcard({
             name: card.name,
             description: card.description,
-            image: card.image,
             type: card.type
           })
          await newCard.save()
@@ -66,7 +66,11 @@ const create_club = async (cardContainer,clubName,clubAbout,clubCreation) => {
      }
     if (newContainer.cards.length) {
       await newContainer.save()
-      newClub.cards_containers.push(newContainer._id)
+      if (container.event) {
+        newClub.events_containers.push(newContainer._id)
+      } else {
+        newClub.cards_containers.push(newContainer._id)
+      }
     }
 
   }

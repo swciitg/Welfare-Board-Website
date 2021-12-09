@@ -24,7 +24,8 @@ console.log(req.body)
   await apiController.create_club(req.body.clubContainer, req.body.name, req.body.about, req.body.date);
 })
 router.route('/club').put(async (req, res) => {
-   apiController.delete_club(req.body.id)
+  apiController.delete_club(req.body.id)
+  console.log(req.body)
   await apiController.create_club(req.body.clubContainer, req.body.name, req.body.about, req.body.date)
  
 })
