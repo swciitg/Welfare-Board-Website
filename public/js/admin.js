@@ -4,13 +4,18 @@ let carlen = 0
 let clubAboutEditor
 let cardDescriptionEditor
 let editcardDescriptionEditor
-var cardContainermap = new Map()
-cardContainermap.set('cardContainer_0', {
+var cardContainermap=new Map()
+
+var cur = ''
+var edit_card_id = ''
+const resetMap = () => {
+   cardContainermap.clear();
+  cardContainermap.set('cardContainer_0', {
   title: 'teamCards',
   cards: []
 })
-var cur = ''
-var edit_card_id = ''
+}
+resetMap() 
 const addCard = (type, card) => {
   if (type == 'card') {
     let Container = cur
@@ -23,7 +28,7 @@ const addCard = (type, card) => {
      
     } else {
       cardTitle = card.title
-      cardcreation = card.creation
+      cardCreation = card.creation
       cardDescription = card.description
      
     }
@@ -32,7 +37,7 @@ const addCard = (type, card) => {
     div.id = `card_${carlen}`
     div.className = 'ecard card text-white bg-primary mb-3'
     div.style.width = '19rem'
-    div.innerHTML = cardString(type, div.id, cardCreation, cardDescription)
+    div.innerHTML = cardString(type, div.id, convertDate(cardCreation), cardDescription)
     Container.append(div)
     let temp = cardContainermap.get(cur.id)
     console.log(cur.id, temp)
@@ -151,6 +156,12 @@ const removecard = (id) => {
   cardContainermap.set(par_id, temp)
   console.log(cardContainermap, cardContainermap.get(par_id))
 }
+function redirect() {
+  console.log("HOGAYA");
+  window.location.href='adminside'
+  
+
+}
 
 const onSubmit = async (id = -500) => {
   let containers = [...cardContainermap.values()]
@@ -162,6 +173,7 @@ const onSubmit = async (id = -500) => {
       name: document.getElementById('clubName').value,
       about: clubAboutEditor.getData(),
       date: document.getElementById('clubCreation').value
+      
     })
   } else {
     axios.post('api/club', {
@@ -170,7 +182,10 @@ const onSubmit = async (id = -500) => {
       about: clubAboutEditor.getData(),
       date: document.getElementById('clubCreation').value
     })
+      fetchClubs()
+      redirect()
   }
+  
 }
 const setTitle = (id) => {
   let temp = cardContainermap.get(id)
@@ -224,7 +239,7 @@ const editcarddetails = (id) => {
                   id="editcardCreation"
                   style="color: black"
                   required
-                  value='${card.creation}'
+                  value='${convertDate(card.creation)}'
                 />
                
             </div>
@@ -648,6 +663,7 @@ const prepareintialform = () => {
 </div>`
 }
 const fetchClub = async (id) => {
+  resetMap();
   document.getElementById(
     'cardContainer'
   ).innerHTML = ` <div style="display: flex; align-items: center; justify-content: space-between">
@@ -680,7 +696,7 @@ const fetchClub = async (id) => {
   club = club.data
   document.getElementById('clubName').value = club.name
   clubAboutEditor.setData(club.about)
-  document.getElementById('clubCreation').value = club.creation
+  document.getElementById('clubCreation').value = convertDate(club.creation)
 
   if (club.cards_containers.length) {
     let arrcardscontainer = await axios.get('api/cards_container', {
@@ -727,9 +743,8 @@ const fetchClub = async (id) => {
   document.getElementById('submitBtn').setAttribute('onclick', `onSubmit('${id}')`)
 }
 const deleteClub = async (id) => {
-  await axios.delete(`api/club/${id}`)
-  fetchClubs()
-  addnewClub()
+  await axios.delete(`api/club/${id}`).then(redirect())
+  
 }
 const dropdown = () => {
   let div = document.getElementById('club-collapser')
@@ -741,6 +756,7 @@ const dropdown = () => {
   }
 }
 const addnewClub = () => {
+  resetMap()
   prepareintialform()
 
  clubAboutEditorCreate()
@@ -749,6 +765,7 @@ const addnewClub = () => {
   document.getElementById('submitBtn').innerHTML = 'Create'
   document.getElementById('deleteBtn').style.display = 'none'
   document.getElementById('addBtn').style.display = 'none'
+
 }
 
 function clubAboutEditorCreate() {
@@ -768,3 +785,11 @@ function clubAboutEditorCreate() {
 
  }
 
+function convertDate(inputFormat) {
+  console.log(d)
+  function pad(s) {
+    return s < 10 ? '0' + s : s
+  }
+  var d = new Date(inputFormat)
+  return [ d.getFullYear(), pad(d.getMonth() + 1),pad(d.getDate())].join('-')
+}

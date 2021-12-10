@@ -11,11 +11,12 @@ const get_club = async (id) => {
 const get_cards_conainters = async (ids) => {
 
   let all_cards_conainters = []
-  for (let i = 0; i < ids.length; i++) {
-    let cards_conatiner = await Cards_conainter.findById(ids[i]).populate('cards')
-    all_cards_conainters.push(cards_conatiner)
+  if (ids) {
+    for (let i = 0; i < ids.length; i++) {
+      let cards_conatiner = await Cards_conainter.findById(ids[i]).populate('cards')
+      all_cards_conainters.push(cards_conatiner)
+    }
   }
-
   return all_cards_conainters
 }
 
