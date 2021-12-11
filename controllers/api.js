@@ -8,7 +8,7 @@ const get_all_clubs = async () => {
 const get_club = async (id) => {
   return club.findById(id)
 }
-const get_cards_conainters = async (ids) => {
+const get_cards_containers = async (ids) => {
 
   let all_cards_conainters = []
   if (ids) {
@@ -107,7 +107,7 @@ const delete_club = async (id) => {
 module.exports = {
   get_all_clubs,
   get_club,
-  get_cards_conainters,
+  get_cards_containers,
   get_teamcards,
   create_club,
   delete_club
