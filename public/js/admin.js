@@ -68,7 +68,7 @@ const addCard = (type, card) => {
     div.id = `card_${carlen}`
     div.className = 'ecard card text-white bg-primary mb-3'
     div.style.width = '19rem'
-    div.innerHTML = cardString(type, div.id,'', cardDescription)
+    div.innerHTML = cardString(type, div.id,cardName, cardDescription)
     Container.append(div)
     let temp = cardContainermap.get(cur.id)
     console.log(cur.id, temp)
@@ -355,7 +355,7 @@ const editcard = () => {
     card.name = document.getElementById('editcardName').value
   
     card.description = editcardDescriptionEditor.getData()
-    container.innerHTML = cardString(card.type, edit_card_id,'', card.description)
+    container.innerHTML = cardString(card.type, edit_card_id,cardName, card.description)
   }
   temp.cards = temp.cards.map((cd) => {
     if (cd.id == edit_card_id) {
@@ -401,7 +401,7 @@ edit
              
               <div class="card-body">
                 <p class="card-text">
-           
+           ${creation}
            <span class="material-icons" style="color:white;" onclick="removecard('${divId}')"> 
 remove
 </span>
