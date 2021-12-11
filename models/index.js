@@ -6,6 +6,5 @@ module.exports = {
   Club: require('./Club'),
   TeamCard: require('./TeamCard'),
   Cards_container: require('./cards_container'),
-  About: require('./About'),
   Event: require('./Event')
 }

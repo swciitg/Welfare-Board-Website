@@ -6,7 +6,7 @@ const get_all_clubs = async () => {
   return club.find().select('name')
 }
 const get_club = async (id) => {
-  return club.findById(id).populate('about')
+  return club.findById(id)
 }
 const get_cards_containers = async (id) => {
   let cards_container = await Cards_conainter.findById(id).populate('cards')

@@ -8,8 +8,8 @@ const ClubSchema = mongoose.Schema({
   },
   about: [
     {
-      type: Schema.Types.ObjectId,
-      ref: 'About'
+      type: String,
+      default: '',
     }
   ],
   cards_containers: [
