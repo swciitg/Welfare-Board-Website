@@ -1,0 +1,86 @@
+.fade.in {
+  opacity: 1;
+}
+.modal.in .modal-dialog {
+  -webkit-transform: translate(0, 0);
+  -o-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+
+.modal-backdrop .fade .in {
+  opacity: 0.5 !important;
+}
+
+.modal-backdrop.fade {
+  opacity: 0.5 !important;
+}
+body {
+  height: 100%;
+  background-color: red;
+}
+/* Events */
+
+.events {
+  background-color: #1e2532;
+  margin-top: 5vh;
+  padding: 5vh 10vw;
+  width: 100%;
+}
+
+.event {
+  display: flex;
+  padding-bottom: 60px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ehead {
+  color: #ffffff;
+  font-weight: bolder;
+  font-size: xx-large;
+}
+
+.ecards {
+  display: flex;
+  scroll-snap-type: x mandatory;
+  overflow-x: auto;
+}
+
+.einfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.ecard {
+  margin-right: 29px;
+}
+
+.ecards .ecard {
+  min-width: 387px;
+}
+
+.ecards::-webkit-scrollbar {
+  height: 5px;
+}
+
+.ecards::-webkit-scrollbar-thumb {
+  opacity: 0;
+}
+
+.ecards::-webkit-scrollbar-thumb:hover {
+  background-color: #ffffff;
+  border-radius: 2px;
+  opacity: 1;
+}
+.club-name:hover {
+  color: blue;
+  background-color: transparent;
+}
+.club-name {
+  text-align: center;
+}
+.ck{
+  color: black
+}
+/* -------*/

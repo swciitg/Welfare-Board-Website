@@ -12,6 +12,9 @@ const CardSchema = mongoose.Schema({
   creation: {
     type: Date,
     default: Date.now
+  },
+  type: {
+    type:String
   }
 })
 

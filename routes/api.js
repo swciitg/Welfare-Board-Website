@@ -11,6 +11,7 @@ router.route('/club/:club').get(async (req, res) => {
   let clubs = await apiController.get_club(req.params.club)
   res.json(clubs)
 })
+<<<<<<< HEAD
 router.route('/cards_container/:cards_container').get(async (req, res) => {
   let cards_container = await apiController.get_cards_containers(req.params.cards_container)
   res.json(cards_container)
@@ -23,4 +24,29 @@ router.route('/events/:id').get(async (req, res) => {
   let events = await apiController.get_events(req.params.id)
   res.json(events)
 })
+=======
+router.route('/cards_container').get(async (req, res) => {
+  
+  let cards_container = await apiController.get_cards_conainters(req.query.cards_container)
+  res.json(cards_container)
+})
+router.route('/teamcard').get(async (req, res) => {
+  let teamcard = await apiController.get_teamcards(req.query.teamcard)
+  res.json(teamcard)
+})
+router.route('/club').post(async (req, res) => {
+console.log(req.body)
+  await apiController.create_club(req.body.clubContainer, req.body.name, req.body.about, req.body.date);
+})
+router.route('/club').put(async (req, res) => {
+  apiController.delete_club(req.body.id)
+  console.log(req.body)
+  await apiController.create_club(req.body.clubContainer, req.body.name, req.body.about, req.body.date)
+ 
+})
+router.route('/club/:club').delete(async (req, res) => {
+ await apiController.delete_club(req.params.club)
+})
+
+>>>>>>> admin_portal
 module.exports = router
