@@ -80,10 +80,9 @@ const create_club = async (cardContainer,clubName,clubAbout,clubCreation) => {
   console.log(newClub);
 }
 const delete_club = async (id) => {
-  
   let delclub = await club.findById(id).populate('team_cards')
   console.log(delclub)
-  let delconts = await get_cards_conainters(delclub.cards_containers)
+  let delconts = await get_cards_containers(delclub.cards_containers)
   if (delconts.length) {
     delconts.forEach(async (cont) => {
       if (cont.cards.length) {
@@ -102,7 +101,6 @@ const delete_club = async (id) => {
     })
   }
   await delclub.delete();
-  
 }
 module.exports = {
   get_all_clubs,

@@ -156,12 +156,7 @@ const removecard = (id) => {
   cardContainermap.set(par_id, temp)
   console.log(cardContainermap, cardContainermap.get(par_id))
 }
-function redirect() {
-  console.log("HOGAYA");
-  window.location.href='adminside'
-  
 
-}
 
 const onSubmit = async (id = -500) => {
   let containers = [...cardContainermap.values()]
@@ -182,8 +177,9 @@ const onSubmit = async (id = -500) => {
       about: clubAboutEditor.getData(),
       date: document.getElementById('clubCreation').value
     })
-      fetchClubs()
-      redirect()
+      
+    window.location.reload()
+
   }
   
 }
@@ -571,7 +567,6 @@ const closeModal = (id) => {
 const fetchClubs = async () => {
   let clubNameContainer = document.getElementById('club-collapse')
   let clubs = await axios.get('api/clubs')
-  console.log(clubs)
   string = ''
   clubs.data.forEach((club) => {
     string =
@@ -664,6 +659,12 @@ const prepareintialform = () => {
 }
 const fetchClub = async (id) => {
   resetMap();
+    document.getElementById('deleteBtn').addEventListener('click', () => {
+      deleteClub(id)
+    })
+    document.getElementById('submitBtn').addEventListener('click', () => {
+      onSubmit(id)
+    })
   document.getElementById(
     'cardContainer'
   ).innerHTML = ` <div style="display: flex; align-items: center; justify-content: space-between">
@@ -695,7 +696,8 @@ const fetchClub = async (id) => {
   let club = await axios.get(`api/club/${id}`)
   club = club.data
   document.getElementById('clubName').value = club.name
-  clubAboutEditor.setData(club.about)
+  if(club.about.length)
+  clubAboutEditor.setData(club.about[0])
   document.getElementById('clubCreation').value = convertDate(club.creation)
 
   if (club.cards_containers.length) {
@@ -739,13 +741,12 @@ const fetchClub = async (id) => {
       addCard(card.type, card)
     })
   }
-  document.getElementById('deleteBtn').setAttribute('onclick', `deleteClub('${id}')`)
-  document.getElementById('submitBtn').setAttribute('onclick', `onSubmit('${id}')`)
+
 }
 const deleteClub = async (id) => {
-  await axios.delete(`api/club/${id}`).then(redirect())
-  
-}
+  const res = await axios.delete(`api/club`, { data: { id } })
+  window.location.reload()
+  }
 const dropdown = () => {
   let div = document.getElementById('club-collapser')
 
@@ -786,7 +787,6 @@ function clubAboutEditorCreate() {
  }
 
 function convertDate(inputFormat) {
-  console.log(d)
   function pad(s) {
     return s < 10 ? '0' + s : s
   }

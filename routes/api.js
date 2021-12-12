@@ -28,6 +28,7 @@ router.route('/teamcard').get(async (req, res) => {
 router.route('/club').post(async (req, res) => {
 console.log(req.body)
   await apiController.create_club(req.body.clubContainer, req.body.name, req.body.about, req.body.date);
+  res.redirect('/adminside')
 })
 router.route('/club').put(async (req, res) => {
   apiController.delete_club(req.body.id)
@@ -35,8 +36,9 @@ router.route('/club').put(async (req, res) => {
   await apiController.create_club(req.body.clubContainer, req.body.name, req.body.about, req.body.date)
  
 })
-router.route('/club/:club').delete(async (req, res) => {
- await apiController.delete_club(req.params.club)
+router.route('/club').delete(async (req, res) => {
+  await apiController.delete_club(req.body.id)
+  res.send("Delete Called")
 })
 
 module.exports = router
