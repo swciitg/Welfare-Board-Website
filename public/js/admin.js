@@ -178,9 +178,10 @@ const onSubmit = async (id = -500) => {
       date: document.getElementById('clubCreation').value
     })
       
-    window.location.reload()
+ 
 
   }
+     window.location.reload()
   
 }
 const setTitle = (id) => {
@@ -649,7 +650,6 @@ const prepareintialform = () => {
       id="submitBtn"
       type="button"
       class="btn btn-primary card-heading"
-      onclick="onSubmit()"
     >
       Save
     </button>
@@ -766,7 +766,9 @@ const addnewClub = () => {
   document.getElementById('submitBtn').innerHTML = 'Create'
   document.getElementById('deleteBtn').style.display = 'none'
   document.getElementById('addBtn').style.display = 'none'
-
+  document.getElementById('submitBtn').addEventListener('click', () => {
+    onSubmit()
+  })
 }
 
 function clubAboutEditorCreate() {

@@ -31,8 +31,7 @@ console.log(req.body)
   res.redirect('/adminside')
 })
 router.route('/club').put(async (req, res) => {
-  apiController.delete_club(req.body.id)
-  console.log(req.body)
+  await apiController.delete_club(req.body.id)
   await apiController.create_club(req.body.clubContainer, req.body.name, req.body.about, req.body.date)
  
 })
