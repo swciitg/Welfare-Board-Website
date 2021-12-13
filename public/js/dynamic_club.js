@@ -81,19 +81,16 @@ const change_club = async (id) => {
                <a class="nav-link text-secondary" href="#introduction">About</a>
             </li>`
 
-            console.log(club)
-          
-  let cards_containers = await axios.get(
-    `/project/api/cards_container`, {
-     
-      params: { cards_container: club.cards_containers }
-    }
-  )
+  console.log(club)
+
+  let cards_containers = await axios.get(`/project/api/cards_container`, {
+    params: { cards_container: club.cards_containers }
+  })
   cards_containers = cards_containers.data
   let temp_event = ''
   for (let i = 0; i < cards_containers.length; i++) {
     temp_table += `<li class="nav-item table_content list">
-        <a class="nav-link  text-secondary" href="#${cards_containers[i].title}">${cards_containers[i].title}</a>
+        <a class="nav-link text-secondary" href="#${cards_containers[i].title}">${cards_containers[i].title}</a>
        </li>`
   }
   temp_table += `<li class="nav-item table_content list">
@@ -111,7 +108,6 @@ const change_club = async (id) => {
   let cards_cont = document.getElementById('cards_container')
   while (cards_cont.firstChild) cards_cont.removeChild(cards_cont.firstChild)
   cards_containers.forEach((container) => {
-    
     temp = ''
     temp_table = ''
     let temp_cont = document.createElement('div')
@@ -120,26 +116,8 @@ const change_club = async (id) => {
     // cards in a container
     console.log('container', container)
     container.cards.forEach((card) => {
-      if (container.event) {
-        temp_event += `
-      <div class="ecard card text-white bg-info mb-3" style="width: 19rem">
-                <div class="card-body">
-                   <img class="event_image" src="${card.image}" alt="...">
-                    <h4 class="card-title">
-                    ${card.title}
-                    </h4>
-                  
-                        <h5 class="card-body">
-                        ${card.description}
-                        </h5>
-                        </a>
-             
-                </div>
-            </div>`
-      }
-      else {
-        // card
-        temp_table += `
+      // card
+      temp_table += `
     <div class="boxes">
     <div class="card box shadow p-1 mb-1 bg-body rounded">
       <div class="card-body">
@@ -153,7 +131,6 @@ const change_club = async (id) => {
         </div>
       </div>
     </div>`
-      }
     })
 
     console.log(temp_table)
@@ -196,21 +173,35 @@ const change_club = async (id) => {
     params: { teamcard: club.team_cards }
   })
   team_members = team_members.data
-  console.log(team_members)
   team_members.forEach((member) => {
     temp_team += `
     <div class="tcard card text-white bg-info mb-4" style="width: 3rem;">
-    <div style="padding-left:2%;">
     <p class="card-title"> <h4>${member.name}</h4> 
     <p>    ${member.description}
-  </p>
-      </div>
-  </div>
+      </p>
+    </div>
     `
   })
   document.getElementById('teamcontainer').innerHTML = temp_team
-
-  console.log(temp_event)
+  let event_container = await axios.get(`/project/api/cards_container`, {
+    params: { cards_container: club.events_containers }
+  })
+  event_container = event_container.data
+  all_containers['events'] = event_container[0].cards
+  event_container[0].cards.forEach((card) => {
+    temp_event += `
+                <div class="ecard card text-white bg-info mb-3" style="width: 19rem">
+                  <div class="card-body">
+                    <h4 class="card-title">
+                      ${card.title}
+                    </h4>
+              
+                    <h5 class="card-body">
+                      ${card.description}
+                    </h5>
+                  </div>
+                </div>`
+  })
   document.getElementById('eventcontainer').innerHTML = temp_event
 }
 const filter_content = (filter, id) => {
@@ -257,18 +248,17 @@ const filter_events = async (filter) => {
   all_containers['events'].forEach((event) => {
     if (all_events || event.type == filter) {
       temp_events += `
-      <div class="ecard card text-white bg-info mb-3" style="width: 19rem">
+                <div class="ecard card text-white bg-info mb-3" style="width: 19rem">
                   <div class="card-body">
-                     <img class="event_image" src="${event.image}" alt="...">
-                      <h4 class="card-title">
+                    <h4 class="card-title">
                       ${event.title}
-                      </h4>
-                          <h5 class="card-body">
-                          ${event.description}
-                          </h5>
+                    </h4>
+              
+                    <h5 class="card-body">
+                      ${event.description}
+                    </h5>
                   </div>
-              </div>
-      `
+                </div>`
     }
   })
   document.getElementById('eventcontainer').innerHTML = temp_events

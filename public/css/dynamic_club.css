@@ -70,9 +70,10 @@
   font-size: x-large;
   margin-left: 30px;
 }
-.table_content 
-{
+.table_content {
   border-left: 3px solid rgb(133, 129, 129);
+  height: fit-content;
+  width: max-content;
 }
 
 .nav-item a:hover {
@@ -94,7 +95,8 @@
 }
 
 p {
-  font-size: larger;
+  font-size: large;
+  font-size: 2vw;
 }
 
 #contentHead {
@@ -119,8 +121,8 @@ p {
   display: none;
 }
 img {
-  vertical-align: middle;
-  max-height: 700px;
+  max-height: 100%;
+  max-width: 100%;
 }
 
 /* Slideshow container */
@@ -176,7 +178,7 @@ img {
 
 .card-title {
   font-weight: bolder;
-  margin-top:1%;
+  margin-top: 1%;
   color: black;
 }
 
@@ -253,11 +255,6 @@ img {
   background-color: rgb(228, 228, 222);
 }
 
-p {
-  font-size: large;
-}
-
-
 
 #achievements {
   color: black;
@@ -308,10 +305,9 @@ p {
 }
 
 .tcards {
-  display: grid;
-  grid-template-columns: 1fr 2fr 4fr 5fr;
+  display: flex;
   scroll-snap-type: x mandatory;
-  overflow-x: auto;
+  overflow-x: auto; 
 }
 
 .tinfo {
@@ -321,7 +317,7 @@ p {
 }
 
 .tcard {
-  margin-right: 29px;
+  margin-right: 0.5%;
 }
 
 .tcards .tcard {
@@ -382,7 +378,7 @@ p {
 .ecards::-webkit-scrollbar {
   height: 5px;
 }
-  
+
 .ecards::-webkit-scrollbar-thumb {
   opacity: 0;
 }
@@ -452,8 +448,7 @@ h10 a:hover,
   color: #9fabb7;
   margin: 0 10px;
 }
-.event_image
-{
-  height:60%;
-  width:100%;
+.event_image {
+  height: 60%;
+  width: 100%;
 }

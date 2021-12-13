@@ -17,7 +17,7 @@ router.route('/team/:id').get(async (req, res) => {
 })
 
 router.route('/cards_container').get(async (req, res) => {
-  console.log(req.query);
+  console.log('API',req.query);
   let cards_container = await apiController.get_cards_containers(req.query.cards_container)
   res.json(cards_container)
 })
