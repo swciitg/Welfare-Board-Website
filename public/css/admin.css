@@ -79,6 +79,7 @@ body {
 }
 .club-name {
   text-align: center;
+  font-weight: bolder;
 }
 .ck{
   color: black;

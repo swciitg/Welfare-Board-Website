@@ -4,18 +4,18 @@ let carlen = 0
 let clubAboutEditor
 let cardDescriptionEditor
 let editcardDescriptionEditor
-var cardContainermap=new Map()
+var cardContainermap = new Map()
 
 var cur = ''
 var edit_card_id = ''
 const resetMap = () => {
-   cardContainermap.clear();
+  cardContainermap.clear()
   cardContainermap.set('cardContainer_0', {
-  title: 'teamCards',
-  cards: []
-})
+    title: 'teamCards',
+    cards: []
+  })
 }
-resetMap() 
+resetMap()
 const addCard = (type, card) => {
   if (type == 'card') {
     let Container = cur
@@ -25,12 +25,10 @@ const addCard = (type, card) => {
       cardTitle = document.getElementById('cardTitle').value
       cardCreation = document.getElementById('cardCreation').value
       cardDescription = cardDescriptionEditor.getData()
-     
     } else {
       cardTitle = card.title
       cardCreation = card.creation
       cardDescription = card.description
-     
     }
     //  console.log(cardTitle, cardCreation, cardDescription, cardEvent)
     let div = document.createElement('div')
@@ -57,7 +55,7 @@ const addCard = (type, card) => {
     let cardName, cardImage, cardDescription
     if (!card) {
       cardName = document.getElementById('cardName').value
-      cardDescription =cardDescriptionEditor.getData()
+      cardDescription = cardDescriptionEditor.getData()
     } else {
       cardName = card.name
       cardDescription = card.description
@@ -68,7 +66,7 @@ const addCard = (type, card) => {
     div.id = `card_${carlen}`
     div.className = 'ecard card text-white bg-primary mb-3'
     div.style.width = '19rem'
-    div.innerHTML = cardString(type, div.id,cardName, cardDescription)
+    div.innerHTML = cardString(type, div.id, cardName, cardDescription)
     Container.append(div)
     let temp = cardContainermap.get(cur.id)
     console.log(cur.id, temp)
@@ -85,7 +83,7 @@ const addCard = (type, card) => {
     console.log(Container)
   }
 }
-const addcardContainer = (title = '',event=false) => {
+const addcardContainer = (title = '', event = false) => {
   cardContainer = document.getElementById('cardContainer')
   let div = document.createElement('div')
   div.id = `parentcardContainer_${cardContainerlen}`
@@ -124,9 +122,9 @@ remove
     cards: []
   })
   if (event) {
-      console.log(event)
-      document.getElementById(`cardContainer_${cardContainerlen}_event`).checked = true
-    }
+    console.log(event)
+    document.getElementById(`cardContainer_${cardContainerlen}_event`).checked = true
+  }
   cur = document.getElementById(`cardContainer_${cardContainerlen}`)
 
   cardContainerlen++
@@ -157,7 +155,6 @@ const removecard = (id) => {
   console.log(cardContainermap, cardContainermap.get(par_id))
 }
 
-
 const onSubmit = async (id = -500) => {
   let containers = [...cardContainermap.values()]
 
@@ -168,7 +165,6 @@ const onSubmit = async (id = -500) => {
       name: document.getElementById('clubName').value,
       about: clubAboutEditor.getData(),
       date: document.getElementById('clubCreation').value
-      
     })
   } else {
     axios.post('api/club', {
@@ -177,19 +173,15 @@ const onSubmit = async (id = -500) => {
       about: clubAboutEditor.getData(),
       date: document.getElementById('clubCreation').value
     })
-      
- 
-
   }
-     window.location.reload()
-  
+  window.location.reload()
 }
 const setTitle = (id) => {
   let temp = cardContainermap.get(id)
   temp.title = document.getElementById(id + '_title').value
   temp.event = document.getElementById(id + '_event').checked
   cardContainermap.set(id, temp)
-  console.log(cardContainermap,temp.event)
+  console.log(cardContainermap, temp.event)
 }
 
 const editcarddetails = (id) => {
@@ -261,7 +253,6 @@ const editcarddetails = (id) => {
           </form>
         </div>
       </div>`
-
   } else {
     modal.innerHTML = `<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div
@@ -318,24 +309,22 @@ const editcarddetails = (id) => {
         </div>
       </div>`
   }
-   ClassicEditor.create(document.querySelector('#editcardDescription'), {
-     ckfinder: {
-       // Upload the images to the server using the CKFinder QuickUpload command.
-       uploadUrl: '/api/uploadFile'
-     }
-   })
-     .then((newEditor) => {
-       editcardDescriptionEditor = newEditor
-       editcardDescriptionEditor.setData(card.description)
-     
-     })
-     .catch((error) => {
-       console.error(error)
-     })
-  
-  
+  ClassicEditor.create(document.querySelector('#editcardDescription'), {
+    ckfinder: {
+      // Upload the images to the server using the CKFinder QuickUpload command.
+      uploadUrl: '/api/uploadFile'
+    }
+  })
+    .then((newEditor) => {
+      editcardDescriptionEditor = newEditor
+      editcardDescriptionEditor.setData(card.description)
+    })
+    .catch((error) => {
+      console.error(error)
+    })
+
   $('#cardEdit').modal('show')
- 
+
   edit_card_id = id
 }
 const editcard = () => {
@@ -350,9 +339,9 @@ const editcard = () => {
     container.innerHTML = cardString(card.type, edit_card_id, card.creation, card.description)
   } else {
     card.name = document.getElementById('editcardName').value
-  
+
     card.description = editcardDescriptionEditor.getData()
-    container.innerHTML = cardString(card.type, edit_card_id,cardName, card.description)
+    container.innerHTML = cardString(card.type, edit_card_id, cardName, card.description)
   }
   temp.cards = temp.cards.map((cd) => {
     if (cd.id == edit_card_id) {
@@ -540,18 +529,18 @@ const cardCreatemodaldata = (type) => {
         </div>
       </div>`
   }
- ClassicEditor.create(document.querySelector('#cardDescription'), {
-   ckfinder: {
-     // Upload the images to the server using the CKFinder QuickUpload command.
-     uploadUrl: '/api/uploadFile'
-   }
- })
-   .then((newEditor) => {
-     cardDescriptionEditor = newEditor
-   })
-   .catch((error) => {
-     console.error(error)
-   })
+  ClassicEditor.create(document.querySelector('#cardDescription'), {
+    ckfinder: {
+      // Upload the images to the server using the CKFinder QuickUpload command.
+      uploadUrl: '/api/uploadFile'
+    }
+  })
+    .then((newEditor) => {
+      cardDescriptionEditor = newEditor
+    })
+    .catch((error) => {
+      console.error(error)
+    })
 }
 
 const closeModal = (id) => {
@@ -653,13 +642,13 @@ const prepareintialform = () => {
 </div>`
 }
 const fetchClub = async (id) => {
-  resetMap();
-    document.getElementById('deleteBtn').addEventListener('click', () => {
-      deleteClub(id)
-    })
-    document.getElementById('submitBtn').addEventListener('click', () => {
-      onSubmit(id)
-    })
+  resetMap()
+  document.getElementById('deleteBtn').addEventListener('click', () => {
+    deleteClub(id)
+  })
+  document.getElementById('submitBtn').addEventListener('click', () => {
+    onSubmit(id)
+  })
   document.getElementById(
     'cardContainer'
   ).innerHTML = ` <div style="display: flex; align-items: center; justify-content: space-between">
@@ -685,46 +674,37 @@ const fetchClub = async (id) => {
                     </div>
                   </div>
                 </div>`
- 
+
   clubAboutEditorCreate()
 
   let club = await axios.get(`api/club/${id}`)
   club = club.data
   document.getElementById('clubName').value = club.name
-  if(club.about.length)
-  clubAboutEditor.setData(club.about[0])
+  if (club.about.length) clubAboutEditor.setData(club.about[0])
   document.getElementById('clubCreation').value = convertDate(club.creation)
 
   if (club.cards_containers.length) {
     let arrcardscontainer = await axios.get('api/cards_container', {
       params: { cards_container: club.cards_containers }
     })
-     let arreventscontainer = await axios.get('api/cards_container', {
-       params: { cards_container: club.events_containers }
-     })
-    
+    let arreventscontainer = await axios.get('api/cards_container', {
+      params: { cards_container: club.events_containers }
+    })
+
     arrcardscontainer.data.forEach(async (container) => {
-    
+      addcardContainer(container.title, container.event)
 
-      addcardContainer(container.title,container.event)
-
-     
       container.cards.forEach((card) => {
-      
         addCard(card.type, card)
       })
     })
-     arreventscontainer.data.forEach(async (container) => {
-   
+    arreventscontainer.data.forEach(async (container) => {
+      addcardContainer(container.title, container.event)
 
-       addcardContainer(container.title, container.event)
-
-       
-       container.cards.forEach((card) => {
-         
-         addCard(card.type, card)
-       })
-     })
+      container.cards.forEach((card) => {
+        addCard(card.type, card)
+      })
+    })
   }
   if (club.team_cards.length) {
     let teamcardarr = await axios.get('api/teamcard', {
@@ -732,16 +712,14 @@ const fetchClub = async (id) => {
     })
     cur = document.getElementById('cardContainer_0')
     teamcardarr.data.forEach(async (card) => {
-    
       addCard(card.type, card)
     })
   }
-
 }
 const deleteClub = async (id) => {
   const res = await axios.delete(`api/club`, { data: { id } })
   window.location.reload()
-  }
+}
 const dropdown = () => {
   let div = document.getElementById('club-collapser')
 
@@ -755,7 +733,7 @@ const addnewClub = () => {
   resetMap()
   prepareintialform()
 
- clubAboutEditorCreate()
+  clubAboutEditorCreate()
 
   document.getElementById('clubFormtitle').innerHTML = 'Create new club'
   document.getElementById('submitBtn').innerHTML = 'Create'
@@ -767,7 +745,6 @@ const addnewClub = () => {
 }
 
 function clubAboutEditorCreate() {
-  
   ClassicEditor.create(document.querySelector('#clubAbout'), {
     ckfinder: {
       // Upload the images to the server using the CKFinder QuickUpload command.
@@ -780,13 +757,16 @@ function clubAboutEditorCreate() {
     .catch((error) => {
       console.error(error)
     })
-
- }
+}
 
 function convertDate(inputFormat) {
   function pad(s) {
     return s < 10 ? '0' + s : s
   }
   var d = new Date(inputFormat)
-  return [ d.getFullYear(), pad(d.getMonth() + 1),pad(d.getDate())].join('-')
+  return [d.getFullYear(), pad(d.getMonth() + 1), pad(d.getDate())].join('-')
+}
+async function logout() {
+  let data = await axios.post('/project/logout')
+  window.location.href = '/project/login'
 }
