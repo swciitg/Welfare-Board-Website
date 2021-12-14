@@ -65,9 +65,10 @@ const change_club = async (id) => {
   document.getElementById('team_name').innerHTML = club.name + ' Team'
   document.getElementById('club_name').innerHTML = `Welcome to ${club.name}, IIT Guwahati`
 
-  document.getElementById('club_introduction').innerHTML = `<div id="clubAbout">${club.about[0]}</div>`
-  ClassicEditor.create(document.querySelector('#clubAbout'), {
-  })
+  document.getElementById('club_introduction').innerHTML = `<div id="clubAbout" class="ck ck-content
+   ck-editor__editable ck-rounded-corners ck-editor__editable_inline ck-blurred">${club.about[0]}</div>`
+  // ClassicEditor.create(document.querySelector('#clubAbout'), {
+  // })
 
   // side nav
   let temp_table = ''
@@ -115,7 +116,7 @@ const change_club = async (id) => {
     container.cards.forEach((card) => {
       // card
       temp_table += `
-    <div class="boxes">
+    <div class="boxes" class="ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline ck-blurred">
     <div class="card box shadow p-1 mb-1 bg-body rounded">
       <div class="card-body">
       <p class="card-title">
@@ -134,7 +135,7 @@ const change_club = async (id) => {
 
     // title + cards
     temp +=
-      `<div class="announcements  mt-5 flex-column" style="width:65%;">
+      `<div class="announcements  mt-5 flex-column" style="width:65%;" >
         <div class="ach-start d-flex justify-content-between" id="${container.title}">
             <h3 style="color:black;">${container.title}</h3>
 			<div class="dropdown">
@@ -169,7 +170,7 @@ const change_club = async (id) => {
   team_members = team_members.data
   team_members.forEach((member) => {
     temp_team += `
-    <div class="tcard card text-white bg-info mb-4" style="width: 3rem;">
+    <div class="tcard card text-white bg-info mb-4" style="width: 3rem;"class="ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline ck-blurred" >
     <p class="card-title"> <h4>${member.name}</h4> 
     <p>    ${member.description}
       </p>
@@ -216,7 +217,7 @@ const filter_content = (filter, id) => {
     let creation_year = creation_date.getFullYear()
 
     if (all_years || creation_year == parseInt(filter)) {
-      temp += `<div class="boxes">
+      temp += `<div class="boxes" class="ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline ck-blurred">
       <div class="card box shadow p-1 mb-1 bg-body rounded">
         <div class="card-body">
         <p class="card-title">
@@ -242,7 +243,7 @@ const filter_events = async (filter) => {
   all_containers['events'].forEach((event) => {
     if (all_events || event.type == filter) {
       temp_events += `
-                <div class="ecard card text-white bg-info mb-3" style="width: 19rem">
+                <div class="ecard card text-white bg-info mb-3" style="width: 19rem" class="ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline ck-blurred">
                   <div class="card-body">
                     <h4 class="card-title">
                       ${event.title}
@@ -262,16 +263,3 @@ const filter_events = async (filter) => {
 
 
 add_clubs_info()
-
-let cks = document.getElementsByClassName('ck-content');
-for (const key in cks) {
-  if (cks[key].removeAttribute) {
-    cks[key].addEventListener('focus', () => {
-      cks[key].removeAttribute('contenteditable')
-    })
-  }
-}
-let toolbars = document.getElementsByClassName('ck-toolbar');
-for (const key in toolbars) {
-  if (toolbars[key].style) toolbars[key].style.display = 'none';
-}
