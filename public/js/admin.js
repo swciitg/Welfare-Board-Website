@@ -200,7 +200,7 @@ const editcarddetails = (id) => {
   let card = temp.cards.filter((card) => card.id == id)[0]
 
   if (card.type == 'card') {
-    modal.innerHTML = `<div class="modal-dialog modal-dialog-centered" role="document">
+    modal.innerHTML = `<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div
           class="modal-content"
           style="background: #f4f4f4; box-shadow: 0px 0px 15px black; color: black"
@@ -263,7 +263,7 @@ const editcarddetails = (id) => {
       </div>`
 
   } else {
-    modal.innerHTML = `<div class="modal-dialog modal-dialog-centered" role="document">
+    modal.innerHTML = `<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div
           class="modal-content"
           style="background: #f4f4f4; box-shadow: 0px 0px 15px black; color: black"
@@ -387,9 +387,7 @@ edit
           
      
                 </p>
-                <div class="einfo">
-                  <h5 class="card-title">${des}</h5>
-                </div>
+                ${des}
               </div>
             
     `
@@ -414,10 +412,7 @@ edit
           
   
                 </p>
-                <div class="einfo">
-                  <h5 class="card-title">${des}</h5>
-                 
-                </div>
+                ${des}
               </div>
             
     `
@@ -429,7 +424,7 @@ const cardCreatemodaldata = (type) => {
   if (type == 'card') {
     document.getElementById(
       'cardCreate'
-    ).innerHTML = `  <div class="modal-dialog modal-dialog-centered" role="document">
+    ).innerHTML = `  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div
           class="modal-content"
           style="background: #f4f4f4; box-shadow: 0px 0px 15px black; color: black"
@@ -492,7 +487,7 @@ const cardCreatemodaldata = (type) => {
   } else {
     document.getElementById(
       'cardCreate'
-    ).innerHTML = `  <div class="modal-dialog modal-dialog-centered" role="document">
+    ).innerHTML = `  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div
           class="modal-content"
           style="background: #f4f4f4; box-shadow: 0px 0px 15px black; color: black"

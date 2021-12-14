@@ -64,13 +64,10 @@ const change_club = async (id) => {
   // about
   document.getElementById('team_name').innerHTML = club.name + ' Team'
   document.getElementById('club_name').innerHTML = `Welcome to ${club.name}, IIT Guwahati`
-  let temp_intro = ''
-  temp_intro += `
-    <div style="margin-top: 1%;">
-     ${club.about}
-     </div>
-    `
-  document.getElementById('club_introduction').innerHTML = temp_intro
+
+  document.getElementById('club_introduction').innerHTML = `<div id="clubAbout">${club.about[0]}</div>`
+  ClassicEditor.create(document.querySelector('#clubAbout'), {
+  })
 
   // side nav
   let temp_table = ''
@@ -146,14 +143,11 @@ const change_club = async (id) => {
                       ALL
                     </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" onClick="filter_content('ALL','${
-                      container._id
-                    }_cards')">ALL</a></li>
-                    <li><a class="dropdown-item" onClick="filter_content('${current_year}','${
-        container._id
+                    <li><a class="dropdown-item" onClick="filter_content('ALL','${container._id
+      }_cards')">ALL</a></li>
+                    <li><a class="dropdown-item" onClick="filter_content('${current_year}','${container._id
       }_cards')">${current_year}</a></li>
-                    <li><a class="dropdown-item" onClick="filter_content('${current_year - 1}','${
-        container._id
+                    <li><a class="dropdown-item" onClick="filter_content('${current_year - 1}','${container._id
       }_cards')">${current_year - 1}</a></li>
                 </ul>
             </div>
@@ -263,4 +257,21 @@ const filter_events = async (filter) => {
   })
   document.getElementById('eventcontainer').innerHTML = temp_events
 }
+
+
+
+
 add_clubs_info()
+
+let cks = document.getElementsByClassName('ck-content');
+for (const key in cks) {
+  if (cks[key].removeAttribute) {
+    cks[key].addEventListener('focus', () => {
+      cks[key].removeAttribute('contenteditable')
+    })
+  }
+}
+let toolbars = document.getElementsByClassName('ck-toolbar');
+for (const key in toolbars) {
+  if (toolbars[key].style) toolbars[key].style.display = 'none';
+}
