@@ -20,12 +20,10 @@ html,body {
 }
 .heading{
    height: 15%;
-   align-items: center;
+   padding-left: 40%;
+   padding-top: 15%;
 }
-.heading-image{
-    padding-left: 20%;
-    padding-top: 5%;
-}
+
 .side-bar-main{
     padding-left: 5%;
 }
