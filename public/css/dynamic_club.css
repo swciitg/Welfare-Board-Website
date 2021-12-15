@@ -1,5 +1,6 @@
 * {
   font-family: calibri;
+  font-size:large;
 }
 .header {
   display: flex;
@@ -100,9 +101,7 @@
 
 /* side-nav */
 .middle {
-  float: right;
-  margin-top: 150px;
-  margin-right: 150px;
+  /* float: right; */
   list-style-type: none;
   font-size: 22px;
 }
@@ -350,8 +349,7 @@ img {
 
 .ehead {
   color: #ffffff;
-  font-weight: bolder;
-  font-size: xx-large;
+
 }
 
 .ecards {

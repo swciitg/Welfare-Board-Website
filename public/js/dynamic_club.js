@@ -64,6 +64,7 @@ const change_club = async (id) => {
   // about
   document.getElementById('team_name').innerHTML = club.name + ' Team'
   document.getElementById('club_name').innerHTML = `Welcome to ${club.name}, IIT Guwahati`
+  document.getElementById('e').innerHTML = `Events At ${club.name}`
 
   document.getElementById('club_introduction').innerHTML = `<div id="clubAbout" class="ck ck-content
    ck-editor__editable ck-rounded-corners ck-editor__editable_inline ck-blurred">${club.about[0]}</div>`
@@ -182,9 +183,10 @@ const change_club = async (id) => {
     params: { cards_container: club.events_containers }
   })
   event_container = event_container.data
-  all_containers['events'] = event_container[0].cards
-  event_container[0].cards.forEach((card) => {
-    temp_event += `
+  all_containers['events'] = event_container.length ? event_container[0] : {cards:[]};
+  if (event_container.length) {
+    all_containers['events'].cards.forEach((card) => {
+      temp_event += `
                 <div class="ecard card text-white bg-info mb-3" style="width: 19rem">
                   <div class="card-body">
                     <h4 class="card-title">
@@ -196,7 +198,8 @@ const change_club = async (id) => {
                     </h5>
                   </div>
                 </div>`
-  })
+    })
+  }
   document.getElementById('eventcontainer').innerHTML = temp_event
 }
 const filter_content = (filter, id) => {
@@ -240,7 +243,8 @@ const filter_events = async (filter) => {
   document.getElementById('events_type').innerHTML = filter
   if (filter == 'ALL') all_events = 1
   let temp_events = ''
-  all_containers['events'].forEach((event) => {
+  if(all_containers['events'].cards.length)
+  all_containers['events'].cards.forEach((event) => {
     if (all_events || event.type == filter) {
       temp_events += `
                 <div class="ecard card text-white bg-info mb-3" style="width: 19rem" class="ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline ck-blurred">
