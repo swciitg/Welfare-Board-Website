@@ -132,7 +132,7 @@ const change_club = async (id) => {
     </div>`
     })
 
-    console.log(temp_table)
+    // console.log(temp_table)
 
     // title + cards
     temp +=
@@ -145,11 +145,14 @@ const change_club = async (id) => {
                       ALL
                     </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" onClick="filter_content('ALL','${container._id
-      }_cards')">ALL</a></li>
-                    <li><a class="dropdown-item" onClick="filter_content('${current_year}','${container._id
+                    <li><a class="dropdown-item" onClick="filter_content('ALL','${
+                      container._id
+                    }_cards')">ALL</a></li>
+                    <li><a class="dropdown-item" onClick="filter_content('${current_year}','${
+        container._id
       }_cards')">${current_year}</a></li>
-                    <li><a class="dropdown-item" onClick="filter_content('${current_year - 1}','${container._id
+                    <li><a class="dropdown-item" onClick="filter_content('${current_year - 1}','${
+        container._id
       }_cards')">${current_year - 1}</a></li>
                 </ul>
             </div>
@@ -187,7 +190,7 @@ const change_club = async (id) => {
   if (event_container.length) {
     all_containers['events'].cards.forEach((card) => {
       temp_event += `
-                <div class="ecard card text-white bg-info mb-3" style="width: 19rem">
+                <div class="ecard card text-white bg-info mb-3 ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline ck-blurred">
                   <div class="card-body">
                     <h4 class="card-title">
                       ${card.title}
@@ -262,8 +265,5 @@ const filter_events = async (filter) => {
   })
   document.getElementById('eventcontainer').innerHTML = temp_events
 }
-
-
-
 
 add_clubs_info()
