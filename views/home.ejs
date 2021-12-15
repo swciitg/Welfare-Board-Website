@@ -1,85 +1,138 @@
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
-  <link rel="stylesheet" href="css/admin.css" />
-  <link rel="stylesheet" href="css/style_admin.css" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-    crossorigin="anonymous"></script>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.23.0/axios.js"
-    integrity="sha512-nZmAl1ClAQ0kQ2EH3H6JMQHxNt2K7pGcgxQRoMpYuuuXyPnIGaMKNS7jwZRqBJhfSRYXc2myu+iKFbwhiCL3+w=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-</head>
-
-<body>
-  <div class="main-container">
-    <div class="side-bar">
-      <div class="heading">
-        <img src="images/iit_logo.png" class="f-image" alt="company" />
-      </div>
-      <div class="side-bar-main">
-        <p>NAVIGATION</p>
-        <ul class="list-unstyled ps-0">
-          <li class="mb-1">
-            <div id="club-collapser" onclick="dropdown()" type="button" data-bs-toggle="collapse"
-              data-bs-target="#club-collapse" aria-expanded="true" style="
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/admin.css" />
+    <link rel="stylesheet" href="css/style_admin.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+      integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+      integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+      crossorigin="anonymous"
+    ></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.23.0/axios.js"
+      integrity="sha512-nZmAl1ClAQ0kQ2EH3H6JMQHxNt2K7pGcgxQRoMpYuuuXyPnIGaMKNS7jwZRqBJhfSRYXc2myu+iKFbwhiCL3+w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="main-container">
+      <div class="side-bar">
+        <div class="heading">
+          <img
+            src="http://localhost:3000/project/admin/frontend/assets/logo.svg"
+            class="heading-image"
+            alt="company"
+          />
+        </div>
+        <div class="side-bar-main">
+          <p>NAVIGATION</p>
+          <ul class="list-unstyled ps-0">
+            <li class="mb-1">
+              <div
+                id="club-collapser"
+                onclick="dropdown()"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#club-collapse"
+                aria-expanded="true"
+                style="
                   display: flex;
                   flex-direction: row;
                   justify-content: space-between;
                   align-items: center;
-                ">
-              Clubs <span class="material-icons">expand_more</span>
-            </div>
-            <div class="collapse show" id="club-collapse"></div>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="main-bar">
-      <div class="top-main-bar">
-        <div class="dropdown">
-          <div class="club-name" type="button" onclick="logout()">Logout</div>
+                "
+              >
+                Clubs <span class="material-icons">expand_more</span>
+              </div>
+              <div class="collapse show" id="club-collapse"></div>
+            </li>
+          </ul>
         </div>
       </div>
-      <div class="bottom-main-bar bottom-main-card">
-        <div id="clubForm">
-          <div style="
+
+      <div class="main-bar">
+        <div class="top-main-bar">
+          <div class="dropdown">
+            <div style="display: flex; align-items: center">
+              <div class="mail">
+                dev@gmail.com
+              </div>
+                <span class="material-icons"> more_vert </span>
+             
+            </div>
+            <div class="dropdown-content">
+              <div class="club-name" type="button"
+                >Logout</div
+              >
+            </div>
+          </div>
+        </div>
+        <div class="bottom-main-bar bottom-main-card">
+          <div id="clubForm">
+            <div
+              style="
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-              ">
-            <div type="button" class="btn btn-secondary btn-lg btn-block"
-              style="display: flex; width: 80%; justify-content: center; align-self: center" onclick="addnewClub()">
-              Add New Club
+              "
+            >
+              <div
+                type="button"
+                class="btn btn-secondary btn-lg btn-block"
+                style="display: flex; width: 80%; justify-content: center; align-self: center"
+                onclick="addnewClub()"
+              >
+                Add New Club
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- modals  -->
-  <div class="modal fade" id="cardCreate" aria-labelledby="cardCreate" tabindex="-1" role="dialog" aria-hidden="true">
-  </div>
-  <div class="modal fade" id="cardEdit" aria-labelledby="cardEdit" tabindex="-1" role="dialog" aria-hidden="true"></div>
-
-  <script type="text/javascript" src="js/admin.js"></script>
-</body>
-<script type="text/javascript" src="ckeditor5/build/ckeditor.js"></script>
-
+    <!-- modals  -->
+    <div
+      class="modal fade"
+      id="cardCreate"
+      aria-labelledby="cardCreate"
+      tabindex="-1"
+      role="dialog"
+      aria-hidden="true"
+    ></div>
+    <div
+      class="modal fade"
+      id="cardEdit"
+      aria-labelledby="cardEdit"
+      tabindex="-1"
+      role="dialog"
+      aria-hidden="true"
+    ></div>
+    
+     <script type="text/javascript" src="js/templates.js"></script>
+    <script type="text/javascript" src="js/admin.js"></script>
+     
+  </body>
+  <script type="text/javascript" src="ckeditor5/build/ckeditor.js"></script>
 </html>

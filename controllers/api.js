@@ -28,6 +28,7 @@ const get_teamcards = async (ids) => {
   }
   return all_teamcards
 }
+
 const create_club = async (cardContainer,clubName,clubAbout,clubCreation) => {
 
   let newClub = await new club({
@@ -37,17 +38,16 @@ const create_club = async (cardContainer,clubName,clubAbout,clubCreation) => {
   });
   for (let j = 0; j < cardContainer.length; j++) {
     let container = cardContainer[j];
-    let newContainer = await new Cards_conainter({ title: container.title ,event:container.event})
+    let newContainer = await new Cards_conainter({ title: container.title })
  
      for (let i = 0; i < container.cards.length; i++) {
        let card = container.cards[i]
        let newCard;
-       if (card.type == 'card') {
+       if (card.type != 'Teamcard') {
           newCard = await new Card({
            title: card.title,
            description: card.description,
            creation: card.creation,
-           Event: card.Event,
            type:card.type
           })
           await newCard.save()
@@ -67,7 +67,7 @@ const create_club = async (cardContainer,clubName,clubAbout,clubCreation) => {
      }
     if (newContainer.cards.length) {
       await newContainer.save()
-      if (container.event) {
+      if (container.title=="Events") {
         newClub.events_containers.push(newContainer._id)
       } else {
         newClub.cards_containers.push(newContainer._id)
