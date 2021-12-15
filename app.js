@@ -8,6 +8,7 @@ require("dotenv").config();
 var indexRouter = require("./routes/index");
 const File = require('./models/File');
 const multer = require('multer')
+const formidable = require('express-formidable')
 
 var app = express();
 BASE_URL = process.env.BASE_URL || "project";
@@ -80,6 +81,21 @@ app.post("/api/uploadFile", upload.single('upload'), async (req, res) => {
       error
     })
   }
+})
+app.post('/api/TeamuploadFile', function (req, res) {
+  const form = new formidable.IncomingForm()
+  console.log('24')
+  // Parse `req` and upload all associated files
+  form.parse(req, function (err, fields, files) {
+    console.log(err)
+    if (err) {
+      return res.status(400).json({ error: err.message })
+    } else {
+      const [firstFileName] = Object.keys(files)
+      console.log(files)
+      res.json({ filename: firstFileName })
+    }
+  })
 })
 app.get("uploads/:filename", (req, res) => {
   res.sendFile(`uploads/${filename}`)

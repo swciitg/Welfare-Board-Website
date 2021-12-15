@@ -11,10 +11,7 @@ const Card_containerSchema = mongoose.Schema({
       type: Schema.Types.ObjectId,
       ref: 'Card'
     }
-  ],
-  event: {
-    type: Boolean,
-  },
+  ]
 
 })
 
