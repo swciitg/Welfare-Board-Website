@@ -2,6 +2,7 @@ const Cards_conainter = require('../models/cards_container')
 const club = require('../models/Club')
 const Teamcard = require('../models/TeamCard')
 const Card = require('../models/Card')
+const File = require('../models/File')
 const get_all_clubs = async () => {
   return club.find().select('name')
 }
@@ -18,7 +19,10 @@ const get_cards_containers = async (ids) => {
   }
   return all_cards_conainters
 }
-
+const get_all_slides = async () => {
+  let data = await File.find({ is_slideshow_pic: true })
+  return data
+}
 const get_teamcards = async (ids) => {
   let all_teamcards = []
   if (ids && ids.length > 0) {
@@ -99,6 +103,7 @@ module.exports = {
   get_all_clubs,
   get_club,
   get_cards_containers,
+  get_all_slides,
   get_teamcards,
   create_club,
   delete_club

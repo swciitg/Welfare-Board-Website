@@ -9,6 +9,13 @@ const fileSchema = new mongoose.Schema({
   name: {
     type: String,
     required: [true, 'Uploaded file must have a name']
+  },
+  path: {
+    type: String
+  },
+  is_slideshow_pic: {
+    type: Boolean,
+    default: false
   }
 })
 

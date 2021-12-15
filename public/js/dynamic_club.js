@@ -1,6 +1,5 @@
 var slideIndex = [1, 1]
 var slideId = ['mySlides1', 'mySlides2']
-showSlides(1, 0)
 let all_containers = {}
 let curr = ''
 let month = [
@@ -17,7 +16,26 @@ let month = [
   'November',
   'December'
 ]
-
+async function get_all_slides() {
+  let data = await axios.get('/project/api/get_all_slides')
+  data = data.data
+  console.log(data);
+  let temp = ''
+  for (let i = 0; i < data.length; i++) {
+    temp += `
+      <div class="mySlides1">
+        <img src="./${data[i].path}" style="width: 100%" />
+      </div>
+   `
+  }
+  temp += `
+    <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
+    `
+  document.getElementById('slideshow-container').innerHTML = temp
+  showSlides(1, 0)
+}
+get_all_slides();
 function plusSlides(n, no) {
   showSlides((slideIndex[no] += n), no)
 }
@@ -34,6 +52,7 @@ function showSlides(n, no) {
   for (i = 0; i < x.length; i++) {
     x[i].style.display = 'none'
   }
+  if(x.length)
   x[slideIndex[no] - 1].style.display = 'block'
 }
 
@@ -185,7 +204,7 @@ const change_club = async (id) => {
     params: { cards_container: club.events_containers }
   })
   event_container = event_container.data
-  console.log(event_container,"asdasd")
+  console.log(event_container, 'asdasd')
   all_containers['events'] = event_container[0].cards
   event_container[0].cards.forEach((card) => {
     temp_event += `

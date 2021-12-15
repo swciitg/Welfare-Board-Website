@@ -39,6 +39,7 @@ router.route('/club').post(async (req, res) => {
   res.redirect('/adminside')
 })
 router.route('/club').put(async (req, res) => {
+  
   await apiController.delete_club(req.body.id)
   await apiController.create_club(
     req.body.clubContainer,
@@ -51,5 +52,9 @@ router.route('/club').delete(async (req, res) => {
   await apiController.delete_club(req.body.id)
   res.send('Delete Called')
 })
-
+router.get('/get_all_slides',async (req, res) => {
+  let data = await apiController.get_all_slides();
+  console.log(data)
+  res.json(data);
+})
 module.exports = router
