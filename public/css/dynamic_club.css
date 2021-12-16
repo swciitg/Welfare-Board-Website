@@ -368,7 +368,7 @@ img {
 }
 
 .ecards .ecard {
-  min-width: 387px;
+  width: 20vw;
 }
 
 .ecards::-webkit-scrollbar {
