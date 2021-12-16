@@ -36,21 +36,8 @@
         </ul>
     </div>
 
-    <div class="slideshow-container">
-        <div class="mySlides1">
-            <img src="./images/img_nature_wide.jpg" style="width: 100%" />
-        </div>
-
-        <div class="mySlides1">
-            <img src="./images/img_snow_wide.jpg" style="width: 100%" />
-        </div>
-
-        <div class="mySlides1">
-            <img src="./images/img_mountains_wide.jpg" style="width: 100%" />
-        </div>
-
-        <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
-        <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
+    <div class="slideshow-container" id="slideshow-container">
+      
     </div>
 
     <!-- Bottom NavBar -->
@@ -67,16 +54,16 @@
     </nav>
 
 
-    <div style="display:flex;flex-direction:row;">
+    <div class="row" style="margin:4%">
         <!-- Welcome -->
-        <div class="introduction" id="introduction" style="float:left;">
+        <div class="col-10" id="introduction" >
             <H1 id="club_name" style="color:black;"></H1>
             <div id="club_introduction" style="color:black;"></div>
         </div>
 
 
         <!-- Side NavBar -->
-        <div class="middle" style="float:right;">
+        <div class="middle col-2" >
             <div class="col-md-2">
                 <ul class="nav flex-column list2" id="table_list">
 
@@ -91,7 +78,7 @@
     <!-- Teams homepage-->
     <div class="Teams" id="team">
         <div class="Team">
-            <h2 class="thead" id="team_name"></h2>
+            <h1 id="team_name"></h1>
         </div>
         <div id="teamcontainer" class="tcards">
 
@@ -104,7 +91,7 @@
     <!-- Events -->
     <div class="events">
         <div class="event" id="Events">
-            <h3 class="ehead" id='e'>Events at IIT Guwahati</h3>
+            <h1 class="ehead" id='e'>Events at IIT Guwahati</h1>
             <div class="dropdown">
                 <button class="btn shadow-sm btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
                     aria-expanded="false" id="events_type">

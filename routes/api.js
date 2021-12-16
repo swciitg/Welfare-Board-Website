@@ -60,5 +60,9 @@ router.route('/club').delete(async (req, res) => {
   await apiController.delete_club(req.body.id)
   res.send('Delete Called')
 })
-
+router.get('/get_all_slides',async (req, res) => {
+  let data = await apiController.get_all_slides();
+  console.log(data)
+  res.json(data);
+})
 module.exports = router

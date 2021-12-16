@@ -1,6 +1,5 @@
 var slideIndex = [1, 1]
 var slideId = ['mySlides1', 'mySlides2']
-showSlides(1, 0)
 let all_containers = {}
 let curr = ''
 let month = [
@@ -17,7 +16,26 @@ let month = [
   'November',
   'December'
 ]
-
+async function get_all_slides() {
+  let data = await axios.get('/project/api/get_all_slides')
+  data = data.data
+  console.log(data);
+  let temp = ''
+  for (let i = 0; i < data.length; i++) {
+    temp += `
+      <div class="mySlides1">
+        <img src="./${data[i].path}" style="width: 100%" />
+      </div>
+   `
+  }
+  temp += `
+    <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
+    `
+  document.getElementById('slideshow-container').innerHTML = temp
+  showSlides(1, 0)
+}
+get_all_slides();
 function plusSlides(n, no) {
   showSlides((slideIndex[no] += n), no)
 }
@@ -34,6 +52,7 @@ function showSlides(n, no) {
   for (i = 0; i < x.length; i++) {
     x[i].style.display = 'none'
   }
+  if(x.length)
   x[slideIndex[no] - 1].style.display = 'block'
 }
 
@@ -64,6 +83,7 @@ const change_club = async (id) => {
   // about
   document.getElementById('team_name').innerHTML = club.name + ' Team'
   document.getElementById('club_name').innerHTML = `Welcome to ${club.name}, IIT Guwahati`
+  document.getElementById('e').innerHTML = `Events At ${club.name}`
 
   document.getElementById('club_introduction').innerHTML = `<div id="clubAbout" class="ck ck-content
    ck-editor__editable ck-rounded-corners ck-editor__editable_inline ck-blurred">${club.about[0]}</div>`
@@ -131,7 +151,7 @@ const change_club = async (id) => {
     </div>`
     })
 
-    console.log(temp_table)
+    // console.log(temp_table)
 
     // title + cards
     temp +=
@@ -144,11 +164,14 @@ const change_club = async (id) => {
                       ALL
                     </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" onClick="filter_content('ALL','${container._id
-      }_cards')">ALL</a></li>
-                    <li><a class="dropdown-item" onClick="filter_content('${current_year}','${container._id
+                    <li><a class="dropdown-item" onClick="filter_content('ALL','${
+                      container._id
+                    }_cards')">ALL</a></li>
+                    <li><a class="dropdown-item" onClick="filter_content('${current_year}','${
+        container._id
       }_cards')">${current_year}</a></li>
-                    <li><a class="dropdown-item" onClick="filter_content('${current_year - 1}','${container._id
+                    <li><a class="dropdown-item" onClick="filter_content('${current_year - 1}','${
+        container._id
       }_cards')">${current_year - 1}</a></li>
                 </ul>
             </div>
@@ -182,10 +205,11 @@ const change_club = async (id) => {
     params: { cards_container: club.events_containers }
   })
   event_container = event_container.data
-  all_containers['events'] = event_container[0].cards
-  event_container[0].cards.forEach((card) => {
-    temp_event += `
-                <div class="ecard card text-white bg-info mb-3" style="width: 19rem">
+  all_containers['events'] = event_container.length ? event_container[0] : {cards:[]};
+  if (event_container.length) {
+    all_containers['events'].cards.forEach((card) => {
+      temp_event += `
+                <div class="ecard card text-white bg-info mb-3 ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline ck-blurred">
                   <div class="card-body">
                     <h4 class="card-title">
                       ${card.title}
@@ -196,7 +220,8 @@ const change_club = async (id) => {
                     </h5>
                   </div>
                 </div>`
-  })
+    })
+  }
   document.getElementById('eventcontainer').innerHTML = temp_event
 }
 const filter_content = (filter, id) => {
@@ -240,7 +265,8 @@ const filter_events = async (filter) => {
   document.getElementById('events_type').innerHTML = filter
   if (filter == 'ALL') all_events = 1
   let temp_events = ''
-  all_containers['events'].forEach((event) => {
+  if(all_containers['events'].cards.length)
+  all_containers['events'].cards.forEach((event) => {
     if (all_events || event.type == filter) {
       temp_events += `
                 <div class="ecard card text-white bg-info mb-3" style="width: 19rem" class="ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline ck-blurred">
@@ -258,8 +284,5 @@ const filter_events = async (filter) => {
   })
   document.getElementById('eventcontainer').innerHTML = temp_events
 }
-
-
-
 
 add_clubs_info()
