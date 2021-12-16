@@ -91,7 +91,8 @@ function cardCreateData(type){
                   style="color: black"
                   required
                 />
-              <input id = "cardFile" type = "file" />
+                <label for="cardFile">Image</label>
+              <input id = "cardFile" type = "file" style="width:100%"/>
               </div>
             </div>
             <div class="modal-footer" style="border-color: #292929">
@@ -366,7 +367,12 @@ const editCardString = (card) => {
           </form>
         </div>
       </div>`
-        case "Teamcard":
+      case "Teamcard":
+        let fileName = ["No file Chosen"]
+        if (card.image) {
+          fileName = card.image.split("\\");
+        }
+      
             return `<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div
           class="modal-content"
@@ -396,7 +402,9 @@ const editCardString = (card) => {
                   required
                   value='${card.description}'
                 />
-             
+              <label for="editcardFile">Image</label>
+              <input id = "editcardFile" type = "file"  style="width:100%;color: transparent" onchange='filechange()'/>
+              <span id="editcardFileName">${fileName[fileName.length - 1]}</span>
               
               </div>
             </div>
@@ -569,4 +577,24 @@ edit
     `
   }
   return string
+}
+
+const homeString = () => { 
+  return `  <div
+              style="
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+              "
+            >
+              <div
+                type="button"
+                class="btn btn-secondary btn-lg btn-block"
+                style="display: flex; width: 80%; justify-content: center; align-self: center"
+                onclick="addnewClub()"
+              >
+                Add New Club
+              </div>
+            </div>`
 }

@@ -82,20 +82,23 @@ app.post("/api/uploadFile", upload.single('upload'), async (req, res) => {
     })
   }
 })
-app.post('/api/TeamuploadFile', function (req, res) {
-  const form = new formidable.IncomingForm()
-  console.log('24')
-  // Parse `req` and upload all associated files
-  form.parse(req, function (err, fields, files) {
-    console.log(err)
-    if (err) {
-      return res.status(400).json({ error: err.message })
-    } else {
-      const [firstFileName] = Object.keys(files)
-      console.log(files)
-      res.json({ filename: firstFileName })
-    }
-  })
+
+app.post('/api/TeamuploadFile', upload.single('file'), async function (req, res) {
+  console.log(req.file)
+  try {
+    const newFile = await File.create({
+      name: req.file.originalname
+    })
+    res.status(200).json({
+      uploaded: 1,
+      fileName: req.file.originalname,
+      url: req.file.path
+    })
+  } catch (error) {
+    res.json({
+      error
+    })
+  }
 })
 app.get("uploads/:filename", (req, res) => {
   res.sendFile(`uploads/${filename}`)
