@@ -1,6 +1,6 @@
 * {
   font-family: calibri;
-  font-size:large;
+  font-size: large;
 }
 .header {
   display: flex;
@@ -19,11 +19,12 @@
 
 .welfare {
   display: inline;
+  padding-left: 1%;
+  padding-right: 1%;
+  background-color: #3b3b98;
+  letter-spacing: 11.88%;
   font-size: x-large;
-  color: white;
-  padding-left: 0.5%;
-  padding-right: 0.5%;
-  background-color: rgb(20, 33, 58);
+  font-style: bold;
 }
 
 /*Top Nav Bar*/
@@ -34,19 +35,22 @@
   margin-top: 30px;
   justify-content: center;
   list-style-type: none;
-  font-size: x-large;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .topNav a:hover {
   background-color: rgb(228, 228, 222);
 }
 
-.topNav li {
+.topNav div {
   margin: 1%;
 }
-.topNav li a {
-  color: rgb(8, 8, 8);
+.topNav div a {
+  color: #3b3b98;
+  font-size: larger;
+  letter-spacing: 15.38%;
+  fill: Solid;
+  font-family: Raleway;
   text-align: center;
   text-decoration: none;
 }
@@ -91,7 +95,7 @@
   flex-direction: column;
   margin-top: 60px;
   margin-left: 150px;
-  margin-right:5%;
+  margin-right: 5%;
   font-size: larger;
 }
 
@@ -122,9 +126,8 @@ img {
 /* Slideshow container */
 
 .slideshow-container {
-  max-width: 95%;
+  min-width: 100%;
   position: relative;
-  margin: auto;
 }
 
 /* Next & previous buttons */
@@ -252,7 +255,6 @@ img {
   background-color: rgb(228, 228, 222);
 }
 
-
 #achievements {
   color: black;
 }
@@ -304,7 +306,7 @@ img {
 .tcards {
   display: flex;
   scroll-snap-type: x mandatory;
-  overflow-x: auto; 
+  overflow-x: auto;
 }
 
 .tinfo {
@@ -349,7 +351,6 @@ img {
 
 .ehead {
   color: #ffffff;
-
 }
 
 .ecards {
