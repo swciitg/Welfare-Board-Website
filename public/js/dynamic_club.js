@@ -19,7 +19,7 @@ let month = [
 async function get_all_slides() {
   let data = await axios.get('/project/api/get_all_slides')
   data = data.data
-  console.log(data);
+  console.log(data)
   let temp = ''
   for (let i = 0; i < data.length; i++) {
     temp += `
@@ -35,7 +35,7 @@ async function get_all_slides() {
   document.getElementById('slideshow-container').innerHTML = temp
   showSlides(1, 0)
 }
-get_all_slides();
+get_all_slides()
 function plusSlides(n, no) {
   showSlides((slideIndex[no] += n), no)
 }
@@ -52,8 +52,7 @@ function showSlides(n, no) {
   for (i = 0; i < x.length; i++) {
     x[i].style.display = 'none'
   }
-  if(x.length)
-  x[slideIndex[no] - 1].style.display = 'block'
+  if (x.length) x[slideIndex[no] - 1].style.display = 'block'
 }
 
 const add_clubs_info = async () => {
@@ -208,20 +207,12 @@ const change_club = async (id) => {
     params: { cards_container: club.events_containers }
   })
   event_container = event_container.data
-  all_containers['events'] = event_container.length ? event_container[0] : {cards:[]};
+  all_containers['events'] = event_container.length ? event_container[0] : { cards: [] }
   if (event_container.length) {
     all_containers['events'].cards.forEach((card) => {
       temp_event += `
-                <div class="ecard card text-white bg-info mb-3 ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline ck-blurred">
-                  <div class="card-body">
-                    <h4 class="card-title">
-                      ${card.title}
-                    </h4>
-              
-                    <h5 class="card-body">
+                <div class="ecard text-white ck ck-editor__editable ck-rounded-corners ck-blurred" style="padding:0px;">
                       ${card.description}
-                    </h5>
-                  </div>
                 </div>`
     })
   }
@@ -268,23 +259,15 @@ const filter_events = async (filter) => {
   document.getElementById('events_type').innerHTML = filter
   if (filter == 'ALL') all_events = 1
   let temp_events = ''
-  if(all_containers['events'].cards.length)
-  all_containers['events'].cards.forEach((event) => {
-    if (all_events || event.type == filter) {
-      temp_events += `
-                <div class="ecard card text-white bg-info mb-3" style="width: 19rem" class="ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline ck-blurred">
-                  <div class="card-body">
-                    <h4 class="card-title">
-                      ${event.title}
-                    </h4>
-              
-                    <h5 class="card-body">
-                      ${event.description}
-                    </h5>
-                  </div>
+  if (all_containers['events'].cards.length)
+    all_containers['events'].cards.forEach((event) => {
+      if (all_events || event.type == filter) {
+        temp_events += `
+                <div class="ecard text-white ck ck-editor__editable ck-rounded-corners ck-blurred" style="padding:0px;">
+                      ${event.description}        
                 </div>`
-    }
-  })
+      }
+    })
   document.getElementById('eventcontainer').innerHTML = temp_events
 }
 

@@ -172,6 +172,9 @@ img {
 .card-text {
   font-size: smaller;
 }
+.card-body img {
+  margin: 0px !important;
+}
 
 .card-title {
   font-weight: bolder;
@@ -345,7 +348,6 @@ img {
 .event {
   display: flex;
   padding-right: 450px;
-  padding-bottom: 60px;
   justify-content: space-between;
 }
 
@@ -356,9 +358,21 @@ img {
 .ecards {
   display: flex;
   overflow-x: auto;
+  height: min-content;
 }
 
-.einfo {
+.ecard p,
+.ecard h1,
+.ecard h2,
+.ecard h3,
+.ecard h4,
+.ecard h5,
+.ecard h6 {
+  padding-left: 5%;
+  padding-right: 5%;
+  font-family: Raleway;
+}
+.card h1 .einfo {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -366,10 +380,11 @@ img {
 
 .ecard {
   margin-right: 29px;
+  background-color: #2170e8;
 }
 
 .ecards .ecard {
-  width: 20vw;
+  min-width: 40vw;
 }
 
 .ecards::-webkit-scrollbar {
