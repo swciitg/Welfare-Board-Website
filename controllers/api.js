@@ -28,7 +28,79 @@ const get_teamcards = async (ids) => {
   }
   return all_teamcards
 }
+const addclubItems = async(club, cardContainer) => {
+for (let j = 0; j < cardContainer.length; j++) {
+  let container = cardContainer[j]
+  let newContainer = await new Cards_conainter({ title: container.title })
 
+  for (let i = 0; i < container.cards.length; i++) {
+    let card = container.cards[i]
+    let newCard
+    if (card.type != 'Teamcard') {
+      newCard = await new Card({
+        title: card.title,
+        description: card.description,
+        creation: card.creation,
+        type: card.type
+      })
+      await newCard.save()
+      newContainer.cards.push(newCard._id)
+    } else {
+      newCard = await new Teamcard({
+        name: card.name,
+        description: card.description,
+        image: card.image
+      })
+      await newCard.save()
+      club.team_cards.push(newCard._id)
+    }
+  }
+  if (newContainer.cards.length) {
+    await newContainer.save()
+    if (container.title == 'Events') {
+      club.events_containers.push(newContainer._id)
+    } else {
+      club.cards_containers.push(newContainer._id)
+    }
+  }
+}
+
+await club.save()
+console.log(club)
+return club
+}
+const deleteclubItems = async (delclub) => {
+let delconts = await get_cards_containers(delclub.cards_containers)
+if (delconts.length) {
+  delconts.forEach(async (cont) => {
+    if (cont.cards.length) {
+      cont.cards.forEach(async (card) => {
+        await card.delete()
+      })
+    }
+    await cont.delete()
+  })
+  }
+ delconts = await get_cards_containers(delclub.events_containers)
+if (delconts.length) {
+  delconts.forEach(async (cont) => {
+    if (cont.cards.length) {
+      cont.cards.forEach(async (card) => {
+        await card.delete()
+      })
+    }
+    await cont.delete()
+  })
+}
+if (delclub.team_cards.length) {
+  delclub.team_cards.forEach(async (card) => {
+    await card.delete()
+  })
+  }
+  await delclub.save()
+  return delclub
+  
+}
 const create_club = async (cardContainer,clubName,clubAbout,clubCreation) => {
 
   let newClub = await new club({
@@ -36,75 +108,37 @@ const create_club = async (cardContainer,clubName,clubAbout,clubCreation) => {
     about: clubAbout,
     creation: clubCreation
   });
-  for (let j = 0; j < cardContainer.length; j++) {
-    let container = cardContainer[j];
-    let newContainer = await new Cards_conainter({ title: container.title })
- 
-     for (let i = 0; i < container.cards.length; i++) {
-       let card = container.cards[i]
-       let newCard;
-       if (card.type != 'Teamcard') {
-          newCard = await new Card({
-           title: card.title,
-           description: card.description,
-           creation: card.creation,
-           type:card.type
-          })
-          await newCard.save()
-          newContainer.cards.push(newCard._id)
-       
-       } else {
-          newCard = await new Teamcard({
-            name: card.name,
-            description: card.description,
-            type: card.type
-          })
-         await newCard.save()
-         newClub.team_cards.push(newCard._id)
-         
-       }
-        
-     }
-    if (newContainer.cards.length) {
-      await newContainer.save()
-      if (container.title=="Events") {
-        newClub.events_containers.push(newContainer._id)
-      } else {
-        newClub.cards_containers.push(newContainer._id)
-      }
-    }
-
-  }
-
-  await newClub.save();
-  console.log(newClub);
+  
+ return await addclubItems(newClub, cardContainer)
+  
+  
 }
+
 const delete_club = async (id) => {
   let delclub = await club.findById(id).populate('team_cards')
-  let delconts = await get_cards_containers(delclub.cards_containers)
-  if (delconts.length) {
-    delconts.forEach(async (cont) => {
-      if (cont.cards.length) {
-        cont.cards.forEach(async (card) => {
-          await card.delete();
-    
-        })
-      }
-      await cont.delete();
-    })
-  }
-  if (delclub.team_cards.length) {
-    delclub.team_cards.forEach(async (card) => {
-      await card.delete()
-    })
-  }
+  deleteclubItems(delclub)
   await delclub.delete();
 }
+const update_club = async (id, cardContainer, clubName, clubAbout, clubCreation) => {
+  
+  let oldclub = await club.findById(id).populate('team_cards')
+  oldclub.name = clubName
+  oldclub.about = clubAbout
+  oldclub.creation = clubCreation
+  await deleteclubItems(oldclub)
+  oldclub.cards_containers = [];
+  oldclub.events_containers = [];
+  oldclub.team_cards = [];
+  await addclubItems(oldclub,cardContainer)
+  return oldclub;
+}
+
 module.exports = {
   get_all_clubs,
   get_club,
   get_cards_containers,
   get_teamcards,
   create_club,
-  delete_club
+  delete_club,
+  update_club
 }
