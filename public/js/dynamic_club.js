@@ -193,8 +193,11 @@ const change_club = async (id) => {
   team_members = team_members.data
   team_members.forEach((member) => {
     temp_team += `
-    <div class="tcard card text-white bg-info mb-4" style="width: 3rem;"class="ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline ck-blurred" >
-    <p class="card-title"> <h4>${member.name}</h4> 
+    <div class="tcard card text-white bg-info mb-4" style="text-align:center;width: 3rem;padding:1%"class="ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline ck-blurred" >
+    <p class="card-title" > <h4>${member.name}</h4> 
+    <div style="display:flex;justify-content:space-around">
+    <img src="${member.image}" style="height:20vw;width:20vw"/>
+    </div>
     <p>    ${member.description}
       </p>
     </div>

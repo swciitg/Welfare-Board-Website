@@ -44,7 +44,7 @@ const addCard = (type, card) => {
     let div = document.createElement('div')
     div.id = `card_${carlen}`
     div.className = 'ecard card text-white bg-primary mb-3'
-    div.style.width = '19rem'
+    div.style.width = '20vw'
     div.innerHTML = cardString(type, div.id, convertDate(cardCreation), cardDescription)
     Container.append(div)
     let temp = cardContainermap.get(cur.id)
@@ -79,15 +79,14 @@ const addCard = (type, card) => {
     let div = document.createElement('div')
     div.id = `card_${carlen}`
     div.className = 'ecard card text-white bg-primary mb-3'
-    div.style.width = '19rem'
-    div.innerHTML = cardString(type, div.id, cardName, cardDescription)
+    div.style.width = '20vw'
     Container.append(div)
 
     if (cardImage) {
       cardImage = cardImage.files[0]
       let formData = new FormData()
-      formData.append('file', cardImage)
-      fetch('http://localhost:3000/api/TeamuploadFile', {
+      formData.append('upload', cardImage)
+      fetch('http://localhost:3000/api/uploadFile', {
         method: 'post',
         body: formData
       })
@@ -95,6 +94,8 @@ const addCard = (type, card) => {
         .then((data) => {
           console.log(data)
           cardImage = data.url
+          div.innerHTML = cardString(type, div.id, cardName, cardDescription, cardImage)
+         
           let temp = cardContainermap.get(cur.id)
           // console.log(cur.idr, temp)
           temp.cards.push({
@@ -110,7 +111,7 @@ const addCard = (type, card) => {
         .catch((err) => ('Error occured', err))
     } else {
       let temp = cardContainermap.get(cur.id)
-      // console.log(cur.idr, temp)
+      div.innerHTML = cardString(type, div.id, cardName, cardDescription, card.image)
       temp.cards.push({
         description: cardDescription,
         name: cardName,
@@ -311,13 +312,13 @@ const editcard = () => {
     card.name = document.getElementById('editcardName').value
     let cardImage=document.getElementById('editcardFile')
     card.description = editcardDescriptionEditor.getData()
-    container.innerHTML = cardString(card.type, edit_card_id, card.name, card.description)
+   
     if (cardImage && cardImage.files.length) {
 
       cardImage = cardImage.files[0]
       let formData = new FormData()
-      formData.append('file', cardImage)
-      fetch('http://localhost:3000/api/TeamuploadFile', {
+      formData.append('upload', cardImage)
+      fetch('http://localhost:3000/api/uploadFile', {
         method: 'post',
         body: formData
       })
@@ -325,6 +326,13 @@ const editcard = () => {
         .then((data) => {
           console.log(data)
           card.image = data.url
+           container.innerHTML = cardString(
+             card.type,
+             edit_card_id,
+             card.name,
+             card.description,
+             card.image
+           )
       
         })
         .catch((err) => ('Error occured', err))

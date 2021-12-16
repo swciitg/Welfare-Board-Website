@@ -368,9 +368,11 @@ const editCardString = (card) => {
         </div>
       </div>`
       case "Teamcard":
-        let fileName = ["No file Chosen"]
+        let url = "#"
+        let style = 'width:100%;'
         if (card.image) {
-          fileName = card.image.split("\\");
+          url = card.image;
+          style="width:100%;color: transparent;"
         }
       
             return `<div class="modal-dialog modal-dialog-centered" role="document">
@@ -403,8 +405,8 @@ const editCardString = (card) => {
                   value='${card.description}'
                 />
               <label for="editcardFile">Image</label>
-              <input id = "editcardFile" type = "file"  style="width:100%;color: transparent" onchange='filechange()'/>
-              <span id="editcardFileName">${fileName[fileName.length - 1]}</span>
+              <input id = "editcardFile" type = "file"  style="${style}" onchange='filechange()'/>
+              <a id="editcardFileName" href="${url}">Image</a>
               
               </div>
             </div>
@@ -518,7 +520,7 @@ const editCardString = (card) => {
       </div>`
     }
 }
-const cardString = (type, divId, creation, des) => {
+const cardString = (type, divId, creation, des,cardImage) => {
   let string
   if (type != 'Teamcard') {
     string = `
@@ -553,6 +555,7 @@ edit
               <div class="card-body">
                 <p class="card-text">
            ${creation}
+          
            <span class="material-icons" style="color:white;" onclick="removecard('${divId}')"> 
 remove
 </span>
@@ -565,10 +568,14 @@ remove
             onclick="editcarddetails('${divId}')">
 edit
 </span>
-          
+    
   
                 </p>
+                <div style="display:flex;justify-content:space-around">
+                <img src="${cardImage}"/ style="width:18vw;height:18vw">
+                </div>
                 <div class="einfo">
+                 
                   <h5 class="card-title"  >${des}</h5>
                  
                 </div>
