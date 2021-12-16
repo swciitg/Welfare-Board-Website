@@ -71,8 +71,8 @@ const addCard = (type, card) => {
     } else {
       cardName = card.name
       cardDescription = card.description
-      
-    
+
+
     }
 
     // console.log(cardTitle, cardCreation, cardDescription, cardEvent)
@@ -310,7 +310,7 @@ const editcard = () => {
     container.innerHTML = cardString(card.type, edit_card_id, card.creation, card.description)
   } else {
     card.name = document.getElementById('editcardName').value
-    let cardImage=document.getElementById('editcardFile')
+    let cardImage = document.getElementById('editcardFile')
     card.description = editcardDescriptionEditor.getData()
    
     if (cardImage && cardImage.files.length) {
@@ -336,11 +336,11 @@ const editcard = () => {
       
         })
         .catch((err) => ('Error occured', err))
-    } 
-    
-    
+    }
+
+
   }
-  
+
   temp.cards = temp.cards.map((cd) => {
     if (cd.id == edit_card_id) {
       return card
@@ -354,6 +354,12 @@ const editcard = () => {
 
 const cardCreatemodaldata = (type) => {
   document.getElementById('cardCreate').innerHTML = cardCreateData(type)
+  $('#cardCreate').modal({
+    focus: false,
+
+    // Do not show modal when innitialized.
+    show: false
+  });
   ClassicEditor.create(document.querySelector('#cardDescription'), {
     ckfinder: {
       // Upload the images to the server using the CKFinder QuickUpload command.
@@ -504,7 +510,7 @@ function returnHome() {
   fetchClubs()
 
 }
-const filechange = () => { 
-        document.getElementById('editcardFile').style = 'color:black'
-        document.getElementById('editcardFileName').style = 'display:none'
+const filechange = () => {
+  document.getElementById('editcardFile').style = 'color:black'
+  document.getElementById('editcardFileName').style = 'display:none'
 }

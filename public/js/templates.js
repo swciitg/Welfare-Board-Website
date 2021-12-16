@@ -1,7 +1,7 @@
 function cardCreateData(type){ 
     switch (type) {
         case "card":
-            return `  <div class="modal-dialog modal-dialog-centered" role="document">
+            return `  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div
           class="modal-content"
           style="background: #f4f4f4; box-shadow: 0px 0px 15px black; color: black"
@@ -63,7 +63,7 @@ function cardCreateData(type){
       </div>`
             
         case "Teamcard":
-            return `  <div class="modal-dialog modal-dialog-centered" role="document">
+            return `  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div
           class="modal-content"
           style="background: #f4f4f4; box-shadow: 0px 0px 15px black; color: black"
@@ -117,7 +117,7 @@ function cardCreateData(type){
         </div> 
       </div>`
         case "Events":
-            return `<div class="modal-dialog modal-dialog-centered" role="document">
+            return `<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div
           class="modal-content"
           style="background: #f4f4f4; box-shadow: 0px 0px 15px black; color: black"
@@ -306,7 +306,7 @@ document.getElementById('clubForm').innerHTML = `   <div class="bottom-main-bar"
 const editCardString = (card) => { 
     switch (card.type) { 
         case "card":
-            return `<div class="modal-dialog modal-dialog-centered" role="document">
+            return `<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div
           class="modal-content"
           style="background: #f4f4f4; box-shadow: 0px 0px 15px black; color: black"
@@ -375,7 +375,7 @@ const editCardString = (card) => {
           style="width:100%;color: transparent;"
         }
       
-            return `<div class="modal-dialog modal-dialog-centered" role="document">
+            return `<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div
           class="modal-content"
           style="background: #f4f4f4; box-shadow: 0px 0px 15px black; color: black"
@@ -452,7 +452,7 @@ const editCardString = (card) => {
                 }
             }
             
-        return `<div class="modal-dialog modal-dialog-centered" role="document">
+        return `<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div
           class="modal-content"
           style="background: #f4f4f4; box-shadow: 0px 0px 15px black; color: black"

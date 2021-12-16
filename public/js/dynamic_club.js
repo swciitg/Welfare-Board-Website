@@ -136,9 +136,9 @@ const change_club = async (id) => {
     container.cards.forEach((card) => {
       // card
       temp_table += `
-    <div class="boxes" class="ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline ck-blurred">
+    <div class="boxes" >
     <div class="card box shadow p-1 mb-1 bg-body rounded">
-      <div class="card-body">
+      <div class="card-body ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline ck-blurred">
       <p class="card-title">
           ${card.title}
        </p>
@@ -245,9 +245,9 @@ const filter_content = (filter, id) => {
     let creation_year = creation_date.getFullYear()
 
     if (all_years || creation_year == parseInt(filter)) {
-      temp += `<div class="boxes" class="ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline ck-blurred">
+      temp += `<div class="boxes" >
       <div class="card box shadow p-1 mb-1 bg-body rounded">
-        <div class="card-body">
+        <div class="card-body ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline ck-blurred">
         <p class="card-title">
             ${card.title}
          </p>
