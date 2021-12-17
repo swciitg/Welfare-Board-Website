@@ -464,3 +464,128 @@ h10 a:hover,
   height: 60%;
   width: 100%;
 }
+
+div#introduction {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    left: 124px;
+    top: 961.68px;
+}
+
+h1#club_name {
+    position: static;
+    left: 0px;
+    top: 0px;
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 34px;
+    line-height: 44px;
+    letter-spacing: 0.0038em;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 32px 0px;
+}
+
+div#clubAbout {
+    position: static;
+    left: 0px;
+    top: 117.04px;
+    font-family: Red Hat Display;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 28px;
+}
+
+.col-md-2 {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    width: 187px;
+    height: 142px;
+    left: 1134px;
+    top: 1329px;
+}
+
+ul#table_list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0px;
+    position: static;
+    left: 10.7%;
+    right: 0%;
+    top: 0%;
+    bottom: 0%;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    margin: 0px 20px;
+}
+
+h4.nav-link.text-secondary {
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 14px;
+    letter-spacing: 0.08em;
+    color: #9FABB7;
+}
+
+a.nav-link.text-secondary {
+    font-family: Red Hat Display;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 19px;
+    letter-spacing: 0.08em;
+    color: #9FABB7;
+}
+
+
+a.dropdown-item {
+    font-family: Red Hat Display;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 19px;
+    letter-spacing: 0.08em;
+    color: #1E2532;
+}
+
+p.card-title {
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 30px;
+    letter-spacing: 0.0322em;
+    color: #1E2532;
+}
+
+.card-text >p {
+    font-family: Red Hat Display;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.0075em;
+    color: #1E2532;
+}
+
+.ach-start>h3 {
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 34px;
+    line-height: 44px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.0038em;
+    color: #1E2532;
+}

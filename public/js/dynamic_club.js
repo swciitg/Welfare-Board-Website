@@ -142,9 +142,9 @@ const change_club = async (id) => {
           ${card.title}
        </p>
        
-           <p class="card-text">
+           <div class="card-text">
             ${card.description}
-          </p>
+          </div>
         </div>
       </div>
     </div>`
@@ -243,9 +243,9 @@ const filter_content = (filter, id) => {
             ${card.title}
          </p>
          
-             <p class="card-text">
+             <div class="card-text">
               ${card.description}
-            </p>
+            </div>
           </div>
         </div>
       </div>`
