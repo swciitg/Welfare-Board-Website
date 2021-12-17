@@ -110,6 +110,10 @@ html {
   /* float: right; */
   list-style-type: none;
   font-size: 22px;
+  display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0%;
 }
 
 /*slideshow */
@@ -169,7 +173,7 @@ img {
 
 .card {
   border: 0px !important;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.125) !important;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.125) ;
 }
 .card-text {
   font-size: smaller;
@@ -519,49 +523,41 @@ div#clubAbout {
   line-height: 28px;
 }
 
-.col-md-2 {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  padding: 0px;
-  width: 13vw;
-  height: 4vh;
-  left: 79vw;
-  top: 32vh;
-}
 
 ul#table_list {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 0px;
-  position: static;
-  left: 10.7%;
-  right: 0%;
-  top: 0%;
-  bottom: 0%;
-  flex: none;
-  order: 1;
-  flex-grow: 0;
-  margin: 0px 2vw;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0px;
+    position: sticky;
+    position: -webkit-sticky;
+    left: 10.7%;
+    right: 0%;
+    top: 4%;
+    bottom: 0%;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    margin: 0px 2vw;
+    align-self: flex-start;
 }
 
-h4.nav-link.text-secondary {
-  font-family: Raleway;
-  font-style: normal;
-  font-weight: bold;
-  line-height: 14px;
-  letter-spacing: 0.08em;
-  color: #9fabb7;
+h4.nav-link.textSecondary {
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 14px;
+    letter-spacing: 0.08em;
+    color: #9FABB7;
 }
 
-a.nav-link.text-secondary {
-  font-family: Red Hat Display;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 19px;
-  letter-spacing: 0.08em;
-  color: #9fabb7;
+a.nav-link.textSecondary {
+    font-family: Red Hat Display;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 19px;
+    letter-spacing: 0.08em;
+    color: #9FABB7;
 }
 
 a.dropdown-item {
@@ -611,5 +607,9 @@ p.card-title {
 }
 
 #cards_container figure.image.image-style-side {
-  max-width: 25%;
+    max-width: 25%;
+}
+
+.textSecondary {
+    color: #9FABB7;
 }
