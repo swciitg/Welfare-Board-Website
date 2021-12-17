@@ -23,56 +23,78 @@ resetMap()
 const addCard = (type, card) => {
   if (type != 'Teamcard') {
     let Container = cur
-    let cardTitle, cardCreation, cardDescription, cardType
+    let cardType
+    let datacard
     console.log(card)
-    if (!card) {
-      cardTitle = document.getElementById('cardTitle').value
-      cardCreation = document.getElementById('cardCreation').value
-      cardDescription = cardDescriptionEditor.getData()
-      if (document.getElementById('cardType')) {
+     if (document.getElementById('cardType')) {
         cardType = document.getElementById('cardType').value
       } else {
         cardType = 'card'
       }
+    if (!card) {
+      datacard = {
+        title: document.getElementById('cardTitle').value,
+        creation: document.getElementById('cardCreation').value,
+        description: cardDescriptionEditor.getData(),
+        type: cardType,
+        id: `card_${carlen}`
+        
+      }
+      
+     
     } else {
-      cardTitle = card.title
-      cardCreation = card.creation
-      cardDescription = card.description
-      cardType = card.type
+      datacard = {
+      title :card.title,
+      creation :convertDate(card.creation),
+      description :card.description,
+      type : card.type,
+      id: `card_${carlen}`
+      }
     }
     //  console.log(cardTitle, cardCreation, cardDescription, cardEvent)
     let div = document.createElement('div')
     div.id = `card_${carlen}`
     div.className = 'ecard card text-white bg-primary mb-3'
     div.style.width = '20vw'
-    div.innerHTML = cardString(type, div.id, convertDate(cardCreation), cardDescription)
+    div.innerHTML = cardString(datacard)
+    //cardString(type, div.id, convertDate(cardCreation), cardDescription)
     Container.append(div)
     let temp = cardContainermap.get(cur.id)
     console.log(cur.id, temp)
-    temp.cards.push({
-      creation: cardCreation,
-      description: cardDescription,
-      title: cardTitle,
-      type: cardType,
-      id: `card_${carlen}`
-    })
+    temp.cards.push(datacard)
     carlen++
     cardContainermap.set(cur.id, temp)
     console.log(cardContainermap)
     console.log(Container)
   } else {
     let Container = cur
-    let cardName, cardImage, cardDescription
+    let datacard,cardImage
+
 
     if (!card) {
-      cardName = document.getElementById('cardName').value
-      cardDescription = cardDescriptionEditor.getData()
+      datacard = {
+        name: document.getElementById('cardName').value,
+        email: document.getElementById('cardEmail').value,
+        phone: document.getElementById('cardPhone').value,
+        role: document.getElementById('cardRole').value,
+        image: document.getElementById('cardFile'),
+        id: `card_${carlen}`,
+        type:'Teamcard'
+      }
+
       cardImage = document.getElementById('cardFile')
+
     } else {
-      cardName = card.name
-      cardDescription = card.description
-
-
+      datacard = {
+        name: card.name,
+        email: card.email,
+        phone: card.phone,
+        role: card.role,
+        image: card.image,
+        id: `card_${carlen}`,
+        type: 'Teamcard'
+      }
+  
     }
 
     // console.log(cardTitle, cardCreation, cardDescription, cardEvent)
@@ -92,33 +114,23 @@ const addCard = (type, card) => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data)
-          cardImage = data.url
-          div.innerHTML = cardString(type, div.id, cardName, cardDescription, cardImage)
+          console.log(data,datacard)
+          datacard.image = data.url
+          div.innerHTML =cardString(datacard)
+            // cardString(type, div.id, cardName, cardDescription, cardImage)
          
           let temp = cardContainermap.get(cur.id)
           // console.log(cur.idr, temp)
-          temp.cards.push({
-            description: cardDescription,
-            name: cardName,
-            image: cardImage,
-            type: 'Teamcard',
-            id: `card_${carlen}`
-          })
+          temp.cards.push(datacard)
           carlen++
           cardContainermap.set(cur.id, temp)
         })
         .catch((err) => ('Error occured', err))
     } else {
       let temp = cardContainermap.get(cur.id)
-      div.innerHTML = cardString(type, div.id, cardName, cardDescription, card.image)
-      temp.cards.push({
-        description: cardDescription,
-        name: cardName,
-        image: card.image,
-        type: 'Teamcard',
-        id: `card_${carlen}`
-      })
+      div.innerHTML =cardString(datacard)
+        // cardString(type, div.id, cardName, cardDescription, card.image)
+      temp.cards.push(datacard)
       carlen++
       cardContainermap.set(cur.id, temp)
     }
@@ -221,7 +233,8 @@ const formCheck = () => {
         )
           fine = false
       } else {
-        if (!card.description || !card.name) fine = false
+        console.log('formCheck : ',card)
+        if (!card.email || !card.phone || !card.role || !card.name) fine = false
       }
     })
 
@@ -276,21 +289,22 @@ const editcarddetails = (id) => {
   let card = temp.cards.filter((card) => card.id == id)[0]
 
   modal.innerHTML = editCardString(card)
-
-  ClassicEditor.create(document.querySelector('#editcardDescription'), {
-    ckfinder: {
-      // Upload the images to the server using the CKFinder QuickUpload command.
-      uploadUrl: '/api/uploadFile'
-    }
-  })
-    .then((newEditor) => {
-      editcardDescriptionEditor = newEditor
-      editcardDescriptionEditor.setData(card.description)
+  if (document.getElementById('editcardDescription')) {
+    ClassicEditor.create(document.querySelector('#editcardDescription'), {
+      ckfinder: {
+        // Upload the images to the server using the CKFinder QuickUpload command.
+        uploadUrl: '/api/uploadFile'
+      }
     })
-    .catch((error) => {
-      console.error(error)
-    })
+      .then((newEditor) => {
+        editcardDescriptionEditor = newEditor
+        editcardDescriptionEditor.setData(card.description)
+      })
+      .catch((error) => {
+        console.error(error)
+      })
 
+  }
   $('#cardEdit').modal('show')
 
   edit_card_id = id
@@ -300,6 +314,8 @@ const editcard = () => {
   let par_id = container.parentNode.id
   let temp = cardContainermap.get(par_id)
   let card = temp.cards.filter((card) => card.id == edit_card_id)[0]
+
+
   if (card.type != 'Teamcard') {
     card.title = document.getElementById('editcardTitle').value
     card.creation = document.getElementById('editcardCreation').value
@@ -307,12 +323,14 @@ const editcard = () => {
     if (document.getElementById('editcardType')) {
       card.type = document.getElementById('editcardType').value
     }
-    container.innerHTML = cardString(card.type, edit_card_id, card.creation, card.description)
+
+    container.innerHTML = cardString({ ...card, id: edit_card_id })
   } else {
     card.name = document.getElementById('editcardName').value
     let cardImage = document.getElementById('editcardFile')
-    card.description = editcardDescriptionEditor.getData()
-   
+    card.email = document.getElementById('editcardEmail').value
+    card.phone = document.getElementById('editcardPhone').value
+    card.role = document.getElementById('editcardRole').value
     if (cardImage && cardImage.files.length) {
 
       cardImage = cardImage.files[0]
@@ -326,17 +344,16 @@ const editcard = () => {
         .then((data) => {
           console.log(data)
           card.image = data.url
-           container.innerHTML = cardString(
-             card.type,
-             edit_card_id,
-             card.name,
-             card.description,
-             card.image
-           )
+          container.innerHTML = cardString({ ...card, id: edit_card_id })
+         
+          
       
         })
         .catch((err) => ('Error occured', err))
+    } else { 
+      container.innerHTML = cardString({ ...card, id: edit_card_id })
     }
+ 
 
 
   }
@@ -360,18 +377,20 @@ const cardCreatemodaldata = (type) => {
     // Do not show modal when innitialized.
     show: false
   });
-  ClassicEditor.create(document.querySelector('#cardDescription'), {
-    ckfinder: {
-      // Upload the images to the server using the CKFinder QuickUpload command.
-      uploadUrl: '/api/uploadFile'
-    }
-  })
-    .then((newEditor) => {
-      cardDescriptionEditor = newEditor
+  if (type != 'Teamcard') {
+    ClassicEditor.create(document.querySelector('#cardDescription'), {
+      ckfinder: {
+        // Upload the images to the server using the CKFinder QuickUpload command.
+        uploadUrl: '/api/uploadFile'
+      }
     })
-    .catch((error) => {
-      console.error(error)
-    })
+      .then((newEditor) => {
+        cardDescriptionEditor = newEditor
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }
 }
 
 const closeModal = (id) => {

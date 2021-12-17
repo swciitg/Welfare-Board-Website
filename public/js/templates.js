@@ -83,11 +83,27 @@ function cardCreateData(type){
                   style="color: black"
                   required
                 />
-                <label for="cardDescription">Description</label>
+              <label for="cardEmail">Email Address</label>
                 <input
                   type="text"
                   class="form-control"
-                  id="cardDescription"
+                  id="cardEmail"
+                  style="color: black"
+                  required
+                />
+                <label for="cardPhone">Phone Number</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="cardPhone"
+                  style="color: black"
+                  required
+                />
+                   <label for="cardRole">Role</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="cardRole"
                   style="color: black"
                   required
                 />
@@ -392,17 +408,31 @@ const editCardString = (card) => {
                   class="form-control"
                   id="editcardName"
                   style="color: black"
-                  required
                   value='${card.name}'
                 />
-                <label for="editcardDescription"> Description</label>
+                  <label for="editcardEmail">Email Address</label>
                 <input
                   type="text"
                   class="form-control"
-                  id="editcardDescription"
+                  id="editcardEmail"
                   style="color: black"
-                  required
-                  value='${card.description}'
+                   value='${card.email}'
+                />
+                <label for="editcardPhone">Phone Number</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="editcardPhone"
+                  style="color: black"
+                  value='${card.phone}'
+                />
+                   <label for="editcardRole">Role</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="editcardRole"
+                  style="color: black"
+                  value='${card.role}'
                 />
               <label for="editcardFile">Image</label>
               <input id = "editcardFile" type = "file"  style="${style}" onchange='filechange()'/>
@@ -520,15 +550,15 @@ const editCardString = (card) => {
       </div>`
     }
 }
-const cardString = (type, divId, creation, des,cardImage) => {
+const cardString = (card) => {
   let string
-  if (type != 'Teamcard') {
+  if (card.type != 'Teamcard') {
     string = `
               
               <div class="card-body">
                 <p class="card-text">
-               ${creation}
-           <span class="material-icons" style="color:white;" onclick="removecard('${divId}')"> 
+               ${ card.creation}
+           <span class="material-icons" style="color:white;" onclick="removecard('${card.id}')"> 
 remove
 </span>
 
@@ -537,14 +567,14 @@ remove
             <span
             type="button"
             class="material-icons"
-            onclick="editcarddetails('${divId}')">
+            onclick="editcarddetails('${card.id}')">
 edit
 </span>
           
      
                 </p>
                 <div class="einfo">
-                  <h5 class="card-title">${des}</h5>
+                  <h5 class="card-title">${card.description}</h5>
                 </div>
               </div>
             
@@ -554,9 +584,9 @@ edit
              
               <div class="card-body">
                 <p class="card-text">
-           ${creation}
+           ${card.name}
           
-           <span class="material-icons" style="color:white;" onclick="removecard('${divId}')"> 
+           <span class="material-icons" style="color:white;" onclick="removecard('${card.id}')"> 
 remove
 </span>
 
@@ -565,18 +595,20 @@ remove
             <span
             type="button"
             class="material-icons"
-            onclick="editcarddetails('${divId}')">
+            onclick="editcarddetails('${card.id}')">
 edit
 </span>
     
   
                 </p>
                 <div style="display:flex;justify-content:space-around">
-                <img src="${cardImage}"/ style="width:18vw;height:18vw">
+                <img src="${card.image}"/ style="width:18vw;height:18vw">
                 </div>
                 <div class="einfo">
                  
-                  <h5 class="card-title"  >${des}</h5>
+                  <h5 class="card-title"  >${card.role}</h5>
+                  <h5 class="card-title"  >${card.phone}</h5>
+                  <h5 class="card-title"  >${card.email}</h5>
                  
                 </div>
               </div>

@@ -53,7 +53,9 @@ for (let j = 0; j < cardContainer.length; j++) {
     } else {
       newCard = await new Teamcard({
         name: card.name,
-        description: card.description,
+        email: card.email,
+        phone: card.phone,
+        role:card.role,
         image: card.image
       })
       await newCard.save()
