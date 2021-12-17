@@ -2,6 +2,9 @@
   font-family: calibri;
   font-size: large;
 }
+html {
+  overflow-x: hidden;
+}
 .header {
   display: flex;
   align-items: center;
@@ -23,8 +26,6 @@
   padding-right: 1%;
   background-color: #3b3b98;
   letter-spacing: 11.88%;
-  font-size: x-large;
-  font-style: bold;
 }
 
 /*Top Nav Bar*/
@@ -33,7 +34,6 @@
   display: flex;
   flex-direction: row;
   margin-top: 30px;
-  justify-content: center;
   list-style-type: none;
   font-weight: 500;
 }
@@ -43,11 +43,13 @@
 }
 
 .topNav div {
-  margin: 1%;
+  margin-left: 1%;
+  margin-right: 1%;
+  padding: 1%;
 }
 .topNav div a {
   color: #3b3b98;
-  font-size: larger;
+  font-size: 12px;
   letter-spacing: 15.38%;
   fill: Solid;
   font-family: Raleway;
@@ -56,7 +58,7 @@
 }
 
 .welfare a:hover {
-  background-color: rgb(20, 33, 58);
+  background-color: #3b3b98;
 }
 /*Bottom Nav Bar*/
 
@@ -323,11 +325,20 @@ img {
 .tcard {
   margin-right: 0.5%;
 }
-
+.tcard img {
+  width: 100%;
+}
 .tcards .tcard {
   min-width: 387px;
+  background-color: #3b3b98;
 }
-
+.tmember {
+  font-family: 'Red Hat Display';
+  font-weight: 400;
+  font-size: 18px;
+  font-style: normal;
+  line-height: 27.7px;
+}
 .tcards::-webkit-scrollbar {
   height: 5px;
 }
@@ -372,7 +383,13 @@ img {
 .ecard h6 {
   padding-left: 5%;
   padding-right: 5%;
+  overflow-wrap: break-word;
   font-family: Raleway;
+}
+.ecard p img {
+  margin-left: -5.5%;
+  max-width: 111%;
+  width: 111%;
 }
 .card h1 .einfo {
   display: flex;
@@ -382,13 +399,16 @@ img {
 
 .ecard {
   margin-right: 29px;
-  background-color: #2170e8;
+  background-color: #3b3b98;
 }
 
 .ecards .ecard {
-  min-width: 40vw;
+  min-width: 40vw;  
 }
-
+.ecard img,
+.ecard figure {
+  width: 100%;
+}
 .ecards::-webkit-scrollbar {
   height: 5px;
 }
@@ -468,39 +488,39 @@ h10 a:hover,
 }
 
 div#introduction {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0px;
-    left: 9vw;
-    top: 24vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  left: 9vw;
+  top: 24vh;
 }
 
 h1#club_name {
-    position: static;
-    left: 0px;
-    top: 0px;
-    font-family: Raleway;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 34px;
-    line-height: 44px;
-    letter-spacing: 0.0038em;
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-    margin: 1vh 0px;
+  position: static;
+  left: 0px;
+  top: 0px;
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 34px;
+  line-height: 44px;
+  letter-spacing: 0.0038em;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin: 1vh 0px;
 }
 
 div#clubAbout {
-    position: static;
-    left: 0px;
-    top: 3vh;
-    font-family: Red Hat Display;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 28px;
+  position: static;
+  left: 0px;
+  top: 3vh;
+  font-family: Red Hat Display;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 28px;
 }
 
 
@@ -540,50 +560,49 @@ a.nav-link.textSecondary {
     color: #9FABB7;
 }
 
-
 a.dropdown-item {
-    font-family: Red Hat Display;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 19px;
-    letter-spacing: 0.08em;
-    color: #1E2532;
+  font-family: Red Hat Display;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 19px;
+  letter-spacing: 0.08em;
+  color: #1e2532;
 }
 
 p.card-title {
-    font-family: Raleway;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 24px;
-    line-height: 30px;
-    letter-spacing: 0.0322em;
-    color: #1E2532;
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 30px;
+  letter-spacing: 0.0322em;
+  color: #1e2532;
 }
 
-.card-text >p {
-    font-family: Red Hat Display;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 24px;
-    letter-spacing: 0.0075em;
-    color: #1E2532;
+.card-text > p {
+  font-family: Red Hat Display;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.0075em;
+  color: #1e2532;
 }
 
-.ach-start>h3 {
-    font-family: Raleway;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 34px;
-    line-height: 44px;
-    display: flex;
-    align-items: center;
-    letter-spacing: 0.0038em;
-    color: #1E2532;
+.ach-start > h3 {
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 34px;
+  line-height: 44px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.0038em;
+  color: #1e2532;
 }
 
-#cards_container{
+#cards_container {
   width: 100%;
 }
 

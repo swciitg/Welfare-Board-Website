@@ -6,9 +6,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link href='https://fonts.googleapis.com/css?family=Red Hat Display' rel='stylesheet'>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"></script>
     <style></style>
-    <style type="text/css">.ck.ck-editor__main>.ck-editor__editable:not(.ck-focused) { border-style: none;}</style>
+    <style type="text/css">
+        .ck.ck-editor__main>.ck-editor__editable:not(.ck-focused) {
+            border-style: none;
+        }
+    </style>
 </head>
 
 
@@ -24,20 +29,21 @@
 
     <!-- Top NavBar -->
     <div style="width: 100%;">
-        <div class="topNav">
-            <div class="welfare"><a href="#WB" style="color: white;font-size:large;">
+        <div class="topNav row">
+            <div class="welfare col-3" style="margin-left: 0%;text-align: center;"><a href="#WB"
+                    style="color: white;font-size:18px;">
                     WELFARE BOARD
                 </a></div>
-            <div><a href="#SA">STUDENT AFFAIRS</a></div>
-            <div><a href="#HAB">HOSTEL AFFAIRS</a></div>
-            <div><a href="#TECH">TECHNICAL</a></div>
-            <div><a href="#CB">CULTURAL</a></div>
-            <div><a href="#SB">SPORTS</a></div>
-            </div>
+            <div class="col" style="margin-left:5%;"><a href="#SA">STUDENT AFFAIRS</a></div>
+            <div class="col"><a href="#HAB">HOSTEL AFFAIRS</a></div>
+            <div class="col"><a href="#TECH">TECHNICAL</a></div>
+            <div class="col"><a href="#CB">CULTURAL</a></div>
+            <div class="col"><a href="#SB">SPORTS</a></div>
+        </div>
     </div>
 
     <div class="slideshow-container" id="slideshow-container">
-      
+
     </div>
 
     <!-- Bottom NavBar -->
@@ -56,18 +62,18 @@
 
     <div class="row" style="margin:4%">
         <!-- Welcome -->
-        <div class="col-10" id="introduction" >
+        <div class="col-10" id="introduction">
             <h1 id="club_name" style="color:black;"></h1>
             <div id="club_introduction" style="color:black;"></div>
             <div id="cards_container">
-            
+
             </div>
         </div>
 
 
         <!-- Side NavBar -->
         <div class="middle col-2">
-                <ul class="nav flex-column list2" id="table_list">
+               <ul class="nav flex-column list2" id="table_list">
 
                 </ul>
         </div>
