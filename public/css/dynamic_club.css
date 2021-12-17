@@ -470,8 +470,8 @@ div#introduction {
     flex-direction: column;
     align-items: flex-start;
     padding: 0px;
-    left: 124px;
-    top: 961.68px;
+    left: 9vw;
+    top: 24vh;
 }
 
 h1#club_name {
@@ -487,13 +487,13 @@ h1#club_name {
     flex: none;
     order: 0;
     flex-grow: 0;
-    margin: 32px 0px;
+    margin: 1vh 0px;
 }
 
 div#clubAbout {
     position: static;
     left: 0px;
-    top: 117.04px;
+    top: 3vh;
     font-family: Red Hat Display;
     font-style: normal;
     font-weight: normal;
@@ -506,10 +506,10 @@ div#clubAbout {
     flex-direction: row;
     align-items: flex-start;
     padding: 0px;
-    width: 187px;
-    height: 142px;
-    left: 1134px;
-    top: 1329px;
+    width: 13vw;
+    height: 4vh;
+    left: 79vw;
+    top: 32vh;
 }
 
 ul#table_list {
@@ -526,7 +526,7 @@ ul#table_list {
     flex: none;
     order: 1;
     flex-grow: 0;
-    margin: 0px 20px;
+    margin: 0px 1vh;
 }
 
 h4.nav-link.text-secondary {
