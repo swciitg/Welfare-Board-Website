@@ -81,7 +81,7 @@ const change_club = async (id) => {
   document.getElementById(curr).style.color = 'darkblue'
   // about
   document.getElementById('team_name').innerHTML = club.name + ' Team'
-  document.getElementById('club_name').innerHTML = `Welcome to ${club.name}, IIT Guwahati`
+  document.getElementById('club_name').innerHTML = `Welcome To ${club.name}, IIT Guwahati`
   document.getElementById('e').innerHTML = `Events At ${club.name}`
 
   document.getElementById('club_introduction').innerHTML = `<div id="clubAbout" class="ck ck-content
@@ -95,7 +95,7 @@ const change_club = async (id) => {
                <h4 class="nav-link text-secondary">Content</h4>
             </li>
             <li class="nav-item table_content list">
-               <a class="nav-link text-secondary" href="#introduction">About</a>
+               <a class="nav-link text-secondary" href="#introduction" style="color:#1E2532!important;font-weight: bold;">About</a>
             </li>`
 
   console.log(club)
@@ -154,7 +154,7 @@ const change_club = async (id) => {
 
     // title + cards
     temp +=
-      `<div class="announcements  mt-5 flex-column" style="width:65%;" >
+      `<div class="announcements  mt-5 flex-column" style="width:100%">
         <div class="ach-start d-flex justify-content-between" id="${container.title}">
             <h3 style="color:black;">${container.title}</h3>
 			<div class="dropdown">

@@ -193,9 +193,7 @@ img {
 
 /* Announcements */
 .announcements {
-  margin-left: 150px;
   margin-top: 40px;
-  margin-right: 450px;
   display: flex;
   flex-direction: column;
 }
@@ -514,7 +512,6 @@ div#clubAbout {
 
 ul#table_list {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: flex-start;
     padding: 0px;
@@ -526,7 +523,7 @@ ul#table_list {
     flex: none;
     order: 1;
     flex-grow: 0;
-    margin: 0px 1vh;
+    margin: 0px 2vw;
 }
 
 h4.nav-link.text-secondary {
@@ -588,4 +585,12 @@ p.card-title {
     align-items: center;
     letter-spacing: 0.0038em;
     color: #1E2532;
+}
+
+#cards_container{
+  width: 100%;
+}
+
+#cards_container figure.image.image-style-side {
+    max-width: 25%;
 }
