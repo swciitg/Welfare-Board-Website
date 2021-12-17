@@ -108,6 +108,10 @@
   /* float: right; */
   list-style-type: none;
   font-size: 22px;
+  display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0%;
 }
 
 /*slideshow */
@@ -167,7 +171,7 @@ img {
 
 .card {
   border: 0px !important;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.125) !important;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.125) ;
 }
 .card-text {
   font-size: smaller;
@@ -499,34 +503,26 @@ div#clubAbout {
     line-height: 28px;
 }
 
-.col-md-2 {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 0px;
-    width: 13vw;
-    height: 4vh;
-    left: 79vw;
-    top: 32vh;
-}
 
 ul#table_list {
     display: flex;
     justify-content: center;
     align-items: flex-start;
     padding: 0px;
-    position: static;
+    position: sticky;
+    position: -webkit-sticky;
     left: 10.7%;
     right: 0%;
-    top: 0%;
+    top: 4%;
     bottom: 0%;
     flex: none;
     order: 1;
     flex-grow: 0;
     margin: 0px 2vw;
+    align-self: flex-start;
 }
 
-h4.nav-link.text-secondary {
+h4.nav-link.textSecondary {
     font-family: Raleway;
     font-style: normal;
     font-weight: bold;
@@ -535,7 +531,7 @@ h4.nav-link.text-secondary {
     color: #9FABB7;
 }
 
-a.nav-link.text-secondary {
+a.nav-link.textSecondary {
     font-family: Red Hat Display;
     font-style: normal;
     font-weight: 500;
@@ -593,4 +589,8 @@ p.card-title {
 
 #cards_container figure.image.image-style-side {
     max-width: 25%;
+}
+
+.textSecondary {
+    color: #9FABB7;
 }

@@ -92,10 +92,10 @@ const change_club = async (id) => {
   // side nav
   let temp_table = ''
   temp_table += ` <li class="nav-item table_content list">
-               <h4 class="nav-link text-secondary">Content</h4>
+               <h4 class="nav-link textSecondary">Content</h4>
             </li>
             <li class="nav-item table_content list">
-               <a class="nav-link text-secondary" href="#introduction" style="color:#1E2532!important;font-weight: bold;">About</a>
+               <a class="nav-link textSecondary" href="#introduction" style="color:#1E2532;font-weight: bold;">About</a>
             </li>`
 
   console.log(club)
@@ -107,14 +107,14 @@ const change_club = async (id) => {
   let temp_event = ''
   for (let i = 0; i < cards_containers.length; i++) {
     temp_table += `<li class="nav-item table_content list">
-        <a class="nav-link text-secondary" href="#${cards_containers[i].title}">${cards_containers[i].title}</a>
+        <a class="nav-link textSecondary" href="#${cards_containers[i].title}">${cards_containers[i].title}</a>
        </li>`
   }
   temp_table += `<li class="nav-item table_content list">
-  <a class="nav-link text-secondary" href="#team">Team</a>
+  <a class="nav-link textSecondary" href="#team">Team</a>
 </li>
 <li class="nav-item table_content list">
-               <a class="nav-link text-secondary" href="#Events">Events</a>
+               <a class="nav-link textSecondary" href="#Events">Events</a>
             </li>`
   document.getElementById('table_list').innerHTML = temp_table
   console.log('car_containers', cards_containers)
@@ -163,14 +163,11 @@ const change_club = async (id) => {
                       ALL
                     </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" onClick="filter_content('ALL','${
-                      container._id
-                    }_cards')">ALL</a></li>
-                    <li><a class="dropdown-item" onClick="filter_content('${current_year}','${
-        container._id
+                    <li><a class="dropdown-item" onClick="filter_content('ALL','${container._id
+      }_cards')">ALL</a></li>
+                    <li><a class="dropdown-item" onClick="filter_content('${current_year}','${container._id
       }_cards')">${current_year}</a></li>
-                    <li><a class="dropdown-item" onClick="filter_content('${current_year - 1}','${
-        container._id
+                    <li><a class="dropdown-item" onClick="filter_content('${current_year - 1}','${container._id
       }_cards')">${current_year - 1}</a></li>
                 </ul>
             </div>
@@ -183,7 +180,58 @@ const change_club = async (id) => {
       </div>`
     temp_cont.innerHTML = temp
     cards_cont.appendChild(temp_cont)
+
   })
+
+  window.addEventListener('scroll', function () {
+    let element, position, current_location
+    current_location = String(window.location.href)
+    current_location = current_location.replace('#/', '')
+    current_location = current_location.replace('#', '')
+    let table = document.getElementsByClassName('nav-link textSecondary')
+    element = document.getElementById('clubAbout')
+    position = element.getBoundingClientRect();
+    if ((position.top >= 0 && position.bottom <= window.innerHeight) || (position.top < window.innerHeight && position.bottom >= 0)) {
+      for (let i = 0; i < table.length; i++) {
+        
+        if (table[i].tagName === 'A') {
+          console.log('A reached')
+          console.log(`${current_location}#introduction`, table[i].href)
+          if (String(table[i].href) === `${current_location}#introduction`) {
+            table[i].style.color = '#1E2532'
+            table[i].style.fontWeight = 'bold'
+          }
+          else {
+            table[i].style.color = '#9FABB7'
+            table[i].style.fontWeight = 'normal'
+          }
+        }
+      }
+
+    }
+
+    cards_containers.forEach(container => {
+      element = document.getElementById(container.title);
+      if (element) {
+        position = element.getBoundingClientRect();
+        if ((position.top >= 0 && position.bottom <= window.innerHeight) || (position.top < window.innerHeight && position.bottom >= 0)) {
+          for (let i = 0; i < table.length; i++) {
+            if (table[i].tagName === 'A') {
+              if (String(table[i].href) === `${current_location}#${container.title}`) {
+                table[i].style.color = '#1E2532'
+                table[i].style.fontWeight = 'bold'
+              }
+              else {
+                table[i].style.color = '#9FABB7'
+                table[i].style.fontWeight = 'normal'
+              }
+            }
+          }
+        }
+      }
+    })
+  }
+  );
 
   let temp_team = ''
   let team_members = await axios.get(`/project/api/teamcard/`, {
