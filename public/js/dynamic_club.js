@@ -61,7 +61,7 @@ const add_clubs_info = async () => {
   let temp_clubs = ''
   for (let i = 0; i < clubs.length; i++) {
     temp_clubs += `  <li class="nav-item">
-           <a class="nav-link" id=club_${clubs[i]._id} onclick=change_club("${clubs[i]._id}") href="#">${clubs[i].name}</a>
+           <a class="nav-link" id=club_${clubs[i]._id} onclick=change_club("${clubs[i]._id}") href="#" style="font-family: Raleway;font-size:16px;font-style:normal;font-weight:normal;line-height:19px;">${clubs[i].name}</a>
            </li>
         `
   }
@@ -78,7 +78,7 @@ const change_club = async (id) => {
   club = club.data
   if (curr) document.getElementById(curr).style.color = 'Black'
   curr = 'club_' + id
-  document.getElementById(curr).style.color = 'darkblue'
+  document.getElementById(curr).style.color = '#3b3b98'
   // about
   document.getElementById('team_name').innerHTML = club.name + ' Team'
   document.getElementById('club_name').innerHTML = `Welcome To ${club.name}, IIT Guwahati`
@@ -189,16 +189,36 @@ const change_club = async (id) => {
   let team_members = await axios.get(`/project/api/teamcard/`, {
     params: { teamcard: club.team_cards }
   })
+  console.log('TEAM', team_members.data)
   team_members = team_members.data
+  // team_members = team_members.map((member) => {
+  //   return {
+  //     name: member.name,
+  //     email: 'dakshsharma@iitg.ac.in',
+  //     role: 'Dean',
+  //     phone: '+91 9916468555',
+  //     image: member.image
+  //   }
+  // })
   team_members.forEach((member) => {
     temp_team += `
-    <div class="tcard card text-white bg-info mb-4" style="text-align:center;width: 3rem;padding:1%"class="ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline ck-blurred" >
-    <p class="card-title" > <h4>${member.name}</h4> 
-    <div style="display:flex;justify-content:space-around">
-    <img src="${member.image}" style="height:20vw;width:20vw"/>
-    </div>
-    <p>    ${member.description}
-      </p>
+    <div class="tcard card text-white mb-4" style="min-width: 34vw;"class="ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline ck-blurred" >
+      <div style="display:flex;">
+        <img src="${member.image}" style="min-width:100%;height:35vh;"/>
+      </div>
+      <div style="padding-left:32px;padding-right:32px;padding-bottom:24px;">
+        <p>
+          <h4 style="font-family:Raleway; font-weight:600;font-style:normal;font-size:24px;line-height:30px;">${member.name}</h4> 
+        </p>
+        <p class="tmember" style="padding-bottom:18px;border-bottom:1px solid white;">
+            ${member.role}
+        </p>
+     
+        <div>
+            <div class="tmember" style="float:left;">${member.email}</div>
+            <div class="tmember" style="float:right;">${member.phone}</div>
+        </div>
+      </div>
     </div>
     `
   })
