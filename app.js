@@ -68,8 +68,11 @@ app.get("/", (req, res) => res.redirect(`/${BASE_URL}`));
 app.post("/api/uploadFile", upload.single('upload'), async (req, res) => {
   // Stuff to be added later
   try {
+    
     const newFile = await File.create({
-      name: req.file.filename
+      name: req.file.filename,
+      is_slideshow_pic: req.body.is_slide ? true : false,
+      path: `uploads/${req.file.filename}`
     })
     res.status(200).json({
       uploaded: 1,
@@ -83,23 +86,7 @@ app.post("/api/uploadFile", upload.single('upload'), async (req, res) => {
   }
 })
 
-// app.post('/api/TeamuploadFile', upload.single('file'), async function (req, res) {
-//   console.log(req.file)
-//   try {
-//     const newFile = await File.create({
-//       name: req.file.originalname
-//     })
-//     res.status(200).json({
-//       uploaded: 1,
-//       fileName: req.file.originalname,
-//       url: req.file.path
-//     })
-//   } catch (error) {
-//     res.json({
-//       error
-//     })
-//   }
-// })
+
 app.get("uploads/:filename", (req, res) => {
   res.sendFile(`uploads/${filename}`)
 })
