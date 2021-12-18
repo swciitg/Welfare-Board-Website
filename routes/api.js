@@ -20,7 +20,6 @@ router.route('/team/:id').get(async (req, res) => {
 })
 
 router.route('/cards_container').get(async (req, res) => {
-  console.log('API', req.query)
   let cards_container = await apiController.get_cards_containers(req.query.cards_container)
   res.json(cards_container)
 })
@@ -29,7 +28,7 @@ router.route('/teamcard').get(async (req, res) => {
   res.json(teamcard)
 })
 router.route('/club').post(async (req, res) => {
-  console.log(req.body)
+
   let club=await apiController.create_club(
     req.body.clubContainer,
     req.body.name,
@@ -62,7 +61,12 @@ router.route('/club').delete(async (req, res) => {
 })
 router.get('/get_all_slides',async (req, res) => {
   let data = await apiController.get_all_slides();
-  console.log(data)
+
   res.json(data);
+})
+router.delete('/delete_slide', async (req, res) => {
+
+  await apiController.delete_slide(req.body.name)
+  res.send("Slide Deleted")
 })
 module.exports = router

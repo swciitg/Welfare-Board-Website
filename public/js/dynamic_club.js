@@ -24,7 +24,7 @@ async function get_all_slides() {
   for (let i = 0; i < data.length; i++) {
     temp += `
       <div class="mySlides1">
-        <img src="./${data[i].path}" style="width: 100%" />
+        <img src="./${data[i].path}" style="width: 100%; height:100%" />
       </div>
    `
   }
@@ -52,7 +52,7 @@ function showSlides(n, no) {
   for (i = 0; i < x.length; i++) {
     x[i].style.display = 'none'
   }
-  if (x.length) x[slideIndex[no] - 1].style.display = 'block'
+  if (x.length) x[slideIndex[no] - 1].style.display = 'flex'
 }
 
 const add_clubs_info = async () => {
@@ -82,6 +82,7 @@ const change_club = async (id) => {
   // about
   document.getElementById('team_name').innerHTML = club.name + ' Team'
   document.getElementById('club_name').innerHTML = `Welcome To ${club.name}, IIT Guwahati`
+  document.title = club.name
   document.getElementById('e').innerHTML = `Events At ${club.name}`
 
   document.getElementById('club_introduction').innerHTML = `<div id="clubAbout" class="ck ck-content
@@ -107,7 +108,7 @@ const change_club = async (id) => {
   let temp_event = ''
   for (let i = 0; i < cards_containers.length; i++) {
     temp_table += `<li class="nav-item table_content list">
-        <a class="nav-link textSecondary" href="#${cards_containers[i].title}">${cards_containers[i].title}</a>
+        <a class="nav-link textSecondary"  href="#${cards_containers[i].title}">${cards_containers[i].title}</a>
        </li>`
   }
   temp_table += `<li class="nav-item table_content list">
@@ -184,20 +185,17 @@ const change_club = async (id) => {
   })
 
   window.addEventListener('scroll', function () {
-    let element, position, current_location
-    current_location = String(window.location.href)
-    current_location = current_location.replace('#/', '')
-    current_location = current_location.replace('#', '')
+    let element, position, top = window.innerHeight
     let table = document.getElementsByClassName('nav-link textSecondary')
     element = document.getElementById('clubAbout')
     position = element.getBoundingClientRect();
-    if ((position.top >= 0 && position.bottom <= window.innerHeight) || (position.top < window.innerHeight && position.bottom >= 0)) {
+    if (((position.top >= 0 && position.bottom <= window.innerHeight) || (position.top < window.innerHeight && position.bottom >= 0)) && position.top <= top) {
+      top = position.top
       for (let i = 0; i < table.length; i++) {
-        
+        let link = String(table[i].href).split('/')
+        link = link[link.length-1]
         if (table[i].tagName === 'A') {
-          console.log('A reached')
-          console.log(`${current_location}#introduction`, table[i].href)
-          if (String(table[i].href) === `${current_location}#introduction`) {
+          if (link=== '#introduction') {
             table[i].style.color = '#1E2532'
             table[i].style.fontWeight = 'bold'
           }
@@ -214,10 +212,14 @@ const change_club = async (id) => {
       element = document.getElementById(container.title);
       if (element) {
         position = element.getBoundingClientRect();
-        if ((position.top >= 0 && position.bottom <= window.innerHeight) || (position.top < window.innerHeight && position.bottom >= 0)) {
+        if (((position.top >= 0 && position.bottom <= window.innerHeight) || (position.top < window.innerHeight && position.bottom >= 0)) && position.top <= top) {
+          top = position.top
           for (let i = 0; i < table.length; i++) {
+            
             if (table[i].tagName === 'A') {
-              if (String(table[i].href) === `${current_location}#${container.title}`) {
+              let link = String(table[i].href).split('/')
+              link = link[link.length-1]
+              if (link === `#${container.title}`) {
                 table[i].style.color = '#1E2532'
                 table[i].style.fontWeight = 'bold'
               }
@@ -250,7 +252,7 @@ const change_club = async (id) => {
   // })
   team_members.forEach((member) => {
     temp_team += `
-    <div class="tcard card text-white mb-4" style="min-width: 34vw;"class="ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline ck-blurred" >
+    <div class="tcard card text-white mb-4" style="width: 30vw;"class="ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline ck-blurred" >
       <div style="display:flex;">
         <img src="${member.image}" style="min-width:100%;height:35vh;"/>
       </div>

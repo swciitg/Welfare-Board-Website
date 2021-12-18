@@ -3,8 +3,8 @@
  * modal, it will be rendered over the modal.
  */
 :root {
-    --ck-z-default: 100;
-    --ck-z-modal: calc( var(--ck-z-default) + 999 );
+  --ck-z-default: 100;
+  --ck-z-modal: calc(var(--ck-z-default) + 999);
 }
 
 /*
@@ -12,9 +12,8 @@
  * See: https://github.com/ckeditor/ckeditor5-table/issues/154.
  */
 .ck-content .table {
-    width: auto;
+  width: auto;
 }
-
 
 .fade.in {
   opacity: 1;
@@ -63,18 +62,38 @@ body {
   overflow-x: auto;
 }
 
-.einfo {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-}
-
 .ecard {
   margin-right: 29px;
 }
 
 .ecards .ecard {
-  min-width: 387px;
+  min-width: 30vw;
+  max-width: 40vw;
+  background-color: #3b3b98;
+  overflow-wrap: break-word;
+}
+
+.ecard p,
+.ecard h1,
+.ecard h2,
+.ecard h3,
+.ecard h4,
+.ecard h5,
+.ecard h6 {
+  padding-left: 5%;
+  padding-right: 5%;
+  overflow-wrap: break-word;
+  font-family: Raleway;
+}
+
+.ecard img,
+.ecard figure {
+  width: 100%;
+}
+
+.ecard p img {
+  max-width: 100%;
+  width: 100%;
 }
 
 .ecards::-webkit-scrollbar {
@@ -101,3 +120,30 @@ body {
   color: black;
 }
 /* ------- */
+
+.tcard {
+  margin-right: 0.5%;
+}
+.tcard img {
+  width: 100%;
+}
+.tcards .tcard {
+  min-width: 387px;
+  background-color: #3b3b98;
+}
+.tmember {
+  font-family: 'Red Hat Display';
+  font-weight: 400;
+  font-size: 18px;
+  font-style: normal;
+  line-height: 27.7px;
+}
+.tcards::-webkit-scrollbar {
+  height: 5px;
+}
+
+.tcards::-webkit-scrollbar-thumb {
+  background-color: #696262;
+  border-radius: 2px;
+  opacity: 0;
+}

@@ -3,6 +3,9 @@ const club = require('../models/Club')
 const Teamcard = require('../models/TeamCard')
 const Card = require('../models/Card')
 const File = require('../models/File')
+const fs = require('fs')
+const path = require('path')
+
 const get_all_clubs = async () => {
   return club.find().select('name')
 }
@@ -73,7 +76,7 @@ for (let j = 0; j < cardContainer.length; j++) {
 }
 
 await club.save()
-console.log(club)
+
 return club
 }
 const deleteclubItems = async (delclub) => {
@@ -140,6 +143,13 @@ const update_club = async (id, cardContainer, clubName, clubAbout, clubCreation)
   return oldclub;
 }
 
+const delete_slide = async (name) => {
+  fs.unlink(path.join(__dirname, `../public/uploads/${name}`), err => {
+    if (err) throw err
+  })
+  let slide = await File.deleteOne({ name })
+}
+
 module.exports = {
   get_all_clubs,
   get_club,
@@ -148,5 +158,6 @@ module.exports = {
   get_teamcards,
   create_club,
   delete_club,
-  update_club
+  update_club,
+  delete_slide
 }

@@ -25,7 +25,7 @@ const addCard = (type, card) => {
     let Container = cur
     let cardType
     let datacard
-    console.log(card)
+
      if (document.getElementById('cardType')) {
         cardType = document.getElementById('cardType').value
       } else {
@@ -51,21 +51,17 @@ const addCard = (type, card) => {
       id: `card_${carlen}`
       }
     }
-    //  console.log(cardTitle, cardCreation, cardDescription, cardEvent)
+
     let div = document.createElement('div')
     div.id = `card_${carlen}`
-    div.className = 'ecard card text-white bg-primary mb-3'
-    div.style.width = '20vw'
+    div.className = 'ecard card text-white mb-3'
     div.innerHTML = cardString(datacard)
     //cardString(type, div.id, convertDate(cardCreation), cardDescription)
     Container.append(div)
     let temp = cardContainermap.get(cur.id)
-    console.log(cur.id, temp)
     temp.cards.push(datacard)
     carlen++
     cardContainermap.set(cur.id, temp)
-    console.log(cardContainermap)
-    console.log(Container)
   } else {
     let Container = cur
     let datacard,cardImage
@@ -97,11 +93,9 @@ const addCard = (type, card) => {
   
     }
 
-    // console.log(cardTitle, cardCreation, cardDescription, cardEvent)
     let div = document.createElement('div')
     div.id = `card_${carlen}`
-    div.className = 'ecard card text-white bg-primary mb-3'
-    div.style.width = '20vw'
+    div.className = 'ecard card text-white mb-3'
     Container.append(div)
 
     if (cardImage && cardImage.files.length>0) {
@@ -114,13 +108,9 @@ const addCard = (type, card) => {
       })
         .then((res) => res.json())
         .then((data) => {
-          // console.log(data,datacard)
           datacard.image = data.url
-          div.innerHTML =cardString(datacard)
-            // cardString(type, div.id, cardName, cardDescription, cardImage)
-         
+          div.innerHTML =cardString(datacard)         
           let temp = cardContainermap.get(cur.id)
-          // console.log(cur.idr, temp)
           temp.cards.push(datacard)
           carlen++
           cardContainermap.set(cur.id, temp)
@@ -193,17 +183,15 @@ const removecardContainer = (id) => {
   cardContainermap.delete(id)
   let container = document.getElementById('parent' + id)
   container.parentNode.removeChild(container)
-  console.log(cardContainermap)
 }
 const removecard = (id) => {
-  //console.log('deleteCard', id)
   let container = document.getElementById(id)
   let par_id = container.parentNode.id
   let temp = cardContainermap.get(par_id)
   container.parentNode.removeChild(container)
   temp.cards = temp.cards.filter((card) => card.id != id)
   cardContainermap.set(par_id, temp)
-  console.log(cardContainermap, cardContainermap.get(par_id))
+
 }
 
 const formCheck = () => {
@@ -234,7 +222,6 @@ const formCheck = () => {
         )
           fine = false
       } else {
-        console.log('formCheck : ',card)
         if (!card.email || !card.phone || !card.role || !card.name) fine = false
       }
     })
@@ -279,7 +266,7 @@ const setTitle = (id) => {
   let temp = cardContainermap.get(id)
   temp.title = document.getElementById(id + '_title').value
   cardContainermap.set(id, temp)
-  // console.log(cardContainermap,temp.event)
+
 }
 
 const editcarddetails = (id) => {
@@ -337,21 +324,17 @@ const editcard = () => {
       cardImage = cardImage.files[0]
       let formData = new FormData()
       formData.append('upload', cardImage)
-      fetch('http://localhost:3000/api/uploadFile', {
+      fetch('/api/uploadFile', {
         method: 'post',
         body: formData
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data)
           card.image = data.url
           container.innerHTML = cardString({ ...card, id: edit_card_id })
-         
-          
-      
         })
         .catch((err) => ('Error occured', err))
-    } else { 
+    } else {
       container.innerHTML = cardString({ ...card, id: edit_card_id })
     }
  
@@ -366,8 +349,6 @@ const editcard = () => {
       return cd
     }
   })
-  // cardContainermap.set(par_id, temp)
-  // console.log(cardContainermap, cardContainermap.get(par_id))
 }
 
 const cardCreatemodaldata = (type) => {
@@ -395,7 +376,6 @@ const cardCreatemodaldata = (type) => {
 }
 
 const closeModal = (id) => {
-  console.log('closing ', id)
   $('#' + id).modal('hide')
 }
 //--------------------------------------------------------------------------------------------------------
@@ -410,6 +390,16 @@ const fetchClubs = async () => {
       `<div type="button" class="club-name" onclick=fetchinitialdata('${club._id}')>${club.name}</div>`
   })
   clubNameContainer.innerHTML = string
+  let slides = await axios.get('/project/api/get_all_slides')
+  let temp = ''
+  slides = slides.data
+  for (let i = 0; i < slides.length; i++) {
+    temp += `
+        <a href="./${slides[i].path}" />${slides[i].name}</a> <button onClick="deleteSlide('${slides[i].name}')" style="margin:2px"><i class="material-icons" >delete</i></button>${i}<br>
+   `
+  }
+  temp+= `<input id = "slideImg" type = "file" onChange="uploadSlide()"/>`
+  document.getElementById('slide-collapse').innerHTML = temp
 }
 fetchClubs()
 const fetchinitialdata = (id) => {
@@ -432,7 +422,6 @@ const fetchClub = async (id) => {
   clubAboutEditorCreate()
 
   let club = await axios.get(`api/club/${id}`)
-  // console.log(id,club.data)
   club = club.data
   document.getElementById('clubName').value = club.name
   if (club.about.length) clubAboutEditor.setData(club.about[0])
@@ -442,8 +431,7 @@ const fetchClub = async (id) => {
     let arrcardscontainer = await axios.get('api/cards_container', {
       params: { cards_container: club.cards_containers }
     })
-
-    console.log(arrcardscontainer.data)
+    
     arrcardscontainer.data.forEach(async (container) => {
       addcardContainer(container.title)
 
@@ -456,7 +444,6 @@ const fetchClub = async (id) => {
     let arreventscontainer = await axios.get('api/cards_container', {
       params: { cards_container: club.events_containers }
     })
-    console.log(arreventscontainer)
     cur = document.getElementById('cardContainer_1')
 
     arreventscontainer.data[0].cards.forEach((card) => {
@@ -486,6 +473,15 @@ const dropdown = () => {
     div.innerHTML = ' Clubs <span class="material-icons">expand_less</span>'
   } else {
     div.innerHTML = ' Clubs <span class="material-icons">expand_more</span>'
+  }
+}
+const dropdown_slide = () => {
+  let div = document.getElementById('slide-collapser')
+
+  if (div.innerHTML == 'expand_more') {
+    div.innerHTML = 'expand_less'
+  } else {
+    div.innerHTML = 'expand_more'
   }
 }
 const addnewClub = () => {
@@ -533,4 +529,18 @@ function returnHome() {
 const filechange = () => {
   document.getElementById('editcardFile').style = 'color:black'
   document.getElementById('editcardFileName').style = 'display:none'
+}
+
+async function uploadSlide() {
+  let slide = document.getElementById('slideImg').files[0]
+  let formData = new FormData()
+  formData.append('upload', slide)
+  formData.append('is_slide', true)
+  await axios.post('/api/uploadFile', formData);
+  fetchClubs()
+}
+
+async function deleteSlide(slidename) {
+  await axios.delete(`api/delete_slide`, { data: { name: slidename } })
+  fetchClubs()
 }
