@@ -1,5 +1,6 @@
 * {
-  font-family: calibri;
+  letter-spacing: 0.5px;
+  line-height: 27.5px;
   font-size: large;
 }
 html {
@@ -20,12 +21,17 @@ html {
   color: black;
 }
 
+.wel-sm{
+  font-weight: 700;
+}
+
 .welfare {
   display: inline;
   padding-left: 1%;
   padding-right: 1%;
   background-color: #3b3b98;
   letter-spacing: 11.88%;
+  font-weight: 700;
 }
 
 /*Top Nav Bar*/
@@ -224,7 +230,7 @@ img {
   flex-direction: column;
   align-items: stretch;
   width: 100%;
-  margin-top: 1%;
+  margin-top: 20px;
   height: fit-content;
 }
 
@@ -383,7 +389,7 @@ img {
 .ecard h4,
 .ecard h5,
 .ecard h6 {
-  padding-left: 5%;
+  padding-left: 5%; 
   padding-right: 5%;
   overflow-wrap: break-word;
   font-family: Raleway;
@@ -392,6 +398,7 @@ img {
   margin-left: -5.5%;
   max-width: 111%;
   width: 111%;
+  margin-bottom: 5%;
 }
 .card h1 .einfo {
   display: flex;
@@ -551,6 +558,7 @@ h4.nav-link.textSecondary {
     line-height: 14px;
     letter-spacing: 0.08em;
     color: #9FABB7;
+    /* font-size: 14px; */
 }
 
 a.nav-link.textSecondary {
@@ -614,4 +622,9 @@ p.card-title {
 
 .textSecondary {
     color: #9FABB7;
+    font-size: 14px;
+}
+
+.mt5{
+  margin-top: 84px;
 }

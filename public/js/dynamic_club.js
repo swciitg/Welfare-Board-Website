@@ -155,7 +155,7 @@ const change_club = async (id) => {
 
     // title + cards
     temp +=
-      `<div class="announcements  mt-5 flex-column" style="width:100%">
+      `<div class="announcements  mt5 flex-column" style="width:100%">
         <div class="ach-start d-flex justify-content-between" id="${container.title}">
             <h3 style="color:black;">${container.title}</h3>
 			<div class="dropdown">
