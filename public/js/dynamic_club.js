@@ -24,7 +24,7 @@ async function get_all_slides() {
   for (let i = 0; i < data.length; i++) {
     temp += `
       <div class="mySlides1">
-        <img src="./${data[i].path}" style="width: 100%" />
+        <img src="./${data[i].path}" style="width: 100%; height:100%" />
       </div>
    `
   }
@@ -52,7 +52,7 @@ function showSlides(n, no) {
   for (i = 0; i < x.length; i++) {
     x[i].style.display = 'none'
   }
-  if (x.length) x[slideIndex[no] - 1].style.display = 'block'
+  if (x.length) x[slideIndex[no] - 1].style.display = 'flex'
 }
 
 const add_clubs_info = async () => {
