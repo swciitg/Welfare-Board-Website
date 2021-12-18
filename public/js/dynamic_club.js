@@ -251,7 +251,7 @@ const change_club = async (id) => {
   // })
   team_members.forEach((member) => {
     temp_team += `
-    <div class="tcard card text-white mb-4" style="min-width: 34vw;"class="ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline ck-blurred" >
+    <div class="tcard card text-white mb-4" style="width: 30vw;"class="ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline ck-blurred" >
       <div style="display:flex;">
         <img src="${member.image}" style="min-width:100%;height:35vh;"/>
       </div>
