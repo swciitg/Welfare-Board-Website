@@ -82,6 +82,7 @@ const change_club = async (id) => {
   // about
   document.getElementById('team_name').innerHTML = club.name + ' Team'
   document.getElementById('club_name').innerHTML = `Welcome To ${club.name}, IIT Guwahati`
+  document.title = club.name
   document.getElementById('e').innerHTML = `Events At ${club.name}`
 
   document.getElementById('club_introduction').innerHTML = `<div id="clubAbout" class="ck ck-content
