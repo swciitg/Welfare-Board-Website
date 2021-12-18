@@ -77,9 +77,9 @@ const addCard = (type, card) => {
         email: document.getElementById('cardEmail').value,
         phone: document.getElementById('cardPhone').value,
         role: document.getElementById('cardRole').value,
-        image: document.getElementById('cardFile'),
+        image: './images/Teamcard_logo.png',
         id: `card_${carlen}`,
-        type:'Teamcard'
+        type: 'Teamcard'
       }
 
       cardImage = document.getElementById('cardFile')
@@ -104,7 +104,7 @@ const addCard = (type, card) => {
     div.style.width = '20vw'
     Container.append(div)
 
-    if (cardImage) {
+    if (cardImage && cardImage.files.length>0) {
       cardImage = cardImage.files[0]
       let formData = new FormData()
       formData.append('upload', cardImage)
@@ -114,7 +114,7 @@ const addCard = (type, card) => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data,datacard)
+          // console.log(data,datacard)
           datacard.image = data.url
           div.innerHTML =cardString(datacard)
             // cardString(type, div.id, cardName, cardDescription, cardImage)
@@ -128,6 +128,7 @@ const addCard = (type, card) => {
         .catch((err) => ('Error occured', err))
     } else {
       let temp = cardContainermap.get(cur.id)
+      // console.log('else 131',datacard)
       div.innerHTML =cardString(datacard)
         // cardString(type, div.id, cardName, cardDescription, card.image)
       temp.cards.push(datacard)

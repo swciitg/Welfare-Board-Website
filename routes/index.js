@@ -15,8 +15,8 @@ router.use('/login', loginRouter)
 router.use('/adminside', adminRouter)
 router.use('/api', apiRouter)
 router.use('/users', userRouter)
-router.post('/logout',(req,res)=>{
+router.get('/logout',(req,res)=>{
     req.session.user_present=false;
-    res.json('Successfull!');
+    res.redirect('./login')
 })
 module.exports = router

@@ -384,7 +384,7 @@ const editCardString = (card) => {
         </div>
       </div>`
       case "Teamcard":
-        let url = "#"
+        let url = "./images/Teamcard_logo.png"
         let style = 'width:100%;'
         if (card.image) {
           url = card.image;
@@ -580,6 +580,10 @@ edit
             
     `
   } else {
+    // let url = "./images/Teamcard_logo.png"
+    // if (card.image) {
+    //   url=card.image
+    // }
     string = `
              
               <div class="card-body">
