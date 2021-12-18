@@ -54,8 +54,7 @@ const addCard = (type, card) => {
 
     let div = document.createElement('div')
     div.id = `card_${carlen}`
-    div.className = 'ecard card text-white bg-primary mb-3'
-    div.style.width = '20vw'
+    div.className = 'ecard card text-white mb-3'
     div.innerHTML = cardString(datacard)
     //cardString(type, div.id, convertDate(cardCreation), cardDescription)
     Container.append(div)
@@ -96,8 +95,7 @@ const addCard = (type, card) => {
 
     let div = document.createElement('div')
     div.id = `card_${carlen}`
-    div.className = 'ecard card text-white bg-primary mb-3'
-    div.style.width = '20vw'
+    div.className = 'ecard card text-white mb-3'
     Container.append(div)
 
     if (cardImage) {

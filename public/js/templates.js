@@ -265,8 +265,8 @@ document.getElementById('clubForm').innerHTML = `   <div class="bottom-main-bar"
     <h3 style="color: black" id="clubFormtitle">Edit Club Details</h3>
   </div>
   <div class="bottom-main-buttons">
-  <button onclick="addnewClub()" id="addBtn" type="button" class="btn btn-primary button1" style="display:flex;align-items:center;justify-content:center">
-  <div class="material-icons">add</div><div>club</div></button>
+  <button onclick="addnewClub()" id="addBtn" type="button" class="btn button1" style="display:flex;background-color:#3b3b98;color:white;align-items:center;justify-content:center">
+  <div class="material-icons">add</div><div>Club</div></button>
   <button id="deleteBtn" type="button" class="btn btn-danger button2">Delete</button>
   </div>
 </div>
@@ -310,7 +310,7 @@ document.getElementById('clubForm').innerHTML = `   <div class="bottom-main-bar"
     <button
       id="submitBtn"
       type="button"
-      class="btn btn-primary card-heading"
+      class="btn card-heading" style="background-color:#3b3b98;color:white;"
     >
       Save
     </button>
@@ -556,62 +556,54 @@ const cardString = (card) => {
     string = `
               
               <div class="card-body">
-                <p class="card-text">
-               ${ card.creation}
-           <span class="material-icons" style="color:white;" onclick="removecard('${card.id}')"> 
-remove
-</span>
-
-
-      
-            <span
-            type="button"
-            class="material-icons"
-            onclick="editcarddetails('${card.id}')">
-edit
-</span>
-          
-     
-                </p>
-                <div class="einfo">
-                  <h5 class="card-title">${card.description}</h5>
-                </div>
+                  <p class="card-text">
+                      ${ card.title}
+                     <span class="material-icons" style="color:white;" onclick="removecard('${card.id}')"> 
+                          remove
+                     </span>
+                     <span
+                     type="button"
+                     class="material-icons"
+                     onclick="editcarddetails('${card.id}')">
+                     edit
+                     </span>
+                  </p>
+                  <div class="einfo card-text">
+                     ${card.description}
+                  </div>
               </div>
             
     `
   } else {
     string = `
              
-              <div class="card-body">
-                <p class="card-text">
-           ${card.name}
-          
-           <span class="material-icons" style="color:white;" onclick="removecard('${card.id}')"> 
-remove
-</span>
-
-
-      
-            <span
-            type="button"
-            class="material-icons"
-            onclick="editcarddetails('${card.id}')">
-edit
-</span>
-    
-  
-                </p>
-                <div style="display:flex;justify-content:space-around">
-                <img src="${card.image}"/ style="width:18vw;height:18vw">
-                </div>
-                <div class="einfo">
-                 
-                  <h5 class="card-title"  >${card.role}</h5>
-                  <h5 class="card-title"  >${card.phone}</h5>
-                  <h5 class="card-title"  >${card.email}</h5>
-                 
-                </div>
-              </div>
+    <div class="ecard card text-white" style="width: 30vw;"class="ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline ck-blurred" >
+    <div style="display:flex;width:100%;">
+      <img src="${card.image}" style="width:100%;height:20vh;margin-right:0.5px;"/>
+    </div>
+    <div style="padding-left:12px;padding-right:32px;padding-bottom:24px;">
+      <p>
+        <h4 style="font-family:Raleway; font-weight:600;font-style:normal;font-size:24px;line-height:30px;">${card.name}
+        <span class="material-icons" style="color:white;" onclick="removecard('${card.id}')"> 
+        remove
+      </span>
+      <span
+      type="button"
+      class="material-icons"
+      onclick="editcarddetails('${card.id}')">
+        edit
+      </span></h4>
+      </p>
+      <p class="tmember">
+          ${card.role}
+      </p>
+      <hr>
+      <div>
+          <p class="tmember" style="float:left;">${card.email}</p>
+          <p class="tmember" style="float:right;">${card.phone}</p>
+      </div>
+    </div>
+  </div>
             
     `
   }
