@@ -25,6 +25,10 @@ html {
   font-weight: 700;
 }
 
+.wel-sm:hover{
+  background-color: rgb(228, 228, 222);
+}
+
 .welfare {
   display: inline;
   padding-left: 1%;
@@ -398,7 +402,7 @@ img {
   margin-left: -5.5%;
   max-width: 111%;
   width: 111%;
-  margin-bottom: 5%;
+  /* margin-bottom: 2%; */
 }
 .card h1 .einfo {
   display: flex;
@@ -627,4 +631,8 @@ p.card-title {
 
 .mt5{
   margin-top: 84px;
+}
+
+#clubAbout figure.image.image-style-side {
+    max-width: 30%;
 }

@@ -544,3 +544,5 @@ async function deleteSlide(slidename) {
   await axios.delete(`api/delete_slide`, { data: { name: slidename } })
   fetchClubs()
 }
+
+document.title = 'Admin Panel'

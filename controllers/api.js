@@ -7,7 +7,7 @@ const fs = require('fs')
 const path = require('path')
 
 const get_all_clubs = async () => {
-  return club.find().select('name')
+  return await club.find().select('name')
 }
 const get_club = async (id) => {
   return club.findById(id)
