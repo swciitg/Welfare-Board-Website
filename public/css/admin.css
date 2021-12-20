@@ -1,0 +1,149 @@
+/*
+ * Configure the z-index of the editor UI, so when inside a Bootstrap
+ * modal, it will be rendered over the modal.
+ */
+:root {
+  --ck-z-default: 100;
+  --ck-z-modal: calc(var(--ck-z-default) + 999);
+}
+
+/*
+ * Override the width of the table set by Bootstrap content styles.
+ * See: https://github.com/ckeditor/ckeditor5-table/issues/154.
+ */
+.ck-content .table {
+  width: auto;
+}
+
+.fade.in {
+  opacity: 1;
+}
+.modal.in .modal-dialog {
+  -webkit-transform: translate(0, 0);
+  -o-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+
+.modal-backdrop .fade .in {
+  opacity: 0.5 !important;
+}
+
+.modal-backdrop.fade {
+  opacity: 0.5 !important;
+}
+body {
+  height: 100%;
+}
+/* Events */
+
+.events {
+  background-color: #1e2532;
+  margin-top: 5vh;
+  padding: 5vh 10vw;
+  width: 100%;
+}
+
+.event {
+  display: flex;
+  padding-bottom: 60px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ehead {
+  color: #ffffff;
+  font-weight: bolder;
+  font-size: xx-large;
+}
+
+.ecards {
+  display: flex;
+  scroll-snap-type: x mandatory;
+  overflow-x: auto;
+}
+
+.ecard {
+  margin-right: 29px;
+}
+
+.ecards .ecard {
+  min-width: 30vw;
+  max-width: 40vw;
+  background-color: #3b3b98;
+  overflow-wrap: break-word;
+}
+
+.ecard p,
+.ecard h1,
+.ecard h2,
+.ecard h3,
+.ecard h4,
+.ecard h5,
+.ecard h6 {
+  padding-left: 5%;
+  padding-right: 5%;
+  overflow-wrap: break-word;
+  font-family: Raleway;
+}
+
+.ecard img,
+.ecard figure {
+  width: 100%;
+}
+
+.ecard p img {
+  max-width: 100%;
+  width: 100%;
+}
+
+.ecards::-webkit-scrollbar {
+  height: 5px;
+}
+
+.ecards::-webkit-scrollbar-thumb {
+  opacity: 0;
+}
+
+.ecards::-webkit-scrollbar-thumb:hover {
+  background-color: #ffffff;
+  border-radius: 2px;
+  opacity: 1;
+}
+.club-name:hover {
+  color: blue;
+  background-color: transparent;
+}
+.club-name {
+  text-align: center;
+}
+.ck {
+  color: black;
+}
+/* ------- */
+
+.tcard {
+  margin-right: 0.5%;
+}
+.tcard img {
+  width: 100%;
+}
+.tcards .tcard {
+  min-width: 387px;
+  background-color: #3b3b98;
+}
+.tmember {
+  font-family: 'Red Hat Display';
+  font-weight: 400;
+  font-size: 18px;
+  font-style: normal;
+  line-height: 27.7px;
+}
+.tcards::-webkit-scrollbar {
+  height: 5px;
+}
+
+.tcards::-webkit-scrollbar-thumb {
+  background-color: #696262;
+  border-radius: 2px;
+  opacity: 0;
+}

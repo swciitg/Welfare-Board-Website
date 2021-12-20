@@ -1,0 +1,638 @@
+* {
+  letter-spacing: 0.5px;
+  line-height: 27.5px;
+  font-size: large;
+}
+html {
+  overflow-x: hidden;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 15px;
+}
+
+.text-sm {
+  padding: 6px;
+  display: inline;
+  font-family: calibri;
+  font-size: x-large;
+  color: black;
+}
+
+.wel-sm{
+  font-weight: 700;
+}
+
+.wel-sm:hover{
+  background-color: rgb(228, 228, 222);
+}
+
+.welfare {
+  display: inline;
+  padding-left: 1%;
+  padding-right: 1%;
+  background-color: #3b3b98;
+  letter-spacing: 11.88%;
+  font-weight: 700;
+}
+
+/*Top Nav Bar*/
+
+.topNav {
+  display: flex;
+  flex-direction: row;
+  margin-top: 30px;
+  list-style-type: none;
+  font-weight: 500;
+}
+
+.topNav a:hover {
+  background-color: rgb(228, 228, 222);
+}
+
+.topNav div {
+  margin-left: 1%;
+  margin-right: 1%;
+  padding: 1%;
+}
+.topNav div a {
+  color: #3b3b98;
+  font-size: 12px;
+  letter-spacing: 15.38%;
+  fill: Solid;
+  font-family: Raleway;
+  text-align: center;
+  text-decoration: none;
+}
+
+.welfare a:hover {
+  background-color: #3b3b98;
+}
+/*Bottom Nav Bar*/
+
+.navbar {
+  -webkit-box-shadow: 0 8px 6px -6px #999;
+  -moz-box-shadow: 0 8px 6px -6px #999;
+  box-shadow: 0 6px 6px -6px rgb(179, 178, 178);
+  max-width: 100%;
+  margin: auto;
+  color: rgb(252, 252, 252);
+}
+
+.bottomNav .nav-item a {
+  color: rgb(0, 0, 0);
+  font-weight: 500;
+  font-size: x-large;
+  margin-left: 30px;
+}
+.table_content {
+  border-left: 3px solid rgb(133, 129, 129);
+  height: fit-content;
+  width: max-content;
+}
+
+.nav-item a:hover {
+  background-color: rgb(228, 228, 222);
+}
+
+#home {
+  color: blue;
+  padding-left: 20px;
+}
+
+.introduction {
+  display: flex;
+  flex-direction: column;
+  margin-top: 60px;
+  margin-left: 150px;
+  margin-right: 5%;
+  font-size: larger;
+}
+
+#contentHead {
+  display: inline;
+}
+
+/* side-nav */
+.middle {
+  /* float: right; */
+  list-style-type: none;
+  font-size: 22px;
+  display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0%;
+}
+
+/*slideshow */
+
+* {
+  box-sizing: border-box;
+}
+.mySlides1 {
+  display: none;
+  height: 100%;
+}
+img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+/* Slideshow container */
+
+.slideshow-container {
+  min-width: 100%;
+  height: 60vh;
+  position: relative;
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  text-decoration: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a grey background color */
+.prev:hover,
+.next:hover {
+  background-color: #f1f1f1;
+  color: black;
+}
+
+/*
+    Achievements
+  */
+
+.card {
+  border: 0px !important;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.125) ;
+}
+.card-text {
+  font-size: smaller;
+}
+.card-body img {
+  margin: 0px !important;
+}
+
+.card-title {
+  font-weight: bolder;
+  margin-top: 1%;
+  color: black;
+}
+
+.read_more span {
+  color: rgb(18, 18, 73);
+  font-size: smaller;
+}
+
+.achievements {
+  margin-left: 150px;
+}
+
+/* Announcements */
+.announcements {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.announce {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.box {
+  background: #ffffff;
+  border: 1px solid #d7dde1;
+  border-radius: 4px;
+  padding: 40px;
+}
+
+.boxes {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  margin-top: 20px;
+  height: fit-content;
+}
+
+.boxes::-webkit-scrollbar {
+  width: 5px;
+}
+
+.boxes::-webkit-scrollbar-thumb {
+  opacity: 0;
+}
+
+.boxes::-webkit-scrollbar-thumb:hover {
+  background-color: #9fabb7;
+  border-radius: 2px;
+  opacity: 1;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.date {
+  padding-left: 20px;
+
+  font-size: smaller;
+}
+
+.content {
+  padding-left: 20px;
+
+  font-weight: normal;
+}
+
+.nav-item a:hover {
+  color: rgb(0, 0, 0);
+  background-color: rgb(228, 228, 222);
+}
+
+#achievements {
+  color: black;
+}
+
+#announcement {
+  color: black;
+}
+
+#about {
+  color: black;
+}
+
+#vision {
+  color: black;
+}
+
+#contentHead {
+  font-size: larger;
+}
+
+/* Teams Homepage */
+
+.card-img-top {
+  width: 100%;
+  height: 15vw;
+  object-fit: cover;
+}
+
+.Teams {
+  background-color: #ebeff5;
+  margin-top: 10vh;
+  padding: 5vh 6vw;
+  width: 100%;
+}
+
+.Team {
+  display: flex;
+  padding-right: 450px;
+  padding-bottom: 60px;
+  justify-content: space-between;
+}
+
+.thead {
+  color: #020000;
+  font-weight: bolder;
+  font-size: xx-large;
+}
+
+.tcards {
+  display: flex;
+  scroll-snap-type: x mandatory;
+  overflow-x: auto;
+}
+
+.tinfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.tcard {
+  margin-right: 0.5%;
+}
+.tcard img {
+  width: 100%;
+}
+.tcards .tcard {
+  min-width: 387px;
+  background-color: #3b3b98;
+}
+.tmember {
+  font-family: 'Red Hat Display';
+  font-weight: 400;
+  font-size: 18px;
+  font-style: normal;
+  line-height: 27.7px;
+}
+.tcards::-webkit-scrollbar {
+  height: 5px;
+}
+
+.tcards::-webkit-scrollbar-thumb {
+  background-color: #696262;
+  border-radius: 2px;
+  opacity: 0;
+}
+
+/* Events Homepage */
+
+.events {
+  background-color: #1e2532;
+  margin-top: 5vh;
+  padding: 5vh 6vw;
+  width: 100%;
+}
+
+.event {
+  display: flex;
+  padding-right: 450px;
+  justify-content: space-between;
+}
+
+.ehead {
+  color: #ffffff;
+}
+
+.ecards {
+  display: flex;
+  overflow-x: auto;
+  height: min-content;
+}
+
+.ecard p,
+.ecard h1,
+.ecard h2,
+.ecard h3,
+.ecard h4,
+.ecard h5,
+.ecard h6 {
+  padding-left: 5%; 
+  padding-right: 5%;
+  overflow-wrap: break-word;
+  font-family: Raleway;
+}
+.ecard p img {
+  margin-left: -5.5%;
+  max-width: 111%;
+  width: 111%;
+  /* margin-bottom: 2%; */
+}
+.card h1 .einfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.ecard {
+  margin-right: 29px;
+  background-color: #3b3b98;
+}
+
+.ecards .ecard {
+  width: 30vw;
+}
+.ecard img,
+.ecard figure {
+  width: 100%;
+}
+.ecards::-webkit-scrollbar {
+  height: 5px;
+}
+
+.ecards::-webkit-scrollbar-thumb {
+  opacity: 0;
+}
+
+.ecards::-webkit-scrollbar-thumb:hover {
+  background-color: #ffffff;
+  border-radius: 2px;
+  opacity: 1;
+}
+
+/* Teams */
+
+/* Footer */
+.footer {
+  display: flex;
+  flex-direction: row;
+  background-color: #1e2532;
+  padding: 20px 50px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.swcfirst {
+  display: flex;
+}
+
+h5 a {
+  text-decoration: none;
+  font-weight: 530;
+  color: #ffffff;
+  margin-left: 20px;
+}
+
+h5 a:hover,
+h10 a:hover,
+.icons a:hover {
+  color: #ffffff;
+}
+
+.swcfoot {
+  display: flex;
+  align-self: center;
+}
+
+.swc {
+  display: flex;
+  padding: 4px 10px 0px;
+  color: #9fabb7;
+  font-weight: 200;
+  font-size: medium;
+}
+
+.swc a {
+  align-self: flex-start;
+  margin: 0px 5px;
+  text-decoration: none;
+  color: #9fabb7;
+}
+
+.icons {
+  color: #9fabb7;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.icons a {
+  color: #9fabb7;
+  margin: 0 10px;
+}
+.event_image {
+  height: 60%;
+  width: 100%;
+}
+
+div#introduction {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  left: 9vw;
+  top: 24vh;
+}
+
+h1#club_name {
+  position: static;
+  left: 0px;
+  top: 0px;
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 34px;
+  line-height: 44px;
+  letter-spacing: 0.0038em;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin: 1vh 0px;
+}
+
+div#clubAbout {
+  position: static;
+  left: 0px;
+  top: 3vh;
+  font-family: Red Hat Display;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 28px;
+}
+
+
+ul#table_list {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0px;
+    position: sticky;
+    position: -webkit-sticky;
+    left: 10.7%;
+    right: 0%;
+    top: 4%;
+    bottom: 0%;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    margin: 0px 2vw;
+    align-self: flex-start;
+}
+
+h4.nav-link.textSecondary {
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 14px;
+    letter-spacing: 0.08em;
+    color: #9FABB7;
+    /* font-size: 14px; */
+}
+
+a.nav-link.textSecondary {
+    font-family: Red Hat Display;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 19px;
+    letter-spacing: 0.08em;
+    color: #9FABB7;
+}
+
+a.dropdown-item {
+  font-family: Red Hat Display;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 19px;
+  letter-spacing: 0.08em;
+  color: #1e2532;
+}
+
+p.card-title {
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 30px;
+  letter-spacing: 0.0322em;
+  color: #1e2532;
+}
+
+.card-text > p {
+  font-family: Red Hat Display;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.0075em;
+  color: #1e2532;
+}
+
+.ach-start > h3 {
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 34px;
+  line-height: 44px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.0038em;
+  color: #1e2532;
+}
+
+#cards_container {
+  width: 100%;
+}
+
+#cards_container figure.image.image-style-side {
+    max-width: 25%;
+}
+
+.textSecondary {
+    color: #9FABB7;
+    font-size: 14px;
+}
+
+.mt5{
+  margin-top: 84px;
+}
+
+#clubAbout figure.image.image-style-side {
+    max-width: 30%;
+}

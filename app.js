@@ -6,6 +6,9 @@ var logger = require("morgan");
 const expressLayouts = require("express-ejs-layouts");
 require("dotenv").config();
 var indexRouter = require("./routes/index");
+const File = require('./models/File');
+const multer = require('multer')
+const formidable = require('express-formidable')
 
 var app = express();
 BASE_URL = process.env.BASE_URL || "project";
@@ -31,6 +34,20 @@ Sentry.init({
   tracesSampleRate: 1.0,
 });
 
+const multerStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'public/uploads')
+  },
+  filename: (req, file, cb) => {
+    const ext = file.mimetype.split('/')[1]
+    cb(null, `${file.fieldname}-${Date.now()}.${ext}`)
+  }
+})
+
+const upload = multer({
+  storage: multerStorage
+})
+
 app.use(Sentry.Handlers.requestHandler());
 app.use(Sentry.Handlers.tracingHandler());
 app.use(session.expressSession);
@@ -48,6 +65,31 @@ app.use(`/${BASE_URL}`, express.static(path.join(__dirname, "public")));
 /*========== ROUTING SETUP : DECLARE YOURS ROUTERS INSIDE INDEXROUTER =================================*/
 
 app.get("/", (req, res) => res.redirect(`/${BASE_URL}`));
+app.post("/api/uploadFile", upload.single('upload'), async (req, res) => {
+  // Stuff to be added later
+  try {
+    
+    const newFile = await File.create({
+      name: req.file.filename,
+      is_slideshow_pic: req.body.is_slide ? true : false,
+      path: `uploads/${req.file.filename}`
+    })
+    res.status(200).json({
+      uploaded: 1,
+      fileName: req.file.fileName,
+      url: `uploads/${req.file.filename}`
+    })
+  } catch (error) {
+    res.json({
+      error
+    })
+  }
+})
+
+
+app.get("uploads/:filename", (req, res) => {
+  res.sendFile(`uploads/${filename}`)
+})
 app.use(`/${BASE_URL}`, indexRouter);
 
 // catch 404 and forward to error handler

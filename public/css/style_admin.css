@@ -1,0 +1,107 @@
+html,
+body {
+  height: 100%;
+
+  font-family: sans-serif;
+}
+.main-container {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+.side-bar {
+  width: 20%;
+  /* background-color: red; */
+  height: 100%;
+  border-right: solid 0.2px lightgray;
+  display: flex;
+  flex-direction: column;
+}
+.heading {
+  
+ display: flex;
+ justify-content: space-around;
+ padding:2%;
+}
+.heading-image {
+  
+  width:10vw;
+}
+.side-bar-main {
+  padding-left: 5%;
+}
+.main-bar {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+.top-main-bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 10%;
+  border-bottom: solid 0.2px lightgray;
+}
+
+
+.mail {
+  display: flex;
+  margin-right: 2%;
+}
+
+
+.bottom-main-bar {
+  height: 100%;
+  background-color: #f6f7fb;
+  overflow-y: auto;
+}
+
+.bottom-main-line {
+  padding-left: 5%;
+  padding-top: 10%;
+  display: flex;
+  flex-direction: row;
+}
+.delete-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.bottom-main-heading {
+  width: 40%;
+}
+.bottom-main-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 35%;
+}
+.button1 {
+  margin-right: 10%;
+}
+.button2 {
+  margin-left: 5%;
+}
+.bottom-main-card {
+  background-color: rgb(252, 249, 249);
+  margin: 1%;
+}
+.card-heading {
+  color: gray;
+  margin-top: 2%;
+}
+
+.card-title img{
+    max-width: 100%;
+    max-height: 100%;
+}
+.top-main-bar a{
+  color:black;
+  margin-right: 5%;
+  text-decoration: none;
+}
+.top-main-bar a:hover{
+ color: blue;
+}
+

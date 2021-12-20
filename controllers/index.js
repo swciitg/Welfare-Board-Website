@@ -1,1 +1,1 @@
-exports.indexView = (req, res) => res.render("landing");
+exports.indexView = (req, res) => res.render('dynamic_club')
