@@ -390,7 +390,7 @@ const fetchClubs = async () => {
       `<div type="button" class="club-name" onclick=fetchinitialdata('${club._id}')>${club.name}</div>`
   })
   clubNameContainer.innerHTML = string
-  let slides = await axios.get('/project/api/get_all_slides')
+  let slides = await axios.get('api/get_all_slides')
   let temp = ''
   slides = slides.data
   for (let i = 0; i < slides.length; i++) {
