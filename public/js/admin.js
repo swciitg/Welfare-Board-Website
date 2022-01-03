@@ -395,7 +395,7 @@ const fetchClubs = async () => {
   slides = slides.data
   for (let i = 0; i < slides.length; i++) {
     temp += `
-        <a href="./${slides[i].path}" />${slides[i].name}</a> <button onClick="deleteSlide('${slides[i].name}')" style="margin:2px"><i class="material-icons" >delete</i></button>${i}<br>
+        <a href="./${slides[i].path}" />${slides[i].displayName}</a> <div class="mx-2" style="float:right;"><button onClick="deleteSlide('${slides[i].name}')"  class="mx-2"><i class="material-icons" >delete</i></button>${i}</div><br><br/>
    `
   }
   temp+= `<input id = "slideImg" type = "file" onChange="uploadSlide()"/>`

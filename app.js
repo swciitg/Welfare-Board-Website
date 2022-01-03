@@ -72,12 +72,14 @@ app.post("/api/uploadFile", upload.single('upload'), async (req, res) => {
     const newFile = await File.create({
       name: req.file.filename,
       is_slideshow_pic: req.body.is_slide ? true : false,
-      path: `uploads/${req.file.filename}`
+      path: `uploads/${req.file.filename}`,
+      displayName: req.file.originalname
     })
     res.status(200).json({
       uploaded: 1,
       fileName: req.file.fileName,
-      url: `uploads/${req.file.filename}`
+      url: `uploads/${req.file.filename}`,
+      displayName: req.file.originalname
     })
   } catch (error) {
     res.json({

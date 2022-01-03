@@ -417,6 +417,7 @@ img {
 
 .ecards .ecard {
   width: 30vw;
+  min-width: 387px;
 }
 .ecard img,
 .ecard figure {

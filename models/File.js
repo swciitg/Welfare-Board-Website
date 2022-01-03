@@ -16,6 +16,9 @@ const fileSchema = new mongoose.Schema({
   is_slideshow_pic: {
     type: Boolean,
     default: false
+  },
+  displayName: {
+    type: String
   }
 })
 
