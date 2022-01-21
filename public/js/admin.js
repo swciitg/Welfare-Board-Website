@@ -5,7 +5,6 @@ let clubAboutEditor
 let cardDescriptionEditor
 let editcardDescriptionEditor
 var cardContainermap = new Map()
-
 var cur = ''
 var edit_card_id = ''
 const resetMap = () => {
@@ -382,7 +381,7 @@ const closeModal = (id) => {
 
 const fetchClubs = async () => {
   let clubNameContainer = document.getElementById('club-collapse')
-  let clubs = await axios.get('api/clubs')
+  let clubs = await axios.get(`/${BASE_URI}/api/clubs`)
   string = ''
   clubs.data.forEach((club) => {
     string =
@@ -390,7 +389,7 @@ const fetchClubs = async () => {
       `<div type="button" class="club-name" onclick=fetchinitialdata('${club._id}')>${club.name}</div>`
   })
   clubNameContainer.innerHTML = string
-  let slides = await axios.get('api/get_all_slides')
+  let slides = await axios.get(`/${BASE_URI}/api/get_all_slides`)
   let temp = ''
   slides = slides.data
   for (let i = 0; i < slides.length; i++) {
@@ -421,14 +420,14 @@ const fetchClub = async (id) => {
 
   clubAboutEditorCreate()
 
-  let club = await axios.get(`api/club/${id}`)
+  let club = await axios.get(`/${BASE_URI}/api/club/${id}`)
   club = club.data
   document.getElementById('clubName').value = club.name
   if (club.about.length) clubAboutEditor.setData(club.about[0])
   document.getElementById('clubCreation').value = convertDate(club.creation)
 
   if (club.cards_containers.length) {
-    let arrcardscontainer = await axios.get('api/cards_container', {
+    let arrcardscontainer = await axios.get(`/${BASE_URI}/api/cards_container`, {
       params: { cards_container: club.cards_containers }
     })
     
@@ -441,7 +440,7 @@ const fetchClub = async (id) => {
     })
   }
   if (club.events_containers.length) {
-    let arreventscontainer = await axios.get('api/cards_container', {
+    let arreventscontainer = await axios.get(`/${BASE_URI}/api/cards_container`, {
       params: { cards_container: club.events_containers }
     })
     cur = document.getElementById('cardContainer_1')
@@ -451,7 +450,7 @@ const fetchClub = async (id) => {
     })
   }
   if (club.team_cards.length) {
-    let teamcardarr = await axios.get('api/teamcard', {
+    let teamcardarr = await axios.get(`/${BASE_URI}/api/teamcard`, {
       params: { teamcard: club.team_cards }
     })
     cur = document.getElementById('cardContainer_0')
@@ -461,7 +460,7 @@ const fetchClub = async (id) => {
   }
 }
 const deleteClub = (id) => {
-  axios.delete(`api/club`, { data: { id } }).then(() => {
+  axios.delete(`/${BASE_URI}/api/club`, { data: { id } }).then(() => {
     returnHome()
   })
   // window.location.reload()
@@ -475,7 +474,7 @@ const dropdown = () => {
     div.innerHTML = ' Clubs <span class="material-icons">expand_more</span>'
   }
 }
-const dropdown_slide = () => {
+function dropdown_slide () {
   let div = document.getElementById('slide-collapser')
 
   if (div.innerHTML == 'expand_more') {
@@ -536,12 +535,12 @@ async function uploadSlide() {
   let formData = new FormData()
   formData.append('upload', slide)
   formData.append('is_slide', true)
-  await axios.post('/api/uploadFile', formData);
+  await axios.post(`/${BASE_URI}/api/uploadFile`, formData);
   fetchClubs()
 }
 
 async function deleteSlide(slidename) {
-  await axios.delete(`api/delete_slide`, { data: { name: slidename } })
+  await axios.delete(`/${BASE_URI}/api/delete_slide`, { data: { name: slidename } })
   fetchClubs()
 }
 

@@ -24,15 +24,16 @@
     <script>
         async function check_data() {
             let password = document.getElementById("password").value;
-            let data = await axios.post('login/', {
+            let data = await axios.post(`/${BASE_URI}/login/`, {
                 data: { password: password }
             })
             data = data.data;
-            if (data == 'True') window.location.href = 'adminside';
+            if (data == 'True') window.location.href = 'admin';
             else {
                 document.getElementById('message').innerHTML = "Wrong Password!";
             }
         }
+        const BASE_URI = `<%= base_url %>`
 
     </script>
 

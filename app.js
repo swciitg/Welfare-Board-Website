@@ -16,7 +16,7 @@ BASE_URL = process.env.BASE_URL || "project";
 /* ===================== ADMIN SETUP ====================== */
 const adminRouter = require("./admin");
 let router = adminRouter();
-app.use(`/${BASE_URL}/admin`, router);
+app.use(`/${BASE_URL}/adminbro`, router);
 const session = require("./middlewares/express-mongo-store");
 //====================== SENTRY SETUP ===========================================
 
@@ -60,11 +60,16 @@ app.use(logger("tiny"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use((req, res, next) => {
+  res.locals.base_url = BASE_URL;
+  next();
+})
 app.use(`/${BASE_URL}`, express.static(path.join(__dirname, "public")));
 
 /*========== ROUTING SETUP : DECLARE YOURS ROUTERS INSIDE INDEXROUTER =================================*/
 
 app.get("/", (req, res) => res.redirect(`/${BASE_URL}`));
+
 app.post("/api/uploadFile", upload.single('upload'), async (req, res) => {
   // Stuff to be added later
   try {

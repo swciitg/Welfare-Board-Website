@@ -6,7 +6,6 @@ const AdminBro = require("admin-bro");
 const AdminBroExpress = require("@admin-bro/express");
 const AdminBroMongoose = require("@admin-bro/mongoose");
 
-BASE_URL = process.env.BASE_URL || "project";
 
 const configureAdmin = () => {
   const connection = configure_db();
@@ -14,9 +13,9 @@ const configureAdmin = () => {
   AdminBro.registerAdapter(AdminBroMongoose);
   const adminBro = new AdminBro({
     databases: [connection],
-    rootPath: `/${BASE_URL}/admin`,
-    loginPath: `/${BASE_URL}/admin/login`,
-    logoutPath: `/${BASE_URL}/admin/logout`,
+    rootPath: `/${BASE_URL}/adminbro`,
+    loginPath: `/${BASE_URL}/adminbro/login`,
+    logoutPath: `/${BASE_URL}/adminbro/logout`,
   });
 
   router = AdminBroExpress.buildAuthenticatedRouter(

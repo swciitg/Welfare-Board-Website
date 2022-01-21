@@ -12,7 +12,7 @@ const indexController = require('../controllers/index')
 
 router.get('/', indexController.indexView)
 router.use('/login', loginRouter)
-router.use('/adminside', adminRouter)
+router.use('/admin', adminRouter)
 router.use('/api', apiRouter)
 router.use('/users', userRouter)
 router.get('/logout',(req,res)=>{

@@ -2,6 +2,8 @@ var slideIndex = [1, 1]
 var slideId = ['mySlides1', 'mySlides2']
 let all_containers = {}
 let curr = ''
+
+console.log(BASE_URI)
 let month = [
   'January',
   'February',
@@ -17,7 +19,7 @@ let month = [
   'December'
 ]
 async function get_all_slides() {
-  let data = await axios.get('api/get_all_slides')
+  let data = await axios.get(`/${BASE_URI}/api/get_all_slides`)
   data = data.data
   console.log(data)
   let temp = ''
@@ -56,7 +58,7 @@ function showSlides(n, no) {
 }
 
 const add_clubs_info = async () => {
-  let clubs = await axios.get('api/clubs')
+  let clubs = await axios.get(`/${BASE_URI}/api/clubs`)
   clubs = clubs.data
   let temp_clubs = ''
   for (let i = 0; i < clubs.length; i++) {
@@ -74,7 +76,7 @@ const add_clubs_info = async () => {
 const change_club = async (id) => {
   console.log(id)
   // nav links
-  club = await axios.get(`api/club/${id}`)
+  club = await axios.get(`/${BASE_URI}/api/club/${id}`)
   club = club.data
   if (curr) document.getElementById(curr).style.color = 'Black'
   curr = 'club_' + id
@@ -101,7 +103,7 @@ const change_club = async (id) => {
 
   console.log(club)
 
-  let cards_containers = await axios.get(`api/cards_container`, {
+  let cards_containers = await axios.get(`/${BASE_URI}/api/cards_container`, {
     params: { cards_container: club.cards_containers }
   })
   cards_containers = cards_containers.data
@@ -236,7 +238,7 @@ const change_club = async (id) => {
   );
 
   let temp_team = ''
-  let team_members = await axios.get(`api/teamcard/`, {
+  let team_members = await axios.get(`/${BASE_URI}/api/teamcard/`, {
     params: { teamcard: club.team_cards }
   })
   console.log('TEAM', team_members.data)
@@ -273,7 +275,7 @@ const change_club = async (id) => {
     `
   })
   document.getElementById('teamcontainer').innerHTML = temp_team
-  let event_container = await axios.get(`api/cards_container`, {
+  let event_container = await axios.get(`/${BASE_URI}/api/cards_container`, {
     params: { cards_container: club.events_containers }
   })
   event_container = event_container.data
