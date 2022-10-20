@@ -69,7 +69,7 @@ const add_clubs_info = async () => {
   }
   var index
   for (index = clubs.length - 1; index >= 0; index--) {
-    if (clubs[index].name == 'Center for Holistic Wellbeing') {
+    if (clubs[index].name == 'Centre for Holistic Wellbeing') {
       break
     }
   }
