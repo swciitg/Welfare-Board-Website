@@ -1,0 +1,149 @@
+<html>
+  <head>
+    <title>Welfare Board</title>
+    <link rel="stylesheet" href="./css/dynamic_club.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link href="https://fonts.googleapis.com/css?family=Red Hat Display" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Red Hat Display" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" />
+    <style></style>
+    <style type="text/css">
+      .ck.ck-editor__main > .ck-editor__editable:not(.ck-focused) {
+        border-style: none;
+      }
+    </style>
+    <script>
+      const BASE_URI = `<%= base_url %>`
+    </script>
+  </head>
+
+  <body>
+    <div class="header">
+      <span class="logo">
+        <a href="https://www.iitg.ac.in"
+          ><img src="./images/iit_logo.png" alt="1200px-IIT-Guwahati-Logo-1"
+        /></a>
+      </span>
+      <span class="title">
+        <h5 class="text-sm">INDIAN INSTITUTE OF TECHNOLOGY GUWAHATI</h5>
+      </span>
+    </div>
+
+    <!-- Top NavBar -->
+    <div style="width: 100%">
+      <div class="topNav row">
+        <div class="welfare col-3" style="margin-left: 0%; text-align: center">
+          <a href="#WB" style="color: white; font-size: 18px"> STUDENT'S WELFARE BOARD </a>
+        </div>
+        <div class="col wel-sm" style="margin-left: 5%"><a href="#SA">STUDENT AFFAIRS</a></div>
+        <div class="col wel-sm"><a href="#HAB">HOSTEL AFFAIRS</a></div>
+        <div class="col wel-sm"><a href="#TECH">TECHNICAL</a></div>
+        <div class="col wel-sm"><a href="#CB">CULTURAL</a></div>
+        <div class="col wel-sm"><a href="#SB">SPORTS</a></div>
+      </div>
+    </div>
+
+    <div class="slideshow-container" id="slideshow-container"></div>
+
+    <!-- Bottom NavBar -->
+
+    <nav class="navbar navbar-expand-md">
+      <div class="bottomNav">
+        <div class="container-fluid">
+          <div id="navbarNav">
+            <ul class="navbar-nav" id="clubs_list"></ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="row" style="margin: 4%">
+      <!-- Welcome -->
+      <div class="col-10" id="introduction">
+        <h1 id="club_name" style="color: black"></h1>
+        <div id="club_introduction" style="color: black"></div>
+        <div id="cards_container"></div>
+      </div>
+
+      <!-- Side NavBar -->
+      <div class="middle col-2">
+        <ul class="nav flex-column list2" id="table_list"></ul>
+      </div>
+    </div>
+    <!-- Teams homepage-->
+    <div class="Teams" id="team">
+      <div class="Team">
+        <h1 id="team_name"></h1>
+      </div>
+      <div id="teamcontainer" class="tcards"></div>
+    </div>
+
+    <!-- Events -->
+    <div class="events">
+      <div class="event" id="Events">
+        <h1 class="ehead" id="e">Events at IIT Guwahati</h1>
+        <div class="dropdown">
+          <button
+            class="btn shadow-sm btn-light dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            id="events_type"
+          >
+            ALL
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li onclick="filter_events('ALL')" class="dropdown-item">ALL</li>
+            <li onclick="filter_events('CULTURAL')" class="dropdown-item">CULTURAL</li>
+            <li onclick="filter_events('TECHNICAL')" class="dropdown-item">TECHNICAL</li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="eventcontainer" class="ecards"></div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="swcfirst">
+        <img
+          src="https://cdn.discordapp.com/icons/700582407048396810/b323eb7828b87b9b7d5e07db8670efc5.png?size=128"
+          alt="swc_icon"
+          width="70px"
+          height="70px"
+        />
+        <div class="swcfoot">
+          <h5><a href="#">Welfare Board IIT Guwahati |</a></h5>
+          <div class="swc">
+            <h9>© 2021 SWC —</h9>
+            <h10><a href="https://docs.swciitg.in/">@swciitg</a></h10>
+          </div>
+        </div>
+      </div>
+      <div class="icons">
+        <a href="https://www.facebook.com/IITG.SWB"><i class="fa fa-facebook fa-xm"></i></a>
+        <a href="https://www.linkedin.com/school/iitg/"
+          ><i class="fa fa-linkedin square fa-xm"></i
+        ></a>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./js/dynamic_club1.js"></script>
+  </body>
+  <script src="ckeditor5/build/ckeditor.js"></script>
+</html>
