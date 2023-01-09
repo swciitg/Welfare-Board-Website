@@ -22,17 +22,17 @@ const session = require("./middlewares/express-mongo-store");
 
 var Sentry = require("@sentry/node");
 var Tracing = require("@sentry/tracing");
-const SENTRY_URL = process.env.SENTRY_URL;
-Sentry.init({
-  dsn: SENTRY_URL,
-  integrations: [
-    // enable HTTP calls tracing
-    new Sentry.Integrations.Http({ tracing: true }),
-    // enable Express.js middleware tracing
-    new Tracing.Integrations.Express({ app }),
-  ],
-  tracesSampleRate: 1.0,
-});
+// const SENTRY_URL = process.env.SENTRY_URL;
+// Sentry.init({
+//   dsn: SENTRY_URL,
+//   integrations: [
+//     // enable HTTP calls tracing
+//     new Sentry.Integrations.Http({ tracing: true }),
+//     // enable Express.js middleware tracing
+//     new Tracing.Integrations.Express({ app }),
+//   ],
+//   tracesSampleRate: 1.0,
+// });
 
 const multerStorage = multer.diskStorage({
   destination: (req, file, cb) => {

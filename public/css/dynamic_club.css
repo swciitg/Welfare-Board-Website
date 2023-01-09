@@ -366,13 +366,12 @@ img {
 .events {
   background-color: #1e2532;
   margin-top: 5vh;
-  padding: 5vh 6vw;
+  /* padding: 5vh 6vw; */
   width: 100%;
 }
 
 .event {
   display: flex;
-  padding-right: 450px;
   justify-content: space-between;
 }
 

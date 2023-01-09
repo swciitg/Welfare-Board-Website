@@ -87,19 +87,18 @@ const change_club = async (id) => {
   document.title = club.name
   document.getElementById('e').innerHTML = `Events At ${club.name}`
 
-  document.getElementById('club_introduction').innerHTML = `<div id="clubAbout" class="ck ck-content
-   ck-editor__editable ck-rounded-corners ck-editor__editable_inline ck-blurred">${club.about[0]}</div>`
+  document.getElementById('club_introduction').innerHTML = `<div id="clubAbout" class="text-justify ">${club.about[0]}</div>`
   // ClassicEditor.create(document.querySelector('#clubAbout'), {
   // })
 
   // side nav
   let temp_table = ''
-  temp_table += ` <li class="nav-item table_content list">
-               <h4 class="nav-link textSecondary">Content</h4>
-            </li>
-            <li class="nav-item table_content list">
-               <a class="nav-link textSecondary" href="#introduction" style="color:#1E2532;font-weight: bold;">About</a>
-            </li>`
+  // temp_table += ` <li class="nav-item table_content list">
+  //              <h4 class="nav-link textSecondary">Content</h4>
+  //           </li>
+  //           <li class="nav-item table_content list">
+  //              <a class="nav-link textSecondary" href="#introduction" style="color:#1E2532;font-weight: bold;">About</a>
+  //           </li>`
 
   console.log(club)
 
@@ -113,12 +112,12 @@ const change_club = async (id) => {
         <a class="nav-link textSecondary"  href="#${cards_containers[i].title}">${cards_containers[i].title}</a>
        </li>`
   }
-  temp_table += `<li class="nav-item table_content list">
-  <a class="nav-link textSecondary" href="#team">Team</a>
-</li>
-<li class="nav-item table_content list">
-               <a class="nav-link textSecondary" href="#Events">Events</a>
-            </li>`
+//   temp_table += `<li class="nav-item table_content list">
+//   <a class="nav-link textSecondary" href="#team">Team</a>
+// </li>
+// <li class="nav-item table_content list">
+//                <a class="nav-link textSecondary" href="#Events">Events</a>
+//             </li>`
   document.getElementById('table_list').innerHTML = temp_table
   console.log('car_containers', cards_containers)
   // containers excluding events
@@ -252,28 +251,61 @@ const change_club = async (id) => {
   //     image: member.image
   //   }
   // })
-  team_members.forEach((member) => {
+  for(var i=0;i<5;i++){
     temp_team += `
-    <div class="tcard card text-white mb-4" style="width: 30vw;"class="ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline ck-blurred" >
-      <div style="display:flex;">
-        <img src="${member.image}" style="min-width:100%;height:35vh;"/>
-      </div>
-      <div style="padding-left:32px;padding-right:32px;padding-bottom:24px;">
-        <p>
-          <h4 style="font-family:Raleway; font-weight:600;font-style:normal;font-size:24px;line-height:30px;">${member.name}</h4> 
-        </p>
-        <p class="tmember" style="padding-bottom:18px;border-bottom:1px solid white;">
-            ${member.role}
-        </p>
-     
-        <div>
-            <div class="tmember" style="float:left;">${member.email}</div>
-            <div class="tmember" style="float:right;">${member.phone}</div>
+    <div class="block md:hidden">
+        <div style="width: 320px" class="bg-blue-600 mb-8 rounded-md cursor-pointer">
+          <div class="bg-gray-200 flex justify-center">
+            <img src="/hab/uploads/hostel/<%=member.photo%>" alt="ProfilePic"
+              class="h-64 w-auto object-contain rounded-sm" />
+          </div>
+          <div class="h-16">
+            <div class="text-white text-2xl ml-4 pt-1">
+              <%= member.Mname %>
+            </div>
+            <div class="text-white text-lg ml-4 pt-1">
+              <%= member.position %>
+            </div>
+          </div>
+          <svg class="w-full px-4 mt-3" width="360" height="1" viewBox="0 0 360 1" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <line x1="0.5" y1="0.5" x2="359.5" y2="0.500031" stroke="white" stroke-linecap="round" />
+          </svg>
+          <div class="h-20">
+            <div class="text-white text-lg ml-4 pt-1">
+              <%= member.email %>
+            </div>
+            <div class="text-white text-lg ml-4 pt-1">
+              <%= member.contact1 %>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
     `
-  })
+  }
+    
+  // team_members.forEach((member) => {
+  //   temp_team += `
+  //   <div class="tcard card text-white mb-4" style="width: 30vw;"class="ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline ck-blurred" >
+  //     <div style="display:flex;">
+  //       <img src="${member.image}" style="min-width:100%;height:35vh;"/>
+  //     </div>
+  //     <div style="padding-left:32px;padding-right:32px;padding-bottom:24px;">
+  //       <p>
+  //         <h4 style="font-family:Raleway; font-weight:600;font-style:normal;font-size:24px;line-height:30px;">${member.name}</h4> 
+  //       </p>
+  //       <p class="tmember" style="padding-bottom:18px;border-bottom:1px solid white;">
+  //           ${member.role}
+  //       </p>
+     
+  //       <div>
+  //           <div class="tmember" style="float:left;">${member.email}</div>
+  //           <div class="tmember" style="float:right;">${member.phone}</div>
+  //       </div>
+  //     </div>
+  //   </div>
+  //   `
+  // })
   document.getElementById('teamcontainer').innerHTML = temp_team
   let event_container = await axios.get(`/${BASE_URI}/api/cards_container`, {
     params: { cards_container: club.events_containers }

@@ -19,21 +19,35 @@
     <script>
         const BASE_URI = `<%= base_url %>`
     </script>
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" />
+
 </head>
 
 
 <body>
-    <div class="header">
+    <!-- <div class="header">
         <span class="logo">
             <a href="https://www.iitg.ac.in"><img src="./images/iit_logo.png" alt="1200px-IIT-Guwahati-Logo-1" /></a>
         </span>
         <span class="title">
             <h5 class="text-sm">INDIAN INSTITUTE OF TECHNOLOGY GUWAHATI</h5>
         </span>
-    </div>
-
+    </div> -->
+    <div class="sticky top-0">
+    <div class="header bg-white py-1 ">
+        <div class="container flex justify-center mb-1.5 mt-0.5 ml-auto mr-auto">
+          <span class="float-left ">
+            <img src="data:image/png;base64,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" alt="1200px-IIT-Guwahati-Logo-1" border="0" />
+          </span>
+          <span class="float-left pl-2 flex items-center">
+            <h1 class="text-sm ">
+              INDIAN INSTITUTE OF TECHNOLOGY
+            </h1>
+          </span>
+        </div>
+      </div>
     <!-- Top NavBar -->
-    <div style="width: 100%;">
+    <!-- <div style="width: 100%;">
         <div class="topNav row">
             <div class="welfare col-3" style="margin-left: 0%;text-align: center;"><a href="#WB"
                     style="color: white;font-size:18px;">
@@ -45,15 +59,24 @@
             <div class="col wel-sm"><a href="#CB">CULTURAL</a></div>
             <div class="col wel-sm"><a href="#SB">SPORTS</a></div>
         </div>
+    </div> -->
+    <div class="flex justify-between border-black z-50">
+        <div class="flex justify-center bg-blue-600 p-4 w-full md:w-auto text-white font-bold">Students' Welfare Board</div>
+        <div class="hidden md:block py-4 ">Hostel Affairs Board</div>
+        <!-- <div class="hidden md:block py-4">Welfare Board</div> -->
+        <div class="hidden md:block py-4">Sports Board</div>
+        <div class="hidden md:block py-4">SWC</div>
+        <div class="hidden md:block py-4">SAIL</div>
+        <div class="hidden md:block p-4">Technical Board</div>
     </div>
-
-    <div class="slideshow-container" id="slideshow-container">
+</div>
+    <div class="slideshow-container " id="slideshow-container">
 
     </div>
 
     <!-- Bottom NavBar -->
 
-    <nav class="navbar navbar-expand-md">
+    <nav class="navbar navbar-expand-md overflow-sc">
         <div class="bottomNav">
             <div class="container-fluid">
                 <div  id="navbarNav">
@@ -65,28 +88,20 @@
     </nav>
 
 
-    <div class="row" style="margin:4%">
+    <div class="row" style="margin-left:4%; margin-top: 4%; margin-bottom: 4%;">
         <!-- Welcome -->
         <div class="col-10" id="introduction">
-            <h1 id="club_name" style="color:black;"></h1>
+            <div id="club_name" class="font-bold  md:text-3xl mb-2" style="color:black;"></div>
             <div id="club_introduction" style="color:black;"></div>
             <div id="cards_container">
 
             </div>
         </div>
-
-
-        <!-- Side NavBar -->
-        <div class="middle col-2">
-               <ul class="nav flex-column list2" id="table_list">
-
-                </ul>
-        </div>
     </div>
     <!-- Teams homepage-->
-    <div class="Teams" id="team">
-        <div class="Team">
-            <h1 id="team_name"></h1>
+    <div class="Teams " id="team">
+        <div class="flex justify-center md:justify-start">
+            <h1 class="my-2  md:text-3xl font-bold"id="team_name"></h1>
         </div>
         <div id="teamcontainer" class="tcards">
 
@@ -98,9 +113,9 @@
 
     <!-- Events -->
     <div class="events">
-        <div class="event" id="Events">
-            <h1 class="ehead" id='e'>Events at IIT Guwahati</h1>
-            <div class="dropdown">
+        <div class="event flex justify-center md:justify-start md:ml-12" id="Events">
+            <div class="text-white my-2  md:text-3xl font-bold" id='e'>Events at IIT Guwahati</div>
+            <!-- <div class="dropdown">
                 <button class="btn shadow-sm btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
                     aria-expanded="false" id="events_type">
                     ALL
@@ -110,7 +125,7 @@
                     <li onclick="filter_events('CULTURAL')" class="dropdown-item">CULTURAL</li>
                     <li onclick="filter_events('TECHNICAL')" class="dropdown-item">TECHNICAL</li>
                 </ul>
-            </div>
+            </div> -->
         </div>
 
         <div id="eventcontainer" class="ecards">
@@ -119,7 +134,7 @@
     </div>
 
     <!-- Footer -->
-    <div class="footer">
+    <!-- <div class="footer hidden">
         <div class="swcfirst">
             <img src="https://cdn.discordapp.com/icons/700582407048396810/b323eb7828b87b9b7d5e07db8670efc5.png?size=128"
                 alt="swc_icon" width="70px" height="70px" />
@@ -135,7 +150,131 @@
             <a href="https://www.facebook.com/IITG.SWB"><i class="fa fa-facebook fa-xm"></i></a>
             <a href="https://www.linkedin.com/school/iitg/"><i class="fa fa-linkedin square fa-xm"></i></a>
         </div>
-    </div>
+    </div> -->
+    <footer class="text-gray-600 body-font" style="background-color: #1e2532">
+        <div
+          class="
+            container
+            px-5
+            pt-8
+            pb-3
+            sm:py-10
+            mx-auto
+            flex
+            items-center
+            sm:flex-row
+            flex-col
+          "
+        >
+          <a
+            class="
+              flex
+              title-font
+              font-medium
+              items-center
+              md:justify-start
+              justify-center
+              text-white
+            "
+            href="https://www.facebook.com/swciitg"
+          >
+            <!-- <img src="/images/nav/hab_logo.svg" alt="hab-logo" class="transform scale-50"> -->
+            <img
+              src="https://iitg.ac.in/hab//images/svg/swc-logo-white.svg"
+              alt="swc-logo"
+              class="mr-3 transform scale-110"
+            />
+            <span class="text-xl">Students' Web Committee</span>
+          </a>
+          <p
+            class="
+              text-sm text-gray-500
+              sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-400 sm:py-2 sm:mt-0
+              mt-4
+            "
+          >
+            © 2021 SWC —
+            <a
+              href="https://www.facebook.com/swciitg"
+              class="text-gray-600 ml-1"
+              rel="noopener noreferrer"
+              target="_blank"
+              >@swciitg</a
+            >
+          </p>
+          <span
+            class="
+              inline-flex
+              sm:ml-auto sm:mt-0
+              mt-4
+              justify-center
+              sm:justify-start
+            "
+          >
+            <a class="text-gray-500">
+              <svg
+                fill="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                class="w-5 h-5"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"
+                ></path>
+              </svg>
+            </a>
+            <a class="ml-3 text-gray-500">
+              <svg
+                fill="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                class="w-5 h-5"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"
+                ></path>
+              </svg>
+            </a>
+            <a class="ml-3 text-gray-500">
+              <svg
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                class="w-5 h-5"
+                viewBox="0 0 24 24"
+              >
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                <path
+                  d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"
+                ></path>
+              </svg>
+            </a>
+            <a class="ml-3 text-gray-500">
+              <svg
+                fill="currentColor"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="0"
+                class="w-5 h-5"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke="none"
+                  d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"
+                ></path>
+                <circle cx="4" cy="4" r="2" stroke="none"></circle>
+              </svg>
+            </a>
+          </span>
+        </div>
+      </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
