@@ -118,8 +118,8 @@ const change_club = async (id) => {
 // <li class="nav-item table_content list">
 //                <a class="nav-link textSecondary" href="#Events">Events</a>
 //             </li>`
-  document.getElementById('table_list').innerHTML = temp_table
-  console.log('car_containers', cards_containers)
+  // document.getElementById('table_list').innerHTML = temp_table
+  // console.log('car_containers', cards_containers)
   // containers excluding events
   temp_table = ''
   let temp = ''
@@ -251,61 +251,30 @@ const change_club = async (id) => {
   //     image: member.image
   //   }
   // })
-  for(var i=0;i<5;i++){
+    
+  team_members.forEach((member) => {
+    console.log(member)
     temp_team += `
-    <div class="block md:hidden">
-        <div style="width: 320px" class="bg-blue-600 mb-8 rounded-md cursor-pointer">
-          <div class="bg-gray-200 flex justify-center">
-            <img src="/hab/uploads/hostel/<%=member.photo%>" alt="ProfilePic"
-              class="h-64 w-auto object-contain rounded-sm" />
-          </div>
-          <div class="h-16">
-            <div class="text-white text-2xl ml-4 pt-1">
-              <%= member.Mname %>
-            </div>
-            <div class="text-white text-lg ml-4 pt-1">
-              <%= member.position %>
-            </div>
-          </div>
-          <svg class="w-full px-4 mt-3" width="360" height="1" viewBox="0 0 360 1" fill="none"
-            xmlns="http://www.w3.org/2000/svg">
-            <line x1="0.5" y1="0.5" x2="359.5" y2="0.500031" stroke="white" stroke-linecap="round" />
-          </svg>
-          <div class="h-20">
-            <div class="text-white text-lg ml-4 pt-1">
-              <%= member.email %>
-            </div>
-            <div class="text-white text-lg ml-4 pt-1">
-              <%= member.contact1 %>
-            </div>
-          </div>
+    <div class="tcard card text-white mb-4 w-32" class="ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline ck-blurred" >
+      <div style="min-width:100%;height:35vh;" class="flex bg-gray-100">
+        <img src="${member.image}" class="h-full w-full object-contain rounded-sm" />
+      </div>
+      <div style="padding-left:32px;padding-right:32px;padding-bottom:24px;">
+        <p>
+          <h4 style="font-family:Raleway; font-weight:600;font-style:normal;font-size:24px;line-height:30px;">${member.name}</h4> 
+        </p>
+        <p class="tmember" style="padding-bottom:18px;border-bottom:1px solid white;">
+            ${member.role}
+        </p>
+     
+        <div class="flex flex-col">
+            <div style="float:left;">${member.email}</div>
+            <div style="float:right;">${member.phone}</div>
         </div>
       </div>
+    </div>
     `
-  }
-    
-  // team_members.forEach((member) => {
-  //   temp_team += `
-  //   <div class="tcard card text-white mb-4" style="width: 30vw;"class="ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline ck-blurred" >
-  //     <div style="display:flex;">
-  //       <img src="${member.image}" style="min-width:100%;height:35vh;"/>
-  //     </div>
-  //     <div style="padding-left:32px;padding-right:32px;padding-bottom:24px;">
-  //       <p>
-  //         <h4 style="font-family:Raleway; font-weight:600;font-style:normal;font-size:24px;line-height:30px;">${member.name}</h4> 
-  //       </p>
-  //       <p class="tmember" style="padding-bottom:18px;border-bottom:1px solid white;">
-  //           ${member.role}
-  //       </p>
-     
-  //       <div>
-  //           <div class="tmember" style="float:left;">${member.email}</div>
-  //           <div class="tmember" style="float:right;">${member.phone}</div>
-  //       </div>
-  //     </div>
-  //   </div>
-  //   `
-  // })
+  })
   document.getElementById('teamcontainer').innerHTML = temp_team
   let event_container = await axios.get(`/${BASE_URI}/api/cards_container`, {
     params: { cards_container: club.events_containers }
@@ -315,7 +284,7 @@ const change_club = async (id) => {
   if (event_container.length) {
     all_containers['events'].cards.forEach((card) => {
       temp_event += `
-                <div class="ecard text-white ck ck-editor__editable ck-rounded-corners ck-blurred" style="padding:0px;">
+                <div class="ecard text-white ck ck-editor__editable ck-rounded-corners ck-blurred" style="padding:0px; width: 2px;">
                       ${card.description}
                 </div>`
     })
@@ -359,7 +328,7 @@ const filter_content = (filter, id) => {
 }
 
 const filter_events = async (filter) => {
-  let all_events = 0
+  let all_events = 1
   document.getElementById('events_type').innerHTML = filter
   if (filter == 'ALL') all_events = 1
   let temp_events = ''
@@ -367,7 +336,7 @@ const filter_events = async (filter) => {
     all_containers['events'].cards.forEach((event) => {
       if (all_events || event.type == filter) {
         temp_events += `
-                <div class="ecard text-white ck ck-editor__editable ck-rounded-corners ck-blurred" style="padding:0px;">
+                <div class="ecard text-white ck ck-editor__editable ck-rounded-corners ck-blurred" style="padding:0px; width:2px;">
                       ${event.description}        
                 </div>`
       }
