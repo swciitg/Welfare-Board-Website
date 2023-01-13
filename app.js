@@ -70,7 +70,7 @@ app.use(`/${BASE_URL}`, express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) => res.redirect(`/${BASE_URL}`));
 
-app.post("/api/uploadFile", upload.single('upload'), async (req, res) => {
+app.post(`/${BASE_URL}/api/uploadFile`, upload.single('upload'), async (req, res) => {
   // Stuff to be added later
   try {
     

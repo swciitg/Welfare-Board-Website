@@ -101,7 +101,7 @@ const addCard = (type, card) => {
       cardImage = cardImage.files[0]
       let formData = new FormData()
       formData.append('upload', cardImage)
-      fetch('http://localhost:3000/api/uploadFile', {
+      fetch(`/${BASE_URI}/api/uploadFile`, {
         method: 'post',
         body: formData
       })
@@ -280,7 +280,7 @@ const editcarddetails = (id) => {
     ClassicEditor.create(document.querySelector('#editcardDescription'), {
       ckfinder: {
         // Upload the images to the server using the CKFinder QuickUpload command.
-        uploadUrl: '/api/uploadFile'
+        uploadUrl: `${BASE_URI}/api/uploadFile`
       }
     })
       .then((newEditor) => {
@@ -323,7 +323,7 @@ const editcard = () => {
       cardImage = cardImage.files[0]
       let formData = new FormData()
       formData.append('upload', cardImage)
-      fetch('/api/uploadFile', {
+      fetch(`/${BASE_URI}/api/uploadFile`, {
         method: 'post',
         body: formData
       })
@@ -362,7 +362,7 @@ const cardCreatemodaldata = (type) => {
     ClassicEditor.create(document.querySelector('#cardDescription'), {
       ckfinder: {
         // Upload the images to the server using the CKFinder QuickUpload command.
-        uploadUrl: '/api/uploadFile'
+        uploadUrl: `/${BASE_URI}/api/uploadFile`
       }
     })
       .then((newEditor) => {
@@ -502,7 +502,7 @@ function clubAboutEditorCreate() {
   ClassicEditor.create(document.querySelector('#clubAbout'), {
     ckfinder: {
       // Upload the images to the server using the CKFinder QuickUpload command.
-      uploadUrl: '/api/uploadFile'
+      uploadUrl: `/${BASE_URI}/api/uploadFile`
     }
   })
     .then((newEditor) => {
